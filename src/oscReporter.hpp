@@ -28,8 +28,8 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         OscOptionalUnpacker(m) >> fid >> canangle >> cancursor;
         fiducials[fid]=object_data();
         //fids.insert(fid);
-        if(canangle == 3){ fiducials[fid].can_angle = true; std::cout << "o" << std::endl;}
-        else if(cancursor == 3) fiducials[fid].can_cursors = true;
+        if(canangle == 3){fiducials[fid].can_angle = true; std::cout << "o" << std::endl;}
+        if(cancursor == 3) fiducials[fid].can_cursors = true;
     }
     void update()
     {
@@ -98,20 +98,58 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     }
 
     void newCursor(tuio::DirectFinger * finger ){
-    }
-
-    void removeCursor(tuio::DirectFinger * finger ){
+        for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
+        {
+            if(objects.isOnTable((*it).first) && (*it).second.can_cursors){
+                DirectPoint figure;
+                figure.set((*it).second.xpos,(*it).second.ypos);
+                float dist = figure.getDistance(finger);
+                if(dist <= 0.075){
+                    DirectPoint center;
+                    center.set(0.5f,0.5f);
+                    float angle = (figure.getAngle(finger)-figure.getAngle(center))/PI;
+                    if (angle >1) angle = 1;
+                    else if(angle <0) angle = 0;
+                    (*it).second.f_value = angle;
+                    ofxOscMessage msg;
+                    msg.setAddress("/object/finger_report");
+                    OscPacker(msg) << (int)(*it).first << (float)fiducials[(*it).first].f_value;
+                    OSCDispatcher::Instance().sender.sendMessage(msg);
+                }
+            }
+        }
     }
 
     void updateCursor(tuio::DirectFinger * finger ){
+        for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
+        {
+            if(objects.isOnTable((*it).first) && (*it).second.can_cursors){
+                DirectPoint figure;
+                figure.set((*it).second.xpos,(*it).second.ypos);
+                float dist = figure.getDistance(finger);
+                if(dist <= 0.075){
+                    DirectPoint center;
+                    center.set(0.5f,0.5f);
+                    float fig_angle = figure.getAngle(center);
+                    float angle = (figure.getAngle(finger)-figure.getAngle(center))/PI;
+                    if (angle >1) angle = 1;
+                    else if(angle <0) angle = 0;
+                    (*it).second.f_value = angle;
+                    ofxOscMessage msg;
+                    msg.setAddress("/object/finger_report");
+                    OscPacker(msg) << (int)(*it).first << (float)fiducials[(*it).first].f_value;
+                    OSCDispatcher::Instance().sender.sendMessage(msg);
+                }
+            }
+        }
     }
 
     void draw(){
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
             int f = (*it).first;
-            if(objects.isOnTable(f){
-               if((*it).second.can_angle))
+            if(objects.isOnTable(f)){
+               if((*it).second.can_angle)
                 {
                     ofPushMatrix();
                     DirectPoint center;
@@ -146,7 +184,38 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                     }
                     ofPopMatrix();
                 }
-                if((*it).second.can_cursors)){
+                if((*it).second.can_cursors){
+                    ofPushMatrix();
+                    DirectPoint center;
+                    center.set(0.5f,0.5f);
+                    DirectPoint target;
+                    target.set((*it).second.xpos,(*it).second.ypos);
+                    float fig_angle = center.getAngle(target);
+                    ofTranslate((*it).second.xpos,(*it).second.ypos);
+                    ofRotate((fig_angle+PI)*180/PI);
+                    //empty
+                    ofSetColor(155,255,155);
+                    ofSetLineWidth(1);
+                    glBegin(GL_LINE_STRIP);
+                    double step = PI/40.0;
+                    for (double i = 0; i <= PI; i+=step)
+                    {
+                        glVertex2f(0.053*cos(i),0.053*sin(i));
+                    }
+                    glEnd();
+
+                    ofRotate((*it).second.f_value*180);
+                    glTranslatef(0.053f,0.0f,0.0f);
+                    glBegin(GL_TRIANGLE_FAN);
+                    glVertex2f(0,0);
+                    step = 2*PI/40.0;
+                    for (double i = 0; i <= 2*PI; i+=step)
+                    {
+                        glVertex2f(0.0053*cos(i),0.0053*sin(i));
+                    }
+                    glVertex2f(0.0053*cos(0),0.0053*sin(0));
+                    glEnd();
+                    ofPopMatrix();
                 }
             }
         }
