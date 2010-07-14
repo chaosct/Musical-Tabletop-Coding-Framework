@@ -1,4 +1,4 @@
-#N canvas 867 497 306 266 10;
+#N canvas 869 547 578 266 10;
 #X obj 41 31 dumpOSC 1235;
 #X obj 41 60 s basicTangibleTabletop1235messageBus;
 #X obj 41 84 r basicTangibleTabletop1234messageBus;
@@ -6,8 +6,16 @@
 #X msg 48 174 connect localhost 1234;
 #X obj 41 202 sendOSC;
 #X obj 48 149 loadbang;
+#X obj 278 92 s basicTangibleTabletopInit;
+#X obj 278 69 loadbang;
+#X obj 337 48 route /init;
+#X msg 337 69 bang;
 #X connect 0 0 1 0;
+#X connect 0 0 9 0;
 #X connect 2 0 3 0;
 #X connect 3 0 5 0;
 #X connect 4 0 5 0;
 #X connect 6 0 4 0;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 10 0 7 0;

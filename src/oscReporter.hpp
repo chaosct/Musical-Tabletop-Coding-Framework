@@ -20,10 +20,16 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
     void run(ofxOscMessage & m)
     {
         int fid1,fid2;
-        OscOptionalUnpacker(m) >> fid1 >> fid2;
+        int destroy = 0;
+        OscOptionalUnpacker(m) >> fid1 >> fid2 >> destroy;
+        if (destroy)
+        {
+            dists.erase(std::make_pair(fid1,fid2));
+            return;
+        }
         dists.insert(std::make_pair(fid1,fid2));
         //report initial state
-        if(objects.isOnTable(fid1) and objects.isOnTable(fid1))
+        if(objects.isOnTable(fid1) and objects.isOnTable(fid2))
         {
             reporton(fid1,fid2);
             report(fid1,fid2);
