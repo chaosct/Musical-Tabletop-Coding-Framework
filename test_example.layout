@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Linux_Release" />
+	<File name="../../../addons/ofxTableGestures/src/Controllers/Button.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="670" topLine="31" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/Controllers/SimpleObjectController.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="64" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/GlobalConfig.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1275" topLine="10" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/Graphics/Grid.hpp" open="0" top="0" tabpos="1">
+		<Cursor position="1280" topLine="24" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/Renderer_plane.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="26" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/Renderer_to_texture.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1344" topLine="32" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/TableApp.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1919" topLine="35" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/Tests/ButtonMadnessTest.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="905" topLine="17" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/Gestures/InputGestureDirectObjects.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="393" topLine="50" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/Gestures/InputGestureTuio1.1.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="17" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/TEvent.hpp" open="0" top="0" tabpos="2">
+		<Cursor position="1459" topLine="29" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/tuio1.1/InputGestureTuio1.12.5D.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="4975" topLine="72" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/tuio1.1/InputGestureTuio1.12D.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="3340" topLine="69" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/tuio1.1/InputGestureTuio1.13D.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="3945" topLine="57" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/tuio1.1/InputGestureTuio1.1fseq.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="2368" topLine="55" />
+	</File>
+	<File name="../../../addons/ofxTableGestures/src/oscGestures/tuioApp.hpp" open="0" top="0" tabpos="6">
+		<Cursor position="5054" topLine="145" />
+	</File>
+	<File name="../../../addons/ofxOsc/src/ofxOscMessage.h" open="0" top="0" tabpos="0">
+		<Cursor position="2039" topLine="39" />
+	</File>
+	<File name="../../../addons/ofxOsc/src/ofxOscSender.h" open="0" top="0" tabpos="0">
+		<Cursor position="1951" topLine="36" />
+	</File>
+	<File name="bin/data/GlobalConfig.xml" open="1" top="0" tabpos="4">
+		<Cursor position="377" topLine="0" />
+	</File>
+	<File name="src/dispatcher.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="783" topLine="0" />
+	</File>
+	<File name="src/dispatcher.hpp" open="1" top="1" tabpos="2">
+		<Cursor position="645" topLine="0" />
+	</File>
+	<File name="src/oscReporter.hpp" open="1" top="0" tabpos="3">
+		<Cursor position="503" topLine="15" />
+	</File>
+	<File name="src/simpleAllObjects.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="622" topLine="0" />
+	</File>
+	<File name="src/testApp.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="228" topLine="0" />
+	</File>
+	<File name="src/testApp.h" open="0" top="0" tabpos="0">
+		<Cursor position="1424" topLine="23" />
+	</File>
+</CodeBlocks_layout_file>
