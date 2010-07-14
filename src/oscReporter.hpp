@@ -110,30 +110,44 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
             int f = (*it).first;
-            if(objects.isOnTable(f) && (*it).second.can_angle)
-            {
-               //report(objects[f]);
-               float angle = PI*(*it).second.a_value;
-               if(angle != 0){
-                ofPushMatrix();
-                DirectPoint center;
-                center.set(0.5f,0.5f);
-                DirectPoint target;
-                target.set((*it).second.xpos,(*it).second.ypos);
-                float fig_angle = center.getAngle(target);
-                ofTranslate((*it).second.xpos,(*it).second.ypos);ofRotate(fig_angle*180/PI);
-                ofSetColor(255,255,255);
-                ofSetLineWidth(8);
-                glBegin(GL_TRIANGLE_STRIP);
-                double step = angle/20.0;
-                for (double i = 0; i <= angle; i+=step)
+            if(objects.isOnTable(f){
+               if((*it).second.can_angle))
                 {
-                    glVertex2f(0.05f*cos(i),0.05f*sin(i));
-                    glVertex2f(0.056f*cos(i),0.056f*sin(i));
+                    ofPushMatrix();
+                    DirectPoint center;
+                    center.set(0.5f,0.5f);
+                    DirectPoint target;
+                    target.set((*it).second.xpos,(*it).second.ypos);
+                    float fig_angle = center.getAngle(target);
+                    ofTranslate((*it).second.xpos,(*it).second.ypos);ofRotate(fig_angle*180/PI);
+                    //empty
+                    ofSetColor(55,55,55);
+                    glBegin(GL_TRIANGLE_STRIP);
+                    double step = PI/40.0;
+                    for (double i = 0; i <= PI; i+=step)
+                    {
+                        glVertex2f(0.05*cos(i),0.05*sin(i));
+                        glVertex2f(0.056*cos(i),0.056*sin(i));
+                    }
+                    glEnd();
+
+                    float angle = PI*(*it).second.a_value;
+                    if(angle != 0){
+                        //value
+                        ofSetColor(255,255,255);
+                        glBegin(GL_TRIANGLE_STRIP);
+                        step = angle/40.0;
+                        for (double i = 0; i <= angle; i+=step)
+                        {
+                            glVertex2f(0.05*cos(i),0.05*sin(i));
+                            glVertex2f(0.056*cos(i),0.056*sin(i));
+                        }
+                        glEnd();
+                    }
+                    ofPopMatrix();
                 }
-                glEnd();
-                ofPopMatrix();
-               }
+                if((*it).second.can_cursors)){
+                }
             }
         }
     }
