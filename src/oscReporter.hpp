@@ -152,7 +152,13 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         int fid;
         int canangle = 0;
         int cancursor = 0;
-        OscOptionalUnpacker(m) >> fid >> canangle >> cancursor;
+        int deleteme = 0;
+        OscOptionalUnpacker(m) >> fid >> canangle >> cancursor >> deleteme;
+        if(deleteme)
+        {
+            fiducials.erase(fid);
+            return;
+        }
         fiducials[fid].can_angle   = (canangle != 0);
         fiducials[fid].can_cursors = (cancursor != 0);
     }
