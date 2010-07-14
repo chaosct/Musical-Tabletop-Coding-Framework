@@ -14,6 +14,7 @@ void testApp::Setup(){
     //new CalibratorObject(1);
 
     new OscObjectReporter();
+    new OscDistanceReporter();
 }
 
 //--------------------------------------------------------------
