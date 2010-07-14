@@ -97,6 +97,17 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
 
+    float computeAngle(tuio::DirectFinger * finger, DirectPoint &figure){
+        DirectPoint center;
+        center.set(0.5f,0.5f);
+        float angle = (figure.getAngle(finger)-figure.getAngle(center));
+        if (angle < 0) angle += PI*2;
+        angle = angle /PI;
+        if(angle >= 1.5f) angle = 0;
+        else if(angle > 1) angle = 1;
+        return angle;
+    }
+
     void newCursor(tuio::DirectFinger * finger ){
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
@@ -105,12 +116,7 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                 figure.set((*it).second.xpos,(*it).second.ypos);
                 float dist = figure.getDistance(finger);
                 if(dist <= 0.075){
-                    DirectPoint center;
-                    center.set(0.5f,0.5f);
-                    float angle = (figure.getAngle(finger)-figure.getAngle(center))/PI;
-                    if (angle >1) angle = 1;
-                    else if(angle <0) angle = 0;
-                    (*it).second.f_value = angle;
+                    (*it).second.f_value = computeAngle(finger,figure);
                     ofxOscMessage msg;
                     msg.setAddress("/object/finger_report");
                     OscPacker(msg) << (int)(*it).first << (float)fiducials[(*it).first].f_value;
@@ -128,13 +134,7 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                 figure.set((*it).second.xpos,(*it).second.ypos);
                 float dist = figure.getDistance(finger);
                 if(dist <= 0.075){
-                    DirectPoint center;
-                    center.set(0.5f,0.5f);
-                    float fig_angle = figure.getAngle(center);
-                    float angle = (figure.getAngle(finger)-figure.getAngle(center))/PI;
-                    if (angle >1) angle = 1;
-                    else if(angle <0) angle = 0;
-                    (*it).second.f_value = angle;
+                    (*it).second.f_value = computeAngle(finger,figure);
                     ofxOscMessage msg;
                     msg.setAddress("/object/finger_report");
                     OscPacker(msg) << (int)(*it).first << (float)fiducials[(*it).first].f_value;
