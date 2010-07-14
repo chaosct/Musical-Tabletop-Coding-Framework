@@ -1,11 +1,11 @@
-#N canvas -476 693 450 321 10;
+#N canvas -904 453 450 321 10;
 #X obj 71 63 dumpOSC 1235;
 #X obj 254 148 sendOSC;
 #X msg 254 57 connect localhost 1234;
 #X msg 280 89 disconnect;
-#X msg 156 99 send /objects 0 3 0;
 #X obj 71 113 print;
-#X connect 0 0 5 0;
+#X msg 156 99 send /objects 0 3 3;
+#X connect 0 0 4 0;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
-#X connect 4 0 1 0;
+#X connect 5 0 1 0;
