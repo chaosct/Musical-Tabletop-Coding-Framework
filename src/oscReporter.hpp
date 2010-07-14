@@ -161,6 +161,14 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         }
         fiducials[fid].can_angle   = (canangle != 0);
         fiducials[fid].can_cursors = (cancursor != 0);
+        if(objects.isOnTable(fid))
+        {
+            reporton(fid);
+        }
+        else
+        {
+            reportoff(fid);
+        }
     }
     void update()
     {
@@ -174,6 +182,24 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         }
     }
 
+
+    void reporton (int fid)
+    {
+        //report on
+        ofxOscMessage msg;
+        msg.setAddress("/object/on");
+        OscPacker(msg) << fid;
+        OSCDispatcher::Instance().sender.sendMessage(msg);
+    }
+    void reportoff (int fid)
+    {
+        //report on
+        ofxOscMessage msg;
+        msg.setAddress("/object/off");
+        OscPacker(msg) << fid;
+        OSCDispatcher::Instance().sender.sendMessage(msg);
+    }
+
     void report (tuio::DirectObject * obj)
     {
         ofxOscMessage msg;
@@ -184,11 +210,8 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
 
     void newObject(tuio::DirectObject * obj)
     {
-        ofxOscMessage msg;
-        msg.setAddress("/object/on");
-        OscPacker(msg) << (int)obj->f_id;
-        OSCDispatcher::Instance().sender.sendMessage(msg);
         if(fiducials.find(obj->f_id)!= fiducials.end()){
+            reporton(obj->f_id);
             fiducials[obj->f_id].angle = obj->angle;
         }
     }
@@ -222,10 +245,9 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
 
     void removeObject(tuio::DirectObject * obj)
     {
-        ofxOscMessage msg;
-        msg.setAddress("/object/off");
-        OscPacker(msg) << (int)obj->f_id;
-        OSCDispatcher::Instance().sender.sendMessage(msg);
+        if(fiducials.find(obj->f_id)!= fiducials.end()){
+            reportoff(obj->f_id);
+        }
     }
 
     float computeAngle(tuio::DirectFinger * finger, DirectPoint &figure){

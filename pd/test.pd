@@ -1,4 +1,4 @@
-#N canvas 33 676 639 333 10;
+#N canvas 43 602 639 333 10;
 #X text 58 25 Prova distancies;
 #X obj 197 22 basicTangibleTabletop;
 #X obj 351 44 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -28,14 +28,18 @@
 #X floatatom 254 212 5 0 0 0 - - -;
 #X floatatom 293 212 5 0 0 0 - - -;
 #X obj 52 85 r basicTangibleTabletop1235messageBus;
-#X msg 157 158 param 1;
 #X obj 51 108 spigot;
 #X obj 98 110 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 52 132 print received;
 #X floatatom 336 211 5 0 0 0 - - -;
-#X msg 214 158 slider on;
-#X obj 157 183 Object 4;
+#X obj 157 183 Object 2;
+#X msg 157 158 param \$1;
+#X msg 214 158 slider \$1;
+#X obj 158 140 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 214 140 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
 #X connect 14 0 8 0;
 #X connect 14 1 9 0;
 #X connect 14 2 10 0;
@@ -48,14 +52,16 @@
 #X connect 17 0 11 0;
 #X connect 17 1 12 0;
 #X connect 17 2 13 0;
-#X connect 23 0 25 0;
-#X connect 24 0 30 0;
-#X connect 25 0 27 0;
-#X connect 26 0 25 1;
-#X connect 29 0 30 0;
-#X connect 30 0 18 0;
-#X connect 30 1 19 0;
-#X connect 30 2 20 0;
-#X connect 30 3 21 0;
-#X connect 30 4 22 0;
-#X connect 30 5 28 0;
+#X connect 23 0 24 0;
+#X connect 24 0 26 0;
+#X connect 25 0 24 1;
+#X connect 28 0 18 0;
+#X connect 28 1 19 0;
+#X connect 28 2 20 0;
+#X connect 28 3 21 0;
+#X connect 28 4 22 0;
+#X connect 28 5 27 0;
+#X connect 29 0 28 0;
+#X connect 30 0 28 0;
+#X connect 31 0 29 0;
+#X connect 32 0 30 0;
