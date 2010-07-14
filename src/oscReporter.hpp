@@ -149,12 +149,12 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     }
     void run(ofxOscMessage & m)
     {
-        int fid,canangle,cancursor;
+        int fid;
+        int canangle = 0;
+        int cancursor = 0;
         OscOptionalUnpacker(m) >> fid >> canangle >> cancursor;
-        fiducials[fid]=object_data();
-        //fids.insert(fid);
-        if(canangle == 3){ fiducials[fid].can_angle = true; std::cout << "o" << std::endl;}
-        else if(cancursor == 3) fiducials[fid].can_cursors = true;
+        fiducials[fid].can_angle   = (canangle != 0);
+        fiducials[fid].can_cursors = (cancursor != 0);
     }
     void update()
     {
@@ -206,7 +206,7 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
             else if(fiducials[obj->f_id].a_value<0)fiducials[obj->f_id].a_value = 0;
 
             ofxOscMessage msg;
-            msg.setAddress("/object/angle_repport");
+            msg.setAddress("/object/angle_report");
             OscPacker(msg) << (int)obj->f_id << (float)fiducials[obj->f_id].a_value;
             OSCDispatcher::Instance().sender.sendMessage(msg);
 
@@ -235,8 +235,8 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
             int f = (*it).first;
-            if(objects.isOnTable(f){
-               if((*it).second.can_angle))
+            if(objects.isOnTable(f)){
+               if((*it).second.can_angle)
                 {
                     ofPushMatrix();
                     DirectPoint center;
@@ -271,7 +271,7 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                     }
                     ofPopMatrix();
                 }
-                if((*it).second.can_cursors)){
+                if((*it).second.can_cursors){
                 }
             }
         }
