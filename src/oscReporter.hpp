@@ -130,6 +130,109 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
     }
 };
 
+class OscWaveDraw: public OSCCMD, public Graphic
+{
+    class Wave
+    {
+        float vector[200];
+        public:
+        DirectPoint p1,p2;
+        Wave():p1(0,0.5),p2(1,0.5)
+        {
+            //vector = new float[2*100];
+            for(int i = 0; i < 100 ; i++)
+            {
+                vector[2*i]=i;
+            }
+
+        }
+        ~Wave()
+        {
+            //delete[] vector;
+        }
+        void update(OscOptionalUnpacker & msg)
+        {
+            int costats = 10;
+            for (int i = 0; i < 100 ; i++)
+            {
+                int v;
+                msg >> v;
+                float f = (2.0 * v / 999.0) -1;
+//                if(i < costats)
+//                {
+//                    float factor = (float)i/costats;
+//                    f = f * factor;
+//                }
+//                else if (i >= (100-costats))
+//                {
+//                    float factor = (float)(100-i)/costats;
+//                    f = f * factor*factor*factor;
+//                }
+                vector[2*i+1]= f;
+            }
+        }
+        void draw()
+        {
+            glPushMatrix();
+            //orientar i posar a lloc
+            glTranslatef(p1.getX(),p1.getY(),0);
+            glRotatef(p1.getAngle(p2)*180.0/PI,0,0,1);
+            float dist = p1.getDistance(p2);
+            glScalef(dist,dist,1);
+
+            glScalef(1,0.3,1);
+            glScalef(0.01,0.5,1);
+            ofSetColor(255,255,255);
+            glEnableClientState(GL_VERTEX_ARRAY);
+            glVertexPointer(2,GL_FLOAT,0,vector);
+            glDrawArrays(GL_LINE_STRIP,0,100);
+            glDisableClientState(GL_VERTEX_ARRAY);
+            glPopMatrix();
+        }
+    };
+    std::map< int, Wave> waves;
+
+    public:
+    OscWaveDraw():OSCCMD("/wave")
+    {
+
+    }
+    void run(ofxOscMessage & m)
+    {
+        OscOptionalUnpacker msg(m);
+        std::string cmd;
+        int id;
+        msg >> id >> cmd;
+        if (cmd == "wav")
+        {
+            waves[id].update(msg);
+        }
+        else if(cmd == "rm")
+        {
+            waves.erase(id);
+        }
+        else if(cmd == "p1")
+        {
+            float x,y;
+            msg >> x >> y;
+            waves[id].p1.set(x,y);
+        }
+        else if(cmd == "p2")
+        {
+            float x,y;
+            msg >> x >> y;
+            waves[id].p2.set(x,y);
+        }
+
+    }
+    void draw()
+    {
+       for (std::map< int, Wave>::iterator it = waves.begin(); it != waves.end(); ++it)
+       {
+           it->second.draw();
+       }
+    }
+};
 
 class object_data{
     public:
@@ -141,6 +244,7 @@ class object_data{
 class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers < tuio::CanDirectObjects <Graphic> > >
 {
     std::map<int,object_data> fiducials;
+    std::set< int > fiducialstoupdate;
     SimpleAllObjects objects;
     public:
     OscObjectReporter():OSCCMD("/objects")
@@ -172,14 +276,11 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     }
     void update()
     {
-        for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
+        BOOST_FOREACH(int f,fiducialstoupdate)
         {
-            int f = (*it).first;
-            if(objects.isOnTable(f))
-            {
-//               report(objects[f]);
-            }
+            if(objects.isOnTable(f))report(objects[f]);
         }
+        fiducialstoupdate.clear();
     }
 
 
@@ -218,6 +319,9 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
 
     void updateObject(tuio::DirectObject * obj){
         if(fiducials.find(obj->f_id)!= fiducials.end()){
+
+            fiducialstoupdate.insert(obj->f_id);
+
             //update data
             fiducials[obj->f_id].xpos = obj->getX();
             fiducials[obj->f_id].ypos = obj->getY();
