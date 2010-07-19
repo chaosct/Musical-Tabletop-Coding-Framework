@@ -1,7 +1,7 @@
-#N canvas 96 46 657 495 10;
+#N canvas 97 71 657 495 10;
 #X declare -lib mrpeach;
 #X obj 34 37 basicTangibleTabletop;
-#X obj 222 398 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 222 398 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X floatatom 221 417 5 0 0 0 - - -;
 #X floatatom 221 437 5 0 0 0 - - -;
@@ -39,7 +39,7 @@
 #X floatatom 300 264 5 0 0 0 - - -;
 #X text 337 286 slider;
 #X floatatom 300 283 5 0 0 0 - - -;
-#X obj 300 246 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 300 246 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 238 158 param \$1;
 #X msg 239 178 slider \$1;
@@ -59,20 +59,21 @@
 -1 -1;
 #X obj 534 242 BGchanger;
 #X obj 471 242 osc~ 440;
-#X obj 451 361 *~ 0.1;
-#X obj 451 384 dac~;
+#X obj 424 358 *~ 0.1;
+#X obj 420 393 dac~;
 #X obj 36 265 Object 2;
 #X obj 239 213 Object 1;
-#X obj 443 160 connectWave 4 1;
 #X obj 492 187 Object 2;
 #X obj 471 214 * 1000;
 #X obj 537 213 * 255;
 #X obj 437 137 noise~;
-#X obj 430 280 adc~;
-#X obj 528 364 *~ 10;
+#X obj 417 242 adc~;
+#X obj 421 314 *~ 10;
 #X obj 486 275 connectWave 2 3;
 #X obj 438 329 connectWave 3 1;
-#X obj 486 299 connectWave 2 4;
+#X obj 476 304 connectWave 2 4;
+#X obj 443 160 connectWave 1 4;
+#X obj 422 295 *~;
 #X connect 0 0 9 0;
 #X connect 4 0 1 0;
 #X connect 4 1 2 0;
@@ -95,8 +96,9 @@
 #X connect 35 0 33 0;
 #X connect 36 0 34 0;
 #X connect 43 0 44 0;
-#X connect 46 0 58 0;
-#X connect 46 0 60 0;
+#X connect 46 0 57 0;
+#X connect 46 0 59 0;
+#X connect 46 0 61 1;
 #X connect 47 0 48 0;
 #X connect 47 0 48 1;
 #X connect 50 0 32 0;
@@ -105,11 +107,12 @@
 #X connect 50 3 23 0;
 #X connect 50 4 29 0;
 #X connect 50 5 31 0;
-#X connect 52 5 53 0;
-#X connect 52 5 54 0;
-#X connect 53 0 46 0;
-#X connect 54 0 45 1;
-#X connect 55 0 51 0;
-#X connect 56 0 57 0;
-#X connect 57 0 47 0;
-#X connect 57 0 59 0;
+#X connect 51 5 52 0;
+#X connect 51 5 53 0;
+#X connect 52 0 46 0;
+#X connect 53 0 45 1;
+#X connect 54 0 60 0;
+#X connect 55 0 61 0;
+#X connect 56 0 47 0;
+#X connect 56 0 58 0;
+#X connect 61 0 56 0;
