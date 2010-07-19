@@ -1,4 +1,4 @@
-#N canvas 1059 181 657 465 10;
+#N canvas 495 264 657 465 10;
 #X obj 44 -73 basicTangibleTabletop;
 #X obj 232 288 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -13,7 +13,7 @@
 #X obj 444 205 drawWave;
 #X obj 195 -74 loadbang;
 #X msg 195 -53 \; pd dsp 1;
-#X obj 232 240 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 232 240 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 549 133 * 1000;
 #X obj 528 297 dac~;
@@ -68,8 +68,15 @@
 -1;
 #X obj 408 340 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 444 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 444 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
+#X obj 344 -19 BGchanger;
+#X obj 427 -104 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 427 -81 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12700 1;
+#X obj 428 -58 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
 #X connect 0 0 19 0;
 #X connect 4 0 57 0;
 #X connect 5 0 1 0;
@@ -113,3 +120,6 @@
 #X connect 55 0 56 0;
 #X connect 57 0 10 0;
 #X connect 57 0 16 0;
+#X connect 59 0 58 0;
+#X connect 60 0 58 1;
+#X connect 61 0 58 2;

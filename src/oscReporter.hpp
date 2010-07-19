@@ -7,6 +7,35 @@
 #include "simpleAllObjects.hpp"
 #include <boost/foreach.hpp>
 
+class OscBGChanger: public OSCCMD, public BackgroundGraphic
+{
+    int color1,color2,color3;
+    public:
+    OscBGChanger():OSCCMD("/background")
+    {//0.2f,0.4f,0.6f,
+        color1 = 51;
+        color2 = 102;
+        color3 = 153;
+    }
+
+    void run(ofxOscMessage & m)
+    {
+        OscOptionalUnpacker(m) >> color1 >> color2 >> color3;
+        if (color1 < 0) color1 = 0;
+        if (color2 < 0) color2 = 0;
+        if (color3 < 0) color3 = 0;
+        if (color1 > 255) color1 = 255;
+        if (color2 > 255) color2 = 255;
+        if (color3 > 255) color3 = 255;
+    }
+
+    void draw()
+    {
+        ofSetColor(color1,color2,color3);
+        ofRect(0.0f,0.0f,1.0f,1.0f);
+    }
+};
+
 class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObjects <Graphic> >
 {
     std::set< std::pair<int,int> > dists;

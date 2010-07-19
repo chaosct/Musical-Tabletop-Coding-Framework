@@ -16,6 +16,7 @@ void testApp::Setup(){
     new OscObjectReporter();
     new OscDistanceReporter();
     new OscWaveDraw();
+    new OscBGChanger();
 }
 
 //--------------------------------------------------------------
