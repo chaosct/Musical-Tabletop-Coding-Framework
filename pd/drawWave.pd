@@ -1,4 +1,4 @@
-#N canvas 716 386 953 635 10;
+#N canvas 166 217 953 635 10;
 #X obj 48 119 until;
 #X obj 48 146 f;
 #X msg 91 96 0;
@@ -100,6 +100,10 @@
 #X obj 333 102 spigot;
 #X obj 135 21 t f f f f;
 #X obj 259 45 select 1;
+#X obj 630 457 v basicTangibleTabletopWaveFps;
+#X obj 630 434 r basicTangibleTabletopUpdateConfig;
+#X obj 630 479 s metrorate-\$0;
+#X obj 31 5 r metrorate-\$0;
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 1 0 4 0;
@@ -164,3 +168,6 @@
 #X connect 58 3 57 1;
 #X connect 59 0 33 0;
 #X connect 59 0 34 0;
+#X connect 60 0 62 0;
+#X connect 61 0 60 0;
+#X connect 63 0 15 1;

@@ -1,4 +1,4 @@
-#N canvas 514 315 549 595 10;
+#N canvas 516 365 549 595 10;
 #X text 417 57 f_id1;
 #X text 417 89 f_id2;
 #X obj 460 57 f \$1;
@@ -107,7 +107,6 @@
 #X obj 282 431 r basicTangibleTabletopEnd;
 #X obj 274 303 closebang;
 #X text 272 283 Destroying;
-#X msg 274 537 /distance \$1 \$2 1;
 #X obj 403 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 499 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -117,6 +116,14 @@
 #X obj 403 116 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 430 15 Arguments;
+#X obj 320 14 inlet;
+#X msg 274 537 /distance \$1 \$2 rm;
+#X obj 291 238 s basicTangibleTabletop1234messageBus;
+#X obj 291 168 f \$1;
+#X obj 336 168 f \$2;
+#X msg 291 212 /distance \$1 \$2 draw \$3;
+#X obj 291 147 t b b f;
+#X obj 291 189 pack f f f;
 #X connect 4 0 12 0;
 #X connect 6 0 5 0;
 #X connect 7 0 6 0;
@@ -145,7 +152,7 @@
 #X connect 30 0 31 0;
 #X connect 31 0 8 0;
 #X connect 31 1 23 0;
-#X connect 33 0 42 0;
+#X connect 33 0 48 0;
 #X connect 34 0 35 0;
 #X connect 34 1 36 0;
 #X connect 35 0 33 0;
@@ -155,8 +162,16 @@
 #X connect 38 1 25 0;
 #X connect 39 0 37 0;
 #X connect 40 0 38 0;
-#X connect 42 0 32 0;
-#X connect 43 0 46 0;
+#X connect 42 0 45 0;
+#X connect 42 0 43 0;
 #X connect 43 0 44 0;
-#X connect 44 0 45 0;
-#X connect 46 0 45 0;
+#X connect 45 0 44 0;
+#X connect 47 0 53 0;
+#X connect 48 0 32 0;
+#X connect 50 0 54 0;
+#X connect 51 0 54 1;
+#X connect 52 0 49 0;
+#X connect 53 0 50 0;
+#X connect 53 1 51 0;
+#X connect 53 2 54 2;
+#X connect 54 0 52 0;
