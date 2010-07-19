@@ -1,125 +1,115 @@
-#N canvas 495 264 657 465 10;
-#X obj 44 -73 basicTangibleTabletop;
-#X obj 232 288 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#N canvas 96 46 657 495 10;
+#X declare -lib mrpeach;
+#X obj 34 37 basicTangibleTabletop;
+#X obj 222 398 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 231 307 5 0 0 0 - - -;
-#X floatatom 231 327 5 0 0 0 - - -;
-#X obj 444 70 objDistance 2 3;
-#X obj 232 267 objDistance 1 3;
-#X floatatom 547 113 5 0 0 0 - - -;
-#X obj 462 89 Object 2;
-#X obj 487 116 Object 3;
-#X obj 547 157 osc~ 440;
-#X obj 444 205 drawWave;
-#X obj 195 -74 loadbang;
-#X msg 195 -53 \; pd dsp 1;
-#X obj 232 240 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X floatatom 221 417 5 0 0 0 - - -;
+#X floatatom 221 437 5 0 0 0 - - -;
+#X obj 222 377 objDistance 1 3;
+#X obj 185 36 loadbang;
+#X msg 185 57 \; pd dsp 1;
+#X obj 222 350 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 549 133 * 1000;
-#X obj 528 297 dac~;
-#X obj 556 237 * 0.1;
-#X obj 536 256 *~ 0;
-#X obj 46 63 r initparameters;
-#X obj 44 -51 s initparameters;
-#X obj 46 155 Object 2;
-#X msg 46 130 param \$1;
-#X msg 103 130 slider \$1;
-#X obj 47 112 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 36 173 r initparameters;
+#X obj 34 59 s initparameters;
+#X msg 36 240 param \$1;
+#X msg 93 240 slider \$1;
+#X obj 37 222 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 103 112 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 93 222 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X msg 46 87 1;
-#X obj 44 263 objDistance 2 3;
-#X obj 44 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 36 197 1;
+#X obj 34 373 objDistance 2 3;
+#X obj 34 353 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 44 220 0;
-#X obj 44 196 r initparameters;
-#X obj 188 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 188 340 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 34 330 0;
+#X obj 34 306 r initparameters;
+#X obj 178 130 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom 250 134 5 0 0 0 - - -;
-#X floatatom 250 153 5 0 0 0 - - -;
-#X floatatom 250 172 5 0 0 0 - - -;
-#X text 236 133 x;
-#X text 236 151 y;
-#X text 216 172 angle;
-#X text 347 136 presence;
-#X text 346 156 parameter;
-#X floatatom 310 154 5 0 0 0 - - -;
-#X text 347 176 slider;
-#X floatatom 310 173 5 0 0 0 - - -;
-#X obj 310 136 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 249 103 Object 1;
-#X msg 248 48 param \$1;
-#X msg 249 68 slider \$1;
-#X obj 230 50 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 230 69 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X text 318 53 parameter;
-#X text 319 73 slider;
-#X text 254 240 draw;
-#X text 278 290 presence;
-#X text 276 310 distance;
-#X text 276 328 angle;
-#X obj 408 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 408 340 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 178 450 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 444 90 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X floatatom 240 244 5 0 0 0 - - -;
+#X floatatom 240 263 5 0 0 0 - - -;
+#X floatatom 240 282 5 0 0 0 - - -;
+#X text 226 243 x;
+#X text 226 261 y;
+#X text 206 282 angle;
+#X text 337 246 presence;
+#X text 336 266 parameter;
+#X floatatom 300 264 5 0 0 0 - - -;
+#X text 337 286 slider;
+#X floatatom 300 283 5 0 0 0 - - -;
+#X obj 300 246 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 344 -19 BGchanger;
-#X obj 427 -104 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X obj 427 -81 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 1;
-#X obj 428 -58 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
-#X connect 0 0 19 0;
-#X connect 4 0 57 0;
-#X connect 5 0 1 0;
-#X connect 5 1 2 0;
-#X connect 5 2 3 0;
-#X connect 6 0 14 0;
-#X connect 7 1 10 2;
-#X connect 7 2 10 3;
-#X connect 7 5 6 0;
-#X connect 8 1 10 4;
-#X connect 8 2 10 5;
-#X connect 9 0 10 1;
-#X connect 9 0 17 0;
-#X connect 11 0 12 0;
-#X connect 13 0 5 0;
-#X connect 14 0 9 0;
-#X connect 16 0 17 1;
-#X connect 17 0 15 0;
-#X connect 17 0 15 1;
-#X connect 18 0 25 0;
-#X connect 21 0 20 0;
-#X connect 22 0 20 0;
-#X connect 23 0 21 0;
-#X connect 24 0 22 0;
-#X connect 25 0 23 0;
-#X connect 25 0 24 0;
-#X connect 27 0 26 0;
-#X connect 28 0 27 0;
-#X connect 29 0 28 0;
-#X connect 30 0 31 0;
-#X connect 44 0 43 0;
-#X connect 44 1 32 0;
-#X connect 44 2 33 0;
-#X connect 44 3 34 0;
-#X connect 44 4 40 0;
-#X connect 44 5 42 0;
-#X connect 45 0 44 0;
-#X connect 46 0 44 0;
-#X connect 47 0 45 0;
-#X connect 48 0 46 0;
-#X connect 55 0 56 0;
-#X connect 57 0 10 0;
-#X connect 57 0 16 0;
-#X connect 59 0 58 0;
-#X connect 60 0 58 1;
-#X connect 61 0 58 2;
+#X msg 238 158 param \$1;
+#X msg 239 178 slider \$1;
+#X obj 220 160 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 220 179 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 308 163 parameter;
+#X text 309 183 slider;
+#X text 244 350 draw;
+#X text 268 400 presence;
+#X text 266 420 distance;
+#X text 266 438 angle;
+#X obj 398 130 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 398 450 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 534 242 BGchanger;
+#X obj 471 242 osc~ 440;
+#X obj 451 361 *~ 0.1;
+#X obj 451 384 dac~;
+#X obj 36 265 Object 2;
+#X obj 239 213 Object 1;
+#X obj 443 160 connectWave 4 1;
+#X obj 492 187 Object 2;
+#X obj 471 214 * 1000;
+#X obj 537 213 * 255;
+#X obj 437 137 noise~;
+#X obj 430 280 adc~;
+#X obj 528 364 *~ 10;
+#X obj 486 275 connectWave 2 3;
+#X obj 438 329 connectWave 3 1;
+#X obj 486 299 connectWave 2 4;
+#X connect 0 0 9 0;
+#X connect 4 0 1 0;
+#X connect 4 1 2 0;
+#X connect 4 2 3 0;
+#X connect 5 0 6 0;
+#X connect 7 0 4 0;
+#X connect 8 0 14 0;
+#X connect 10 0 49 0;
+#X connect 11 0 49 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 14 0 12 0;
+#X connect 14 0 13 0;
+#X connect 16 0 15 0;
+#X connect 17 0 16 0;
+#X connect 18 0 17 0;
+#X connect 19 0 20 0;
+#X connect 33 0 50 0;
+#X connect 34 0 50 0;
+#X connect 35 0 33 0;
+#X connect 36 0 34 0;
+#X connect 43 0 44 0;
+#X connect 46 0 58 0;
+#X connect 46 0 60 0;
+#X connect 47 0 48 0;
+#X connect 47 0 48 1;
+#X connect 50 0 32 0;
+#X connect 50 1 21 0;
+#X connect 50 2 22 0;
+#X connect 50 3 23 0;
+#X connect 50 4 29 0;
+#X connect 50 5 31 0;
+#X connect 52 5 53 0;
+#X connect 52 5 54 0;
+#X connect 53 0 46 0;
+#X connect 54 0 45 1;
+#X connect 55 0 51 0;
+#X connect 56 0 57 0;
+#X connect 57 0 47 0;
+#X connect 57 0 59 0;

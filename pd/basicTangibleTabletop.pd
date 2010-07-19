@@ -1,19 +1,16 @@
-#N canvas 1041 426 578 266 10;
-#X obj 41 31 dumpOSC 1235;
-#X obj 41 60 s basicTangibleTabletop1235messageBus;
-#X obj 41 84 r basicTangibleTabletop1234messageBus;
-#X obj 41 112 prepend send;
-#X msg 48 174 connect localhost 1234;
-#X obj 41 202 sendOSC;
-#X obj 48 149 loadbang;
-#X obj 305 130 s basicTangibleTabletopInit;
-#X obj 278 69 loadbang;
-#X obj 337 48 route /init;
-#X msg 337 69 bang;
-#X obj 278 240 outlet;
-#X obj 278 109 t b b;
-#X text 324 230 this is a loadbang after initializing;
-#X text 324 243 the tabletop externals;
+#N canvas 634 418 588 309 10;
+#X declare -lib mrpeach;
+#X obj 2 64 s basicTangibleTabletop1235messageBus;
+#X obj 2 88 r basicTangibleTabletop1234messageBus;
+#X msg 8 185 connect localhost 1234;
+#X obj 12 139 loadbang;
+#X obj 266 134 s basicTangibleTabletopInit;
+#X obj 74 117 route /init;
+#X msg 74 138 bang;
+#X obj 239 244 outlet;
+#X obj 239 113 t b b;
+#X text 285 234 this is a loadbang after initializing;
+#X text 285 247 the tabletop externals;
 #N canvas 1320 502 450 300 config 0;
 #X text 33 136 wave FPS;
 #X floatatom 33 115 5 0 0 0 - - -;
@@ -31,45 +28,60 @@
 #X connect 7 0 1 0;
 #X connect 8 0 4 0;
 #X connect 8 1 5 0;
-#X restore 473 49 pd config;
-#N canvas 3 99 450 300 debug 0;
+#X restore 434 53 pd config;
+#N canvas 163 461 450 300 debug 1;
 #X obj 29 16 r basicTangibleTabletop1235messageBus;
 #X obj 28 39 spigot;
 #X obj 75 41 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
-#X obj 29 63 print received;
 #X obj 29 124 spigot;
 #X obj 76 126 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 30 148 print sent;
 #X obj 30 101 r basicTangibleTabletop1234messageBus;
+#X obj 29 63 print rcvd;
 #X connect 0 0 1 0;
-#X connect 1 0 3 0;
+#X connect 1 0 7 0;
 #X connect 2 0 1 1;
-#X connect 4 0 6 0;
-#X connect 5 0 4 1;
-#X connect 7 0 4 0;
-#X restore 473 70 pd debug;
-#X obj 455 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 539 35 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 539 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 455 92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X connect 0 0 1 0;
-#X connect 0 0 9 0;
-#X connect 2 0 3 0;
 #X connect 3 0 5 0;
-#X connect 4 0 5 0;
-#X connect 6 0 4 0;
-#X connect 8 0 12 0;
-#X connect 9 0 10 0;
-#X connect 10 0 12 0;
-#X connect 12 0 11 0;
-#X connect 12 1 7 0;
-#X connect 17 0 20 0;
+#X connect 4 0 3 1;
+#X connect 6 0 3 0;
+#X restore 434 74 pd debug;
+#X obj 416 24 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 500 39 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 500 111 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 416 96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 12 160 t b b;
+#X obj 52 160 s loadbang-\$0;
+#X obj 239 59 r loadbang-\$0;
+#N canvas 635 613 314 187 dumpOSC 0;
+#X obj 101 11 outlet;
+#X obj 101 -35 mrpeach/udpreceive 1235;
+#X obj 101 -15 mrpeach/unpackOSC;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X restore 2 29 pd dumpOSC;
+#X obj 428 191 import mrpeach;
+#X obj 2 116 mrpeach/packOSC;
+#X obj 2 206 mrpeach/udpsend;
+#X connect 1 0 22 0;
+#X connect 2 0 23 0;
+#X connect 3 0 17 0;
+#X connect 5 0 6 0;
+#X connect 6 0 17 0;
+#X connect 8 0 7 0;
+#X connect 8 1 4 0;
+#X connect 13 0 16 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 16 0 15 0;
 #X connect 17 0 18 0;
-#X connect 18 0 19 0;
-#X connect 20 0 19 0;
+#X connect 17 1 2 0;
+#X connect 19 0 8 0;
+#X connect 20 0 0 0;
+#X connect 20 0 5 0;
+#X connect 22 0 23 0;

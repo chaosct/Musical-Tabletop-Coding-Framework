@@ -1,0 +1,18 @@
+#N canvas 410 327 858 473 10;
+#X obj 105 117 inlet~;
+#X obj 23 83 objDistance \$1 \$2;
+#X obj 150 76 Object \$1;
+#X obj 175 103 Object \$2;
+#X obj 20 15 r basicTangibleTabletopInit;
+#X obj 33 37 loadbang;
+#X msg 23 62 0;
+#X obj 132 192 drawWave;
+#X connect 0 0 7 1;
+#X connect 1 0 7 0;
+#X connect 2 1 7 2;
+#X connect 2 2 7 3;
+#X connect 3 1 7 4;
+#X connect 3 2 7 5;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X connect 6 0 1 0;
