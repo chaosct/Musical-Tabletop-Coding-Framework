@@ -56,14 +56,16 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
     {
         int fid1,fid2,draw;
         std::string command;
-        draw = 1;
         OscOptionalUnpacker(m) >> fid1 >> fid2 >> command >> draw;
         if (command == "rm")
         {
             dists.erase(std::make_pair(fid1,fid2));
             return;
         }
-        listproperties[std::make_pair(fid1,fid2)].visible = (draw == 1);
+        if(command == "draw")
+        {
+            listproperties[std::make_pair(fid1,fid2)].visible = draw;
+        }
         ///else
         dists.insert(std::make_pair(fid1,fid2));
         ///report initial state
@@ -84,8 +86,6 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
         {
             if( objects.isOnTable(p.second) and objects.isOnTable(p.first))
             {
-                if (!listproperties[p].visible)
-                    continue;
                 if(diststoupdate.find(p) == diststoupdate.end() )
                 {
                     ofSetColor(255,255,255);
@@ -95,8 +95,8 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
                     ofSetColor(255,0,0);
                     report(p.first,p.second);
                 }
-
-                ofLine(objects[p.first]->getX(),objects[p.first]->getY(),objects[p.second]->getX(),objects[p.second]->getY());
+                if (listproperties[p].visible)
+                    ofLine(objects[p.first]->getX(),objects[p.first]->getY(),objects[p.second]->getX(),objects[p.second]->getY());
             }
         }
         diststoupdate.clear();
