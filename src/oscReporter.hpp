@@ -286,8 +286,14 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     std::map<int,object_data> fiducials;
     std::set< int > fiducialstoupdate;
     SimpleAllObjects objects;
+    float control_radius, bar_width, bullet_width,bullet_radius;
     public:
-    OscObjectReporter():OSCCMD("/objects")
+    OscObjectReporter():
+        OSCCMD("/objects"),
+        control_radius(GlobalConfig::getRef("FIGURE:CONTROLLRADIUS",0.05f)),
+        bar_width(GlobalConfig::getRef("FIGURE:BARWIDTH",0.006f)),
+        bullet_width(GlobalConfig::getRef("FIGURE:BULLETWIDTH",0.0053f)),
+        bullet_radius(GlobalConfig::getRef("FIGURE:BULLETRADIUS",0.053f))
     {
 
     }
@@ -461,8 +467,8 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                     double step = PI/40.0;
                     for (double i = 0; i <= PI; i+=step)
                     {
-                        glVertex2f(0.05*cos(i),0.05*sin(i));
-                        glVertex2f(0.056*cos(i),0.056*sin(i));
+                        glVertex2f(control_radius*cos(i),control_radius*sin(i));
+                        glVertex2f((control_radius+bar_width)*cos(i),(control_radius+bar_width)*sin(i));
                     }
                     glEnd();
 
@@ -474,8 +480,8 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                         step = angle/40.0;
                         for (double i = 0; i <= angle; i+=step)
                         {
-                            glVertex2f(0.05*cos(i),0.05*sin(i));
-                            glVertex2f(0.056*cos(i),0.056*sin(i));
+                            glVertex2f(control_radius*cos(i),control_radius*sin(i));
+                            glVertex2f((control_radius+bar_width)*cos(i),(control_radius+bar_width)*sin(i));
                         }
                         glEnd();
                     }
@@ -497,20 +503,20 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
                     double step = PI/40.0;
                     for (double i = 0; i <= PI; i+=step)
                     {
-                        glVertex2f(0.053*cos(i),0.053*sin(i));
+                        glVertex2f(bullet_radius*cos(i),bullet_radius*sin(i));
                     }
                     glEnd();
 
                     ofRotate((*it).second.f_value*180);
-                    glTranslatef(0.053f,0.0f,0.0f);
+                    glTranslatef(bullet_radius,0.0f,0.0f);
                     glBegin(GL_TRIANGLE_FAN);
                     glVertex2f(0,0);
                     step = 2*PI/40.0;
                     for (double i = 0; i <= 2*PI; i+=step)
                     {
-                        glVertex2f(0.0053*cos(i),0.0053*sin(i));
+                        glVertex2f(bullet_width*cos(i),bullet_width*sin(i));
                     }
-                    glVertex2f(0.0053*cos(0),0.0053*sin(0));
+                    glVertex2f(bullet_width*cos(0),bullet_width*sin(0));
                     glEnd();
                     ofPopMatrix();
                 }
