@@ -36,6 +36,62 @@ class OscBGChanger: public OSCCMD, public BackgroundGraphic
     }
 };
 
+class OscFingerColor: public OSCCMD
+{
+    public:
+    OscFingerColor():OSCCMD("/fingercolor"){}
+
+    void run(ofxOscMessage & m)
+    {
+        static int & R = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:R",255);
+        static int & G = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:G",0);
+        static int & B = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:B",0);
+
+        OscOptionalUnpacker(m) >> R >> G >> B;
+    }
+
+};
+
+
+class OscFingerReporter : public OnTable < tuio::CanDirectFingers <Graphic> >
+{
+
+    std::set< tuio::DirectFinger * > updatelist;
+
+    public:
+    void newCursor(tuio::DirectFinger *df)
+    {
+        ofxOscMessage msg;
+        msg.setAddress("/finger/in");
+        OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+        OSCDispatcher::Instance().sender.sendMessage(msg);
+    }
+    void removeCursor(tuio::DirectFinger *df)
+    {
+        ofxOscMessage msg;
+        msg.setAddress("/finger/out");
+        OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+        OSCDispatcher::Instance().sender.sendMessage(msg);
+    }
+    void updateCursor(tuio::DirectFinger *f)
+    {
+        updatelist.insert(f);
+    }
+
+    void update()
+    {
+        BOOST_FOREACH(tuio::DirectFinger *df,updatelist)
+        {
+            ofxOscMessage msg;
+            msg.setAddress("/finger/move");
+            OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+            OSCDispatcher::Instance().sender.sendMessage(msg);
+        }
+        updatelist.clear();
+    }
+
+};
+
 class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObjects <Graphic> >
 {
     std::set< std::pair<int,int> > dists;

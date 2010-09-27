@@ -1,0 +1,7 @@
+#N canvas 610 643 334 100 10;
+#X obj 34 28 r basicTangibleTabletop1235messageBus;
+#X obj 34 75 outlet;
+#X obj 34 53 OSCroute /finger;
+#X text 33 7 Use this in combination with finger;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

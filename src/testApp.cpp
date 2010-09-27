@@ -17,6 +17,8 @@ void testApp::Setup(){
     new OscDistanceReporter();
     new OscWaveDraw();
     new OscBGChanger();
+    new OscFingerReporter();
+    new OscFingerColor();
 }
 
 //--------------------------------------------------------------
