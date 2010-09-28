@@ -1,6 +1,6 @@
-#N canvas 504 307 876 714 10;
-#X obj 598 59 f \$1;
-#X text 563 59 f_id;
+#N canvas 505 307 876 714 10;
+#X obj 551 132 f \$1;
+#X text 516 132 f_id;
 #X obj 24 592 s basicTangibleTabletop1234messageBus;
 #X obj 24 522 f \$1;
 #X text 22 312 Initialization;
@@ -19,15 +19,15 @@
 #X obj 294 459 r basicTangibleTabletopEnd;
 #X obj 286 331 closebang;
 #X text 284 311 Destroying;
-#X obj 551 31 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 647 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 647 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 551 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 582 23 Arguments;
+#X obj 504 104 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 600 119 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 600 167 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 504 152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 535 96 Arguments;
 #X obj 24 18 r basicTangibleTabletop1235messageBus;
 #X obj 107 241 outlet;
 #X obj 152 241 outlet;
@@ -182,6 +182,9 @@
 #X obj 620 421 t b f;
 #X msg 24 566 /objects \$1 \$2 \$3;
 #X obj 617 487 t b f;
+#X text 500 36 Musical Tabletop Coding Framework PD Client;
+#X text 499 51 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 500 66 This software is released under the MIT license;
 #X connect 3 0 58 0;
 #X connect 5 0 59 0;
 #X connect 6 0 35 0;

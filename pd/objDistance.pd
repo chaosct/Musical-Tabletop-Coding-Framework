@@ -1,8 +1,8 @@
-#N canvas 519 426 549 595 10;
-#X text 417 44 f_id1;
-#X text 417 68 f_id2;
-#X obj 460 44 f \$1;
-#X obj 460 67 f \$2;
+#N canvas 493 240 664 594 10;
+#X text 517 158 f_id1;
+#X text 517 182 f_id2;
+#X obj 560 158 f \$1;
+#X obj 560 181 f \$2;
 #X obj 14 8 r basicTangibleTabletop1235messageBus;
 #X obj 12 564 s basicTangibleTabletop1234messageBus;
 #X msg 12 538 /distance \$1 \$2;
@@ -90,34 +90,34 @@
 #X obj 29 402 r basicTangibleTabletopInit;
 #X obj 39 348 v objDistanceRefCount\$1\$2;
 #X obj 39 369 + 1;
-#X obj 302 345 v objDistanceRefCount\$1\$2;
-#X obj 302 366 - 1;
-#X obj 302 388 f;
-#X obj 302 411 == 0;
-#X text 336 414 last?;
+#X obj 372 345 v objDistanceRefCount\$1\$2;
+#X obj 372 366 - 1;
+#X obj 372 388 f;
+#X obj 372 411 == 0;
+#X text 406 414 last?;
 #X obj 12 304 loadbang;
 #X obj 12 326 t b b;
-#X obj 274 563 s basicTangibleTabletop1234messageBus;
-#X obj 274 514 pack f f;
-#X obj 274 472 t b b;
-#X obj 274 493 f \$1;
-#X obj 319 493 f \$2;
-#X obj 274 451 spigot;
-#X obj 274 325 t b b;
-#X obj 282 431 r basicTangibleTabletopEnd;
-#X obj 274 303 closebang;
-#X text 272 283 Destroying;
-#X obj 403 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 499 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 499 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 403 83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 430 15 Arguments;
+#X obj 344 563 s basicTangibleTabletop1234messageBus;
+#X obj 344 514 pack f f;
+#X obj 344 472 t b b;
+#X obj 344 493 f \$1;
+#X obj 389 493 f \$2;
+#X obj 344 451 spigot;
+#X obj 344 325 t b b;
+#X obj 352 431 r basicTangibleTabletopEnd;
+#X obj 344 303 closebang;
+#X text 342 283 Destroying;
+#X obj 503 133 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 599 148 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 599 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 503 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 530 129 Arguments;
 #X obj 320 14 inlet;
-#X msg 274 537 /distance \$1 \$2 rm;
+#X msg 344 537 /distance \$1 \$2 rm;
 #X obj 311 240 s basicTangibleTabletop1234messageBus;
 #X obj 311 170 f \$1;
 #X obj 356 170 f \$2;
@@ -127,6 +127,9 @@
 #X obj 338 120 v objDistanceDraw\$1\$2;
 #X obj 311 66 t f f;
 #X obj 12 424 t b b;
+#X text 366 51 Musical Tabletop Coding Framework PD Client;
+#X text 365 66 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 366 81 This software is released under the MIT license;
 #X connect 4 0 12 0;
 #X connect 6 0 5 0;
 #X connect 7 0 6 0;

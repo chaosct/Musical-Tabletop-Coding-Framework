@@ -1,8 +1,5 @@
-#N canvas 692 541 858 473 10;
+#N canvas 675 262 542 332 10;
 #X obj 54 120 inlet~;
-#X obj 23 83 objDistance \$1 \$2;
-#X obj 150 76 Object \$1;
-#X obj 175 103 Object \$2;
 #X obj 20 15 r basicTangibleTabletopInit;
 #X obj 33 37 loadbang;
 #X msg 23 62 0;
@@ -12,19 +9,42 @@
 #X obj 103 173 && 1;
 #X obj 73 289 outlet~;
 #X obj 73 253 *~;
-#X connect 0 0 7 1;
-#X connect 0 0 12 0;
-#X connect 1 0 10 0;
-#X connect 2 1 7 2;
-#X connect 2 2 7 3;
-#X connect 3 1 7 4;
-#X connect 3 2 7 5;
-#X connect 4 0 6 0;
+#X obj 150 76 Object \$1;
+#X obj 175 103 Object \$2;
+#X obj 23 83 objDistance \$1 \$2;
+#X text 241 12 Musical Tabletop Coding Framework PD Client;
+#X text 240 27 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 241 42 This software is released under the MIT license;
+#X obj 359 133 f \$1;
+#X text 324 133 f_id;
+#X obj 312 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 408 120 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 408 188 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 312 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 343 97 Arguments;
+#X text 324 153 f_id;
+#X obj 359 153 f \$2;
+#X connect 0 0 4 1;
+#X connect 0 0 9 0;
+#X connect 1 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 0 12 0;
 #X connect 5 0 6 0;
-#X connect 6 0 1 0;
-#X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 9 1 10 1;
-#X connect 10 0 7 0;
-#X connect 10 0 12 1;
-#X connect 12 0 11 0;
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 7 0 4 0;
+#X connect 7 0 9 1;
+#X connect 9 0 8 0;
+#X connect 10 1 4 2;
+#X connect 10 2 4 3;
+#X connect 11 1 4 4;
+#X connect 11 2 4 5;
+#X connect 12 0 7 0;
+#X connect 18 0 21 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 21 0 20 0;

@@ -1,7 +1,11 @@
-#N canvas 610 643 334 100 10;
+#N canvas 611 668 334 148 10;
 #X obj 34 28 r basicTangibleTabletop1235messageBus;
 #X obj 34 75 outlet;
 #X obj 34 53 OSCroute /finger;
-#X text 33 7 Use this in combination with finger;
+#X text 30 -47 Musical Tabletop Coding Framework PD Client;
+#X text 29 -32 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 30 -17 This software is released under the MIT license;
+#X text 33 7 Use this in combination with;
+#X obj 209 8 finger;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;

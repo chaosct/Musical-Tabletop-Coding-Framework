@@ -1,4 +1,4 @@
-#N canvas 185 575 528 438 10;
+#N canvas 250 388 654 450 10;
 #X obj 39 23 inlet;
 #X obj 281 21 loadbang;
 #X obj 281 47 i -1;
@@ -35,6 +35,9 @@
 #X obj 37 57 t a a;
 #X obj 71 96 OSCroute /in /out /move;
 #X obj 42 369 route list;
+#X text 357 15 Musical Tabletop Coding Framework PD Client;
+#X text 356 30 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 357 45 This software is released under the MIT license;
 #X connect 0 0 33 0;
 #X connect 1 0 24 0;
 #X connect 2 0 4 0;
