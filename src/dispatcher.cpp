@@ -38,8 +38,8 @@ OSCCMD::OSCCMD(const std::string & Addr):addr(Addr)
 
 OSCDispatcher::OSCDispatcher()
 {
-    receiver.setup(GlobalConfig::getRef("OSCDISPATCHER::RECEIVER::PORT",1234));
-    sender.setup(GlobalConfig::getRef<std::string>("OSCDISPATCHER::SENDER::ADDR","localhost"),GlobalConfig::getRef("OSCDISPATCHER::SENDER::PORT",1235));
+    receiver.setup(GlobalConfig::getRef("OSCDISPATCHER:RECEIVER:PORT",1234));
+    sender.setup(GlobalConfig::getRef<std::string>("OSCDISPATCHER:SENDER:ADDR","localhost"),GlobalConfig::getRef("OSCDISPATCHER:SENDER:PORT",1235));
     ofxOscMessage msg;
     msg.setAddress("/init");
     sender.sendMessage(msg);
