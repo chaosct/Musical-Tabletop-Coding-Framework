@@ -1,0 +1,18 @@
+Musical Tabletop Coding Framework is a rapid development framework to create musical tabletop PD apps.
+
+Compiling:
+ you will need:
+  openframeworks (http://www.openframeworks.cc)
+  ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
+ Compile it as any other openframeworks app.
+ 
+Usage:
+ Execute the program
+ Open main.pd with PureData
+ Hack!
+
+Authors:
+ Carles F. Julià <carles.fernandez@upf.edu>
+ Daniel Gallardo <daniel.gallardo@upf.edu>
+
+This project is released under the MIT license.
