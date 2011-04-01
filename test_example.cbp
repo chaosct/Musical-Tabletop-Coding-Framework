@@ -34,7 +34,6 @@
 					<Add library="Xxf86vm" />
 					<Add library="asound" />
 					<Add library="PocoFoundation" />
-					<Add library="unicap" />
 					<Add library="freetype" />
 					<Add library="freeimage" />
 					<Add library="RtAudio" />
@@ -154,7 +153,6 @@
 					<Add library="Xxf86vm" />
 					<Add library="asound" />
 					<Add library="PocoFoundation" />
-					<Add library="unicap" />
 					<Add library="freetype" />
 					<Add library="freeimage" />
 					<Add library="RtAudio" />
@@ -275,7 +273,6 @@
 					<Add library="Xxf86vm" />
 					<Add library="asound" />
 					<Add library="PocoFoundation" />
-					<Add library="unicap" />
 					<Add library="freetype" />
 					<Add library="freeimage" />
 					<Add library="RtAudio" />
@@ -327,8 +324,8 @@
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O3" />
 					<Add option="-march=core2" />
+					<Add option="-O3" />
 					<Add option="-MMD" />
 					<Add option="-fexceptions" />
 				</Compiler>
@@ -343,7 +340,6 @@
 					<Add library="Xxf86vm" />
 					<Add library="asound" />
 					<Add library="PocoFoundation" />
-					<Add library="unicap" />
 					<Add library="freetype" />
 					<Add library="freeimage" />
 					<Add library="RtAudio" />
