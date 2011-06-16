@@ -6,7 +6,7 @@
 		<Option makefile="makefile" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons/;addons/ofxOsc/;src/;addons/ofxOsc/src/;addons/TableGestures/Graphics/;addons/TableGestures/Graphics/objects/;addons/TableGestures/;addons/TableGestures/oscGestures/;addons/TableGestures/oscGestures/Gestures/;addons/TableGestures/oscGestures/Gestures/Tuio1.1/;addons/ofXmlSettings/libs/;addons/ofXmlSettings/src/;conf/;addons/TableGestures/Controllers/;addons/TableGestures/Tests/;addons/TableGestures/oscGestures/Gestures-Extra/;addons/TableGestures/Tools/;" />
+		<Option virtualFolders="addons/;addons/ofxOsc/;src/;addons/ofxOsc/src/;addons/TableGestures/Graphics/;addons/TableGestures/Graphics/objects/;addons/TableGestures/;addons/TableGestures/oscGestures/;addons/TableGestures/oscGestures/Gestures/;addons/TableGestures/oscGestures/Gestures/Tuio1.1/;addons/ofXmlSettings/libs/;addons/ofXmlSettings/src/;conf/;addons/TableGestures/Controllers/;addons/TableGestures/Tests/;addons/TableGestures/oscGestures/Gestures-Extra/;addons/TableGestures/Tools/;figures/;" />
 		<Build>
 			<Target title="Linux_Debug">
 				<Option platforms="Unix;" />
@@ -22,6 +22,7 @@
 					<Add option="-MMD" />
 					<Add option="-fexceptions" />
 					<Add option="-DDEBUG" />
+					<Add directory="src/figures" />
 				</Compiler>
 				<Linker>
 					<Add library="openFrameworksDebug" />
@@ -683,6 +684,42 @@
 		</Unit>
 		<Unit filename="src/dispatcher.hpp">
 			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/figures/BoundingBox.cpp">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/BoundingBox.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/CollisionHelper.cpp">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/CollisionHelper.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Figure.cpp">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Figure.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Matrix.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Polygon.cpp">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Polygon.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/TestTriangulation.h">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Triangulate.cpp">
+			<Option virtualFolder="figures/" />
+		</Unit>
+		<Unit filename="src/figures/Triangulate.h">
+			<Option virtualFolder="figures/" />
 		</Unit>
 		<Unit filename="src/main.cpp">
 			<Option virtualFolder="src/" />
