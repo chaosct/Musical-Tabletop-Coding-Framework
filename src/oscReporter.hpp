@@ -298,7 +298,7 @@ class OscTextDraw: public OSCCMD, public Graphic
 
                 ofTranslate(x,y);
                 ofRotate(angle);
-                ofScale(0.001f,0.001f,1);
+                ofScale(0.0005f,0.0005f,1);
                 font.drawString(data,0,0);
 
                 ofPopMatrix();
@@ -323,7 +323,7 @@ class OscTextDraw: public OSCCMD, public Graphic
         std::string cmd;
         int id;
         msg >> id >> cmd;
-        std::cout << id <<std::endl;
+        //std::cout << id <<std::endl;
         if (cmd == "rm")
         {
             texts_to_display.erase(id);
@@ -348,6 +348,10 @@ class OscTextDraw: public OSCCMD, public Graphic
             msg >> r >> g >> b;
             texts_to_display[id].SetColor(r,g,b);
         }
+        else if(cmd == "clear")
+        {
+            texts_to_display.clear();
+        }
     }
     void draw()
     {
@@ -362,7 +366,7 @@ class OscTextDraw: public OSCCMD, public Graphic
 
 #include "Polygon.h"
 using namespace Figures;
-class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Graphic> >
+class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tuio::CanDirectObjects <Graphic> > >
 {
     class poly : public GraphicObjectData
     {
@@ -393,12 +397,14 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
         }
         void draw()
         {
+            ofEnableAlphaBlending();
             ofPushMatrix();
             ofSetColor(r,g,b);
             ofTranslate(x,y);
             ofRotate(angle);
             polygon.Draw();
             ofPopMatrix();
+            ofDisableAlphaBlending();
         }
     };
     public:
@@ -416,7 +422,7 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
         std::string cmd;
         int id;
         msg >> id >> cmd;
-        std::cout << id <<std::endl;
+        //std::cout << id <<std::endl;
         if (cmd == "rm")
         {
             polygons_to_display.erase(id);
@@ -451,6 +457,10 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
             msg >> tex_name;
             polygons_to_display[id].SetTexture(tex_name);
         }
+        else if(cmd == "clear")
+        {
+            polygons_to_display.clear();
+        }
     }
 
     void draw()
@@ -471,12 +481,12 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
                 {
                    it->second.cursor= df->s_id;
                    ofxOscMessage msg1;
-                   msg1.setAddress("/figure/add");
+                   msg1.setAddress("/figure/addfinger");
                    OscPacker(msg1) << (int)it->first << (int)df->s_id;
                    OSCDispatcher::Instance().sender.sendMessage(msg1);
 
                    ofxOscMessage msg;
-                   msg.setAddress("/figure");
+                   msg.setAddress("/figure/finger");
                    OscPacker(msg) << (int)it->first <<(int)df->s_id << (float) df->getX() << (float) df->getY();
                    OSCDispatcher::Instance().sender.sendMessage(msg);
                 }
@@ -489,18 +499,14 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
         {
             if(it->second.cursor == df->s_id)
             {
-                std::cout << "remove" << std::endl;
+                //std::cout << "remove" << std::endl;
                 it->second.cursor = -1;
                 ofxOscMessage msg1;
-                msg1.setAddress("/figure/rm");
+                msg1.setAddress("/figure/rmfinger");
                 OscPacker(msg1) << (int)it->first << (int)df->s_id;
                 OSCDispatcher::Instance().sender.sendMessage(msg1);
             }
         }
-        /*ofxOscMessage msg;
-        msg.setAddress("/finger/out");
-        OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
-        OSCDispatcher::Instance().sender.sendMessage(msg);*/
     }
     void updateCursor(tuio::DirectFinger *df)
     {
@@ -510,8 +516,60 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers <Gra
             if(it->second.cursor == df->s_id)
             {
                 ofxOscMessage msg;
-                msg.setAddress("/figure");
+                msg.setAddress("/figure/finger");
                 OscPacker(msg) << (int)it->first <<(int)df->s_id << (float) df->getX() << (float) df->getY();
+                OSCDispatcher::Instance().sender.sendMessage(msg);
+            }
+        }
+    }
+
+    void newObject(tuio::DirectObject *df)
+    {
+        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
+        {
+           if(it->second.cursor == -1)
+           {
+                if(it->second.collide(ofPoint(df->getX(), df->getY() )))
+                {
+                   it->second.cursor= df->f_id;
+                   ofxOscMessage msg1;
+                   msg1.setAddress("/figure/addobject");
+                   OscPacker(msg1) << (int)it->first << (int)df->f_id;
+                   OSCDispatcher::Instance().sender.sendMessage(msg1);
+
+                   ofxOscMessage msg;
+                   msg.setAddress("/figure/object");
+                   OscPacker(msg) << (int)it->first <<(int)df->f_id << (float) df->getX() << (float) df->getY();
+                   OSCDispatcher::Instance().sender.sendMessage(msg);
+                }
+           }
+        }
+    }
+    void removeObject(tuio::DirectObject *df)
+    {
+        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
+        {
+            if(it->second.cursor == df->f_id)
+            {
+                //std::cout << "remove" << std::endl;
+                it->second.cursor = -1;
+                ofxOscMessage msg1;
+                msg1.setAddress("/figure/rmobject");
+                OscPacker(msg1) << (int)it->first << (int)df->f_id;
+                OSCDispatcher::Instance().sender.sendMessage(msg1);
+            }
+        }
+    }
+    void updateObject(tuio::DirectObject *df)
+    {
+       // updatelist.insert(f);
+       for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
+        {
+            if(it->second.cursor == df->f_id)
+            {
+                ofxOscMessage msg;
+                msg.setAddress("/figure/object");
+                OscPacker(msg) << (int)it->first <<(int)df->f_id << (float) df->getX() << (float) df->getY();
                 OSCDispatcher::Instance().sender.sendMessage(msg);
             }
         }
@@ -637,10 +695,10 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     public:
     OscObjectReporter():
         OSCCMD("/objects"),
-        control_radius(GlobalConfig::getRef("FIGURE:CONTROLLRADIUS",0.05f)),
-        bar_width(GlobalConfig::getRef("FIGURE:BARWIDTH",0.006f)),
-        bullet_width(GlobalConfig::getRef("FIGURE:BULLETWIDTH",0.0053f)),
-        bullet_radius(GlobalConfig::getRef("FIGURE:BULLETRADIUS",0.053f))
+        control_radius(GlobalConfig::getRef("FIGURE:CONTROLLRADIUS",0.065f)),
+        bar_width(GlobalConfig::getRef("FIGURE:BARWIDTH",0.012f)),
+        bullet_width(GlobalConfig::getRef("FIGURE:BULLETWIDTH",0.01f)),
+        bullet_radius(GlobalConfig::getRef("FIGURE:BULLETRADIUS",0.07f))
     {
 
     }
@@ -650,14 +708,30 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         int canangle = 0;
         int cancursor = 0;
         int deleteme = 0;
-        OscOptionalUnpacker(m) >> fid >> canangle >> cancursor >> deleteme;
-        if(deleteme)
+        std::string cmd;
+        OscOptionalUnpacker msg(m);
+
+
+        // >> fid >> canangle >> cancursor >> deleteme;
+        msg >> fid >> cmd;
+        if(cmd == "fvalue")
         {
-            fiducials.erase(fid);
-            return;
+            float value;
+            msg >> value;
+            //std::cout << value << std::endl;
+            fiducials[fid].f_value = value;
         }
-        fiducials[fid].can_angle   = (canangle != 0);
-        fiducials[fid].can_cursors = (cancursor != 0);
+        else if(cmd == "config")
+        {
+            msg >> canangle >> cancursor >> deleteme;
+            if(deleteme)
+            {
+                fiducials.erase(fid);
+                return;
+            }
+            fiducials[fid].can_angle   = (canangle != 0);
+            fiducials[fid].can_cursors = (cancursor != 0);
+        }
         if(objects.isOnTable(fid))
         {
             reporton(fid);
