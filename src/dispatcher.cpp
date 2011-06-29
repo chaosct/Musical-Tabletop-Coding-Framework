@@ -36,10 +36,10 @@ OSCCMD::OSCCMD(const std::string & Addr):addr(Addr)
 }
 
 
-OSCDispatcher::OSCDispatcher()
+OSCDispatcher::OSCDispatcher():remoteIp(GlobalConfig::getRef<std::string>("OSCDISPATCHER:SENDER:ADDR","localhost")),remotePort(GlobalConfig::getRef("OSCDISPATCHER:SENDER:PORT",1235))
 {
     receiver.setup(GlobalConfig::getRef("OSCDISPATCHER:RECEIVER:PORT",1234));
-    sender.setup(GlobalConfig::getRef<std::string>("OSCDISPATCHER:SENDER:ADDR","localhost"),GlobalConfig::getRef("OSCDISPATCHER:SENDER:PORT",1235));
+    sender.setup(remoteIp,remotePort);
     ofxOscMessage msg;
     msg.setAddress("/init");
     sender.sendMessage(msg);
@@ -54,6 +54,11 @@ void OSCDispatcher::update()
         std::string addr = message.getAddress();
         if(commands.find(addr) != commands.end())
             commands[addr]->run(message);
+
+
+        //we update the IP addr of the PD client
+        if (message.getRemoteIp() != remoteIp)
+            sender.setup(remoteIp,remotePort);
     }
 }
 
