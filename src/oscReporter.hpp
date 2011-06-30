@@ -365,13 +365,13 @@ class OscTextDraw: public OSCCMD, public Graphic
 };
 
 #include "Polygon.h"
-using namespace Figures;
+//using namespace Figures;
 class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tuio::CanDirectObjects <Graphic> > >
 {
     class poly : public GraphicObjectData
     {
         public:
-        Polygon polygon;
+		Figures::Polygon polygon;
         int cursor;
         void AddPoint(ofPoint point)
         {
@@ -380,7 +380,7 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tu
         }
         void Clear()
         {
-            polygon = Polygon();
+            polygon = Figures::Polygon();
         }
         bool collide(ofPoint point)
         {
