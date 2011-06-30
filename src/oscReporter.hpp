@@ -373,10 +373,12 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tu
         public:
 		Figures::Polygon polygon;
         int cursor;
+        int object;
         void AddPoint(ofPoint point)
         {
             polygon.AddVertex(point);
             cursor = -1;
+            object = -1;
         }
         void Clear()
         {
@@ -527,11 +529,11 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tu
     {
         for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
         {
-           if(it->second.cursor == -1)
+           if(it->second.object == -1)
            {
                 if(it->second.collide(ofPoint(df->getX(), df->getY() )))
                 {
-                   it->second.cursor= df->f_id;
+                   it->second.object= df->f_id;
                    ofxOscMessage msg1;
                    msg1.setAddress("/figure/addobject");
                    OscPacker(msg1) << (int)it->first << (int)df->f_id;
@@ -549,10 +551,10 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tu
     {
         for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
         {
-            if(it->second.cursor == df->f_id)
+            if(it->second.object == df->f_id)
             {
                 //std::cout << "remove" << std::endl;
-                it->second.cursor = -1;
+                it->second.object = -1;
                 ofxOscMessage msg1;
                 msg1.setAddress("/figure/rmobject");
                 OscPacker(msg1) << (int)it->first << (int)df->f_id;
@@ -565,7 +567,7 @@ class OSCFigureDraw: public OSCCMD, public OnTable < tuio::CanDirectFingers < tu
        // updatelist.insert(f);
        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
         {
-            if(it->second.cursor == df->f_id)
+            if(it->second.object == df->f_id)
             {
                 ofxOscMessage msg;
                 msg.setAddress("/figure/object");
