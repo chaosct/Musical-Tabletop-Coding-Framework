@@ -51,6 +51,8 @@ class OSCDispatcher: public Singleton<OSCDispatcher>, public Graphic
 {
     ofxOscReceiver receiver;
     std::map<std::string,OSCCMD*> commands;
+    std::string & remoteIp;
+    int & remotePort;
     public:
 
     ofxOscSender sender;

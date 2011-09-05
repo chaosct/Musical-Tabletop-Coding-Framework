@@ -49,6 +49,8 @@ void testApp::setup(){
     new OscBGChanger();
     new OscFingerReporter();
     new OscFingerColor();
+    new OscTextDraw();
+    new OSCFigureDraw();
 }
 
 //--------------------------------------------------------------
