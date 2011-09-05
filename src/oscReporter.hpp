@@ -35,7 +35,7 @@
 #include <set>
 #include <map>
 #include "simpleAllObjects.hpp"
-#include <boost/foreach.hpp>
+
 
 class OscBGChanger: public OSCCMD, public BackgroundGraphic
 {
@@ -73,9 +73,9 @@ class OscFingerColor: public OSCCMD
 
     void run(ofxOscMessage & m)
     {
-        static int & R = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:R",255);
-        static int & G = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:G",0);
-        static int & B = GlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:B",0);
+        static int & R = ofxGlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:R",255);
+        static int & G = ofxGlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:G",0);
+        static int & B = ofxGlobalConfig::getRef("FEEDBACK:CURSOR:COLOR:B",0);
 
         OscOptionalUnpacker(m) >> R >> G >> B;
     }
@@ -83,35 +83,39 @@ class OscFingerColor: public OSCCMD
 };
 
 
-class OscFingerReporter : public OnTable < tuio::CanDirectFingers <Graphic> >
+class OscFingerReporter : public Graphic
 {
 
-    std::set< tuio::DirectFinger * > updatelist;
+    std::set< DirectFinger * > updatelist;
 
     public:
-    void newCursor(tuio::DirectFinger *df)
+    void newCursor(InputGestureDirectFingers::newCursorArgs & a)
     {
+        DirectFinger *df = a.finger;
         ofxOscMessage msg;
         msg.setAddress("/finger/in");
         OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
-    void removeCursor(tuio::DirectFinger *df)
+    void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
     {
+        DirectFinger *df = a.finger;
         ofxOscMessage msg;
         msg.setAddress("/finger/out");
         OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
-    void updateCursor(tuio::DirectFinger *f)
+    void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
     {
+        DirectFinger *f = a.finger;
         updatelist.insert(f);
     }
 
     void update()
     {
-        BOOST_FOREACH(tuio::DirectFinger *df,updatelist)
+        for(std::set< DirectFinger * >::iterator it = updatelist.begin(); it != updatelist.end(); ++it) 
         {
+            DirectFinger *df = *it;
             ofxOscMessage msg;
             msg.setAddress("/finger/move");
             OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
@@ -119,12 +123,21 @@ class OscFingerReporter : public OnTable < tuio::CanDirectFingers <Graphic> >
         }
         updatelist.clear();
     }
+    
+    OscFingerReporter()
+    {
+        this->registerEvent(InputGestureDirectFingers::I().newCursor, &OscFingerReporter::newCursor);
+        this->registerEvent(InputGestureDirectFingers::I().removeCursor, &OscFingerReporter::removeCursor);
+        this->registerEvent(InputGestureDirectFingers::I().updateCursor, &OscFingerReporter::updateCursor);
+        
+    }
 
 };
 
-class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObjects <Graphic> >
+class OscDistanceReporter: public OSCCMD, public Graphic
 {
-    std::set< std::pair<int,int> > dists;
+    typedef std::set< std::pair<int,int> > distsType;
+    distsType dists;
     std::set< std::pair<int,int> > diststoupdate;
     struct properties
     {
@@ -136,7 +149,9 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
     public:
     OscDistanceReporter():OSCCMD("/distance")
     {
-
+        this->registerEvent(InputGestureDirectObjects::I().newObject,&OscDistanceReporter::newObject);
+        this->registerEvent(InputGestureDirectObjects::I().removeObject,&OscDistanceReporter::removeObject);
+        this->registerEvent(InputGestureDirectObjects::I().updateObject,&OscDistanceReporter::updateObject);
     }
     void run(ofxOscMessage & m)
     {
@@ -167,9 +182,9 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
     }
     void draw()
     {
-        std::pair<int,int> p;
-        BOOST_FOREACH( p , dists)
+        for(distsType::iterator it = dists.begin(); it != dists.end(); ++it)
         {
+            const std::pair<int,int> & p = *it;
             if( objects.isOnTable(p.second) and objects.isOnTable(p.first))
             {
                 if(diststoupdate.find(p) == diststoupdate.end() )
@@ -213,11 +228,12 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
 
-    void newObject(tuio::DirectObject * obj)
+    void newObject(InputGestureDirectObjects::newObjectArgs & a)
     {
-        std::pair<int,int> p;
-        BOOST_FOREACH( p , dists)
+        DirectObject * obj = a.object;
+        for(distsType::iterator it = dists.begin(); it != dists.end(); ++it)
         {
+            const std::pair<int,int> & p = *it;
             if(   (p.first == obj->f_id and objects.isOnTable(p.second))
                or (p.second == obj->f_id and objects.isOnTable(p.first))
                )
@@ -228,11 +244,12 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
             }
         }
     }
-    void removeObject(tuio::DirectObject * obj)
+    void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
     {
-        std::pair<int,int> p;
-        BOOST_FOREACH(p , dists)
+        DirectObject * obj = a.object;
+        for(distsType::iterator it = dists.begin(); it != dists.end(); ++it)
         {
+            const std::pair<int,int> & p = *it;
             if(   (p.first == obj->f_id and objects.isOnTable(p.second))
                or (p.second == obj->f_id and objects.isOnTable(p.first))
                )
@@ -241,11 +258,14 @@ class OscDistanceReporter: public OSCCMD, public OnTable < tuio::CanDirectObject
             }
         }
     }
-    void updateObject(tuio::DirectObject * obj)
+    void updateObject(InputGestureDirectObjects::updateObjectArgs & a)
     {
-        std::pair<int,int> p;
-        BOOST_FOREACH( p , dists)
+        DirectObject * obj = a.object;
+        //std::pair<int,int> p;
+        //BOOST_FOREACH( p , dists)
+        for(distsType::iterator it = dists.begin(); it != dists.end(); ++it)
         {
+            const std::pair<int,int> & p = *it;
             if(   (p.first == obj->f_id and objects.isOnTable(p.second))
                or (p.second == obj->f_id and objects.isOnTable(p.first))
                )
@@ -367,7 +387,7 @@ class object_data{
         object_data():can_cursors(false), can_angle(false),xpos(0),ypos(0),angle(0),f_value(0),a_value(0),angle_increment(0){}
 };
 
-class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers < tuio::CanDirectObjects <Graphic> > >
+class OscObjectReporter: public OSCCMD, public Graphic
 {
     std::map<int,object_data> fiducials;
     std::set< int > fiducialstoupdate;
@@ -376,12 +396,18 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     public:
     OscObjectReporter():
         OSCCMD("/objects"),
-        control_radius(GlobalConfig::getRef("FIGURE:CONTROLLRADIUS",0.05f)),
-        bar_width(GlobalConfig::getRef("FIGURE:BARWIDTH",0.006f)),
-        bullet_width(GlobalConfig::getRef("FIGURE:BULLETWIDTH",0.0053f)),
-        bullet_radius(GlobalConfig::getRef("FIGURE:BULLETRADIUS",0.053f))
+        control_radius(ofxGlobalConfig::getRef("FIGURE:CONTROLLRADIUS",0.05f)),
+        bar_width(ofxGlobalConfig::getRef("FIGURE:BARWIDTH",0.006f)),
+        bullet_width(ofxGlobalConfig::getRef("FIGURE:BULLETWIDTH",0.0053f)),
+        bullet_radius(ofxGlobalConfig::getRef("FIGURE:BULLETRADIUS",0.053f))
     {
-
+        this->registerEvent(InputGestureDirectObjects::I().newObject,&OscObjectReporter::newObject);
+        this->registerEvent(InputGestureDirectObjects::I().removeObject,&OscObjectReporter::removeObject);
+        this->registerEvent(InputGestureDirectObjects::I().updateObject,&OscObjectReporter::updateObject);
+        this->registerEvent(InputGestureDirectFingers::I().newCursor, &OscObjectReporter::newCursor);
+        //this->registerEvent(InputGestureDirectFingers::I().removeCursor, &OscObjectReporter::removeCursor);
+        this->registerEvent(InputGestureDirectFingers::I().updateCursor, &OscObjectReporter::updateCursor);
+        
     }
     void run(ofxOscMessage & m)
     {
@@ -408,8 +434,10 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
     }
     void update()
     {
-        BOOST_FOREACH(int f,fiducialstoupdate)
+        std::set< int >::iterator it;
+        for(it = fiducialstoupdate.begin();it != fiducialstoupdate.end(); ++it)
         {
+            const int & f = *it;
             if(objects.isOnTable(f))report(objects[f]);
         }
         fiducialstoupdate.clear();
@@ -433,7 +461,7 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
 
-    void report (tuio::DirectObject * obj)
+    void report (DirectObject * obj)
     {
         ofxOscMessage msg;
         msg.setAddress("/object");
@@ -441,15 +469,18 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
 
-    void newObject(tuio::DirectObject * obj)
+    void newObject(InputGestureDirectObjects::newObjectArgs & a)
     {
+        DirectObject * obj = a.object;
         if(fiducials.find(obj->f_id)!= fiducials.end()){
             reporton(obj->f_id);
             fiducials[obj->f_id].angle = obj->angle;
         }
     }
 
-    void updateObject(tuio::DirectObject * obj){
+    void updateObject(InputGestureDirectObjects::updateObjectArgs & a)
+    {
+        DirectObject * obj = a.object;
         if(fiducials.find(obj->f_id)!= fiducials.end()){
 
             fiducialstoupdate.insert(obj->f_id);
@@ -479,14 +510,15 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         }
     }
 
-    void removeObject(tuio::DirectObject * obj)
+    void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
     {
+        DirectObject * obj = a.object;
         if(fiducials.find(obj->f_id)!= fiducials.end()){
             reportoff(obj->f_id);
         }
     }
 
-    float computeAngle(tuio::DirectFinger * finger, DirectPoint &figure){
+    float computeAngle(DirectFinger * finger, DirectPoint &figure){
         DirectPoint center;
         center.set(0.5f,0.5f);
         float angle = (figure.getAngle(finger)-figure.getAngle(center));
@@ -497,7 +529,9 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         return angle;
     }
 
-    void newCursor(tuio::DirectFinger * finger ){
+    void newCursor(InputGestureDirectFingers::newCursorArgs & a)
+    {
+        DirectFinger * finger = a.finger;
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
             if(objects.isOnTable((*it).first) && (*it).second.can_cursors){
@@ -515,7 +549,9 @@ class OscObjectReporter: public OSCCMD, public OnTable < tuio::CanDirectFingers 
         }
     }
 
-    void updateCursor(tuio::DirectFinger * finger ){
+    void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
+    {
+        DirectFinger * finger = a.finger;
         for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it)
         {
             if(objects.isOnTable((*it).first) && (*it).second.can_cursors){

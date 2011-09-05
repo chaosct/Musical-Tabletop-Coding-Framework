@@ -35,20 +35,29 @@
 #include <map>
 #include "InputGestureDirectObjects.hpp"
 
-class SimpleAllObjects: public OnTable < tuio::CanDirectObjects < Graphic > >, public std::map<unsigned int,tuio::DirectObject *>
+//class SimpleAllObjects: public OnTable < tuio::CanDirectObjects < Graphic > >, public std::map<unsigned int,tuio::DirectObject *>
+class SimpleAllObjects: public Graphic,  public std::map<unsigned int,DirectObject *>
 {
     public:
-    void newObject(tuio::DirectObject * object)
+    void newObject(InputGestureDirectObjects::newObjectArgs & a)
     {
+        DirectObject * object = a.object;
         (*this)[object->f_id]=object;
     }
-    void removeObject(tuio::DirectObject * object)
+    void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
     {
+        DirectObject * object = a.object;
         erase(object->f_id);
     }
     bool isOnTable(unsigned int f)
     {
         return find(f) != end();
+    }
+    SimpleAllObjects()
+    {
+        //registerEvent( Event , &MyClass::method );
+        this->registerEvent(InputGestureDirectObjects::I().newObject,&SimpleAllObjects::newObject);
+        this->registerEvent(InputGestureDirectObjects::I().removeObject,&SimpleAllObjects::removeObject);
     }
 };
 

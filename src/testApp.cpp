@@ -32,12 +32,12 @@
 #include "CursorFeedback.hpp"
 #include "FigureFeedback.hpp"
 #include "TapFeedback.hpp"
-#include "Calibrator.hpp"
 
 #include "oscReporter.hpp"
 
 //--------------------------------------------------------------
-void testApp::Setup(){
+void testApp::setup(){
+    tableapp.setup();
     new CursorFeedback();
     new FigureFeedback();
     new TapFeedback();
@@ -52,16 +52,16 @@ void testApp::Setup(){
 }
 
 //--------------------------------------------------------------
-void testApp::Update(){
+void testApp::update(){
 
 }
 
 //--------------------------------------------------------------
-void testApp::Draw(){
-
+void testApp::draw(){
+    tableapp.draw();
 }
 
 //--------------------------------------------------------------
-void testApp::WindowResized(int w, int h){
+void testApp::windowResized(int w, int h){
 
 }

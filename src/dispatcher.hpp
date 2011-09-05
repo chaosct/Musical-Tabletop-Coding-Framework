@@ -35,7 +35,7 @@
 #include "Singleton.hpp"
 #include "ofxOsc.h"
 #include "Graphic.hpp"
-#include "GlobalConfig.hpp"
+#include "ofxGlobalConfig.hpp"
 #include <map>
 
 
@@ -47,7 +47,7 @@ class OSCCMD
     virtual void run(ofxOscMessage & m)=0;
 };
 
-class OSCDispatcher: public Singleton<OSCDispatcher,Graphic>
+class OSCDispatcher: public Singleton<OSCDispatcher>, public Graphic
 {
     ofxOscReceiver receiver;
     std::map<std::string,OSCCMD*> commands;
@@ -59,7 +59,7 @@ class OSCDispatcher: public Singleton<OSCDispatcher,Graphic>
     void addCommand(OSCCMD * cmd);
 };
 
-class OscOptionalUnpacker
+/*class OscOptionalUnpacker
 {
     ofxOscMessage & msg;
     int n;
@@ -97,9 +97,9 @@ class OscOptionalUnpacker
         }
         return *this;
     }
-};
+};*/
 
-class OscPacker
+/*class OscPacker
 {
     ofxOscMessage & msg;
     public:
@@ -124,6 +124,6 @@ class OscPacker
         msg.addStringArg(i);
         return *this;
     }
-};
+};*/
 
 #endif // DISPATCHER_HPP_INCLUDED
