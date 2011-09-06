@@ -385,15 +385,17 @@ class OscTextDraw: public OSCCMD, public Graphic
 };
 
 #include "Polygon.h"
+#include "FigureGraphic.hpp"
 //using namespace Figures;
 class OSCFigureDraw: public OSCCMD, public Graphic
 {
-    class poly : public GraphicObjectData
+    class poly :public FigureGraphic
     {
         public:
 		Figures::Polygon polygon;
         int cursor;
         int object;
+        int id;
         void AddPoint(ofPoint point)
         {
             polygon.AddVertex(point);
@@ -417,30 +419,125 @@ class OSCFigureDraw: public OSCCMD, public Graphic
             else
                 polygon.SetTexture(texture);
         }
-        void draw()
+        poly():FigureGraphic(&polygon)
         {
-            ofEnableAlphaBlending();
-            ofPushMatrix();
-            ofSetColor(r,g,b);
-            ofTranslate(x,y);
-            ofRotate(angle);
-            polygon.Draw();
-            ofPopMatrix();
-            ofDisableAlphaBlending();
+            this->registerMyEvent(InputGestureDirectObjects::I().newObject,&poly::newObject);
+            this->registerMyEvent(InputGestureDirectObjects::I().enterObject,&poly::newObject);
+            this->registerMyEvent(InputGestureDirectObjects::I().removeObject,&poly::removeObject);
+            this->registerMyEvent(InputGestureDirectObjects::I().exitObject,&poly::removeObject);
+            this->registerMyEvent(InputGestureDirectObjects::I().updateObject,&poly::updateObject);
+            this->registerMyEvent(InputGestureDirectFingers::I().newCursor, &poly::newCursor);
+            this->registerMyEvent(InputGestureDirectFingers::I().enterCursor, &poly::newCursor);
+            this->registerMyEvent(InputGestureDirectFingers::I().removeCursor, &poly::removeCursor);
+            this->registerMyEvent(InputGestureDirectFingers::I().exitCursor, &poly::removeCursor);
+            this->registerMyEvent(InputGestureDirectFingers::I().updateCursor, &poly::updateCursor);
         }
+        void newCursor(InputGestureDirectFingers::newCursorArgs & a)
+        {
+            DirectFinger *df = a.finger;
+            if (cursor == -1)
+            {
+                cursor= df->s_id;
+                ofxOscMessage msg1;
+                msg1.setAddress("/figure/addfinger");
+                OscPacker(msg1) << (int)id << (int)df->s_id;
+                OSCDispatcher::Instance().sender.sendMessage(msg1);
+
+                ofxOscMessage msg;
+                msg.setAddress("/figure/finger");
+                OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->getX() << (float) df->getY();
+                OSCDispatcher::Instance().sender.sendMessage(msg);
+            }
+        }
+        void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
+        {
+            DirectFinger *df = a.finger;
+
+                if(cursor == df->s_id)
+                {
+                    //std::cout << "remove" << std::endl;
+                    cursor = -1;
+                    ofxOscMessage msg1;
+                    msg1.setAddress("/figure/rmfinger");
+                    OscPacker(msg1) << (int)id << (int)df->s_id;
+                    OSCDispatcher::Instance().sender.sendMessage(msg1);
+                }
+        }
+        void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
+        {
+            DirectFinger *df = a.finger;
+           // updatelist.insert(f);
+           
+                if(cursor == df->s_id)
+                {
+                    ofxOscMessage msg;
+                    msg.setAddress("/figure/finger");
+                    OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->getX() << (float) df->getY();
+                    OSCDispatcher::Instance().sender.sendMessage(msg);
+                }
+         
+        }
+        void newObject(InputGestureDirectObjects::newObjectArgs & a)
+        {
+            DirectObject *df = a.object;
+            
+               if(object == -1)
+               {
+                    
+                       object= df->f_id;
+                       ofxOscMessage msg1;
+                       msg1.setAddress("/figure/addobject");
+                       OscPacker(msg1) << (int)id << (int)df->f_id;
+                       OSCDispatcher::Instance().sender.sendMessage(msg1);
+
+                       ofxOscMessage msg;
+                       msg.setAddress("/figure/object");
+                       OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->getX() << (float) df->getY();
+                       OSCDispatcher::Instance().sender.sendMessage(msg);
+                    
+               }
+        
+        }
+        void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
+        {
+            DirectObject *df = a.object;
+            
+                if(object == df->f_id)
+                {
+                    //std::cout << "remove" << std::endl;
+                    object = -1;
+                    ofxOscMessage msg1;
+                    msg1.setAddress("/figure/rmobject");
+                    OscPacker(msg1) << (int)id << (int)df->f_id;
+                    OSCDispatcher::Instance().sender.sendMessage(msg1);
+                }
+            
+        }
+        void updateObject(InputGestureDirectObjects::updateObjectArgs & a)
+        {
+            DirectObject *df = a.object;
+           // updatelist.insert(f);
+           
+                if(object == df->f_id)
+                {
+                    ofxOscMessage msg;
+                    msg.setAddress("/figure/object");
+                    OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->getX() << (float) df->getY();
+                    OSCDispatcher::Instance().sender.sendMessage(msg);
+                }
+           
+        }
+        
+        
     };
     public:
 
-    std::map<int, poly> polygons_to_display;
+    std::map<int, poly*> polygons_to_display;
+    
 
     OSCFigureDraw():OSCCMD("/figure")
     {
-        this->registerEvent(InputGestureDirectObjects::I().newObject,&OSCFigureDraw::newObject);
-        this->registerEvent(InputGestureDirectObjects::I().removeObject,&OSCFigureDraw::removeObject);
-        this->registerEvent(InputGestureDirectObjects::I().updateObject,&OSCFigureDraw::updateObject);
-        this->registerEvent(InputGestureDirectFingers::I().newCursor, &OSCFigureDraw::newCursor);
-        //this->registerEvent(InputGestureDirectFingers::I().removeCursor, &OSCFigureDraw::removeCursor);
-        this->registerEvent(InputGestureDirectFingers::I().updateCursor, &OSCFigureDraw::updateCursor);
+
     }
 
     void run(ofxOscMessage & m)
@@ -449,40 +546,49 @@ class OSCFigureDraw: public OSCCMD, public Graphic
         std::string cmd;
         int id;
         msg >> id >> cmd;
+        
+        if(polygons_to_display.find(id) == polygons_to_display.end())
+        {
+            polygons_to_display[id] = new poly();
+            polygons_to_display[id]->id = id;
+        }
+        
         //std::cout << id <<std::endl;
         if (cmd == "rm")
         {
+            polygons_to_display[id]->SafeDelete();
             polygons_to_display.erase(id);
+            
         }
         else if(cmd == "addvertex")
         {
             float fx, fy;
             msg >> fx >> fy;
-            polygons_to_display[id].AddPoint(ofPoint(fx,fy));
+            polygons_to_display[id]->AddPoint(ofPoint(fx,fy));
         }
         else if(cmd == "clearvertex")
         {
-            polygons_to_display[id].Clear();
+            polygons_to_display[id]->Clear();
         }
         else if(cmd == "position")
         {
             float x,y,angle;
             msg >> x >> y >> angle;
-            polygons_to_display[id].SetPosition(x,y);
-            polygons_to_display[id].SetAngle(angle);
+            polygons_to_display[id]->transformation.setTranslation(x,y,0);
+            polygons_to_display[id]->transformation.setRotate(ofQuaternion(angle,ofVec3f(0,0,1)));
             //std::cout << id << " " << x << " " << y << " " << angle;
         }
         else if(cmd == "color")
         {
             int r,g,b;
             msg >> r >> g >> b;
-            polygons_to_display[id].SetColor(r,g,b);
+            polygons_to_display[id]->color.set(r,g,b);
         }
         else if(cmd == "texture")
         {
             std::string tex_name;
             msg >> tex_name;
-            polygons_to_display[id].SetTexture(tex_name);
+            polygons_to_display[id]->SetTexture(tex_name);
         }
         else if(cmd == "clear")
         {
@@ -492,121 +598,18 @@ class OSCFigureDraw: public OSCCMD, public Graphic
 
     void draw()
     {
-        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-           it->second.draw();
-        }
+//        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
+//        {
+//           it->second.draw();
+//        }
     }
 
-    void newCursor(InputGestureDirectFingers::newCursorArgs & a)
-    {
-        DirectFinger *df = a.finger;
-        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-           if(it->second.cursor == -1)
-           {
-                if(it->second.collide(ofPoint(df->getX(), df->getY() )))
-                {
-                   it->second.cursor= df->s_id;
-                   ofxOscMessage msg1;
-                   msg1.setAddress("/figure/addfinger");
-                   OscPacker(msg1) << (int)it->first << (int)df->s_id;
-                   OSCDispatcher::Instance().sender.sendMessage(msg1);
+    
+    
+    
 
-                   ofxOscMessage msg;
-                   msg.setAddress("/figure/finger");
-                   OscPacker(msg) << (int)it->first <<(int)df->s_id << (float) df->getX() << (float) df->getY();
-                   OSCDispatcher::Instance().sender.sendMessage(msg);
-                }
-           }
-        }
-    }
-    void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
-    {
-        DirectFinger *df = a.finger;
-        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-            if(it->second.cursor == df->s_id)
-            {
-                //std::cout << "remove" << std::endl;
-                it->second.cursor = -1;
-                ofxOscMessage msg1;
-                msg1.setAddress("/figure/rmfinger");
-                OscPacker(msg1) << (int)it->first << (int)df->s_id;
-                OSCDispatcher::Instance().sender.sendMessage(msg1);
-            }
-        }
-    }
-    void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
-    {
-        DirectFinger *df = a.finger;
-       // updatelist.insert(f);
-       for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-            if(it->second.cursor == df->s_id)
-            {
-                ofxOscMessage msg;
-                msg.setAddress("/figure/finger");
-                OscPacker(msg) << (int)it->first <<(int)df->s_id << (float) df->getX() << (float) df->getY();
-                OSCDispatcher::Instance().sender.sendMessage(msg);
-            }
-        }
-    }
-
-    void newObject(InputGestureDirectObjects::newObjectArgs & a)
-    {
-        DirectObject *df = a.object;
-        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-           if(it->second.object == -1)
-           {
-                if(it->second.collide(ofPoint(df->getX(), df->getY() )))
-                {
-                   it->second.object= df->f_id;
-                   ofxOscMessage msg1;
-                   msg1.setAddress("/figure/addobject");
-                   OscPacker(msg1) << (int)it->first << (int)df->f_id;
-                   OSCDispatcher::Instance().sender.sendMessage(msg1);
-
-                   ofxOscMessage msg;
-                   msg.setAddress("/figure/object");
-                   OscPacker(msg) << (int)it->first <<(int)df->f_id << (float) df->getX() << (float) df->getY();
-                   OSCDispatcher::Instance().sender.sendMessage(msg);
-                }
-           }
-        }
-    }
-    void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
-    {
-        DirectObject *df = a.object;
-        for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-            if(it->second.object == df->f_id)
-            {
-                //std::cout << "remove" << std::endl;
-                it->second.object = -1;
-                ofxOscMessage msg1;
-                msg1.setAddress("/figure/rmobject");
-                OscPacker(msg1) << (int)it->first << (int)df->f_id;
-                OSCDispatcher::Instance().sender.sendMessage(msg1);
-            }
-        }
-    }
-    void updateObject(InputGestureDirectObjects::updateObjectArgs & a)
-    {
-        DirectObject *df = a.object;
-       // updatelist.insert(f);
-       for (std::map< int, poly>::iterator it = polygons_to_display.begin(); it != polygons_to_display.end(); ++it)
-        {
-            if(it->second.object == df->f_id)
-            {
-                ofxOscMessage msg;
-                msg.setAddress("/figure/object");
-                OscPacker(msg) << (int)it->first <<(int)df->f_id << (float) df->getX() << (float) df->getY();
-                OSCDispatcher::Instance().sender.sendMessage(msg);
-            }
-        }
-    }
+    
+    
 };
 
 class OscWaveDraw: public OSCCMD, public Graphic
