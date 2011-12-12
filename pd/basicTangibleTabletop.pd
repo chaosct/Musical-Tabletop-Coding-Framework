@@ -1,15 +1,15 @@
-#N canvas 642 618 735 302 10;
-#X obj 2 64 s basicTangibleTabletop1235messageBus;
-#X obj 2 88 r basicTangibleTabletop1234messageBus;
-#X obj 41 139 loadbang;
-#X obj 266 134 s basicTangibleTabletopInit;
-#X obj 100 117 route /init;
-#X msg 100 138 bang;
-#X obj 239 244 outlet;
-#X obj 239 113 t b b;
-#X text 285 234 this is a loadbang after initializing;
-#X text 285 247 the tabletop externals;
-#N canvas 1320 502 450 300 config 0;
+#N canvas 583 300 1336 532 10;
+#X obj 264 44 s basicTangibleTabletop1235messageBus;
+#X obj 8 19 r basicTangibleTabletop1234messageBus;
+#X obj 107 87 loadbang;
+#X obj 787 140 s basicTangibleTabletopInit;
+#X obj 242 73 route /init;
+#X msg 242 94 bang;
+#X obj 760 250 outlet;
+#X obj 760 119 t b b;
+#X text 806 240 this is a loadbang after initializing;
+#X text 806 253 the tabletop externals;
+#N canvas 1318 508 450 300 config 0;
 #X text 33 136 wave FPS;
 #X floatatom 33 115 5 0 0 0 - - -;
 #X obj 33 16 loadbang;
@@ -26,8 +26,8 @@
 #X connect 7 0 1 0;
 #X connect 8 0 4 0;
 #X connect 8 1 5 0;
-#X restore 507 146 pd config;
-#N canvas 166 536 450 300 debug 0;
+#X restore 1028 152 pd config;
+#N canvas 164 542 450 300 debug 0;
 #X obj 29 16 r basicTangibleTabletop1235messageBus;
 #X obj 28 39 spigot;
 #X obj 75 41 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
@@ -46,37 +46,54 @@
 #X connect 4 0 3 1;
 #X connect 6 0 8 0;
 #X connect 8 1 3 0;
-#X restore 507 167 pd debug;
-#X obj 489 117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 1028 173 pd debug;
+#X obj 1010 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 573 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 1094 138 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 573 204 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 1094 210 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 489 189 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 1010 195 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 105 185 s loadbang-\$0;
-#X obj 239 59 r loadbang-\$0;
-#N canvas 635 613 314 187 dumpOSC 0;
+#X obj 107 205 s loadbang-\$0;
+#X obj 760 65 r loadbang-\$0;
+#N canvas 263 787 623 274 dumpOSC 1;
 #X obj 101 11 outlet;
 #X obj 101 -35 mrpeach/udpreceive 1235;
 #X obj 101 -15 mrpeach/unpackOSC;
+#X obj 236 -3 route from;
+#X msg 236 27 \$1.\$2.\$3.\$4;
+#X obj 236 86 outlet;
+#X obj 236 56 tosymbol;
 #X connect 1 0 2 0;
+#X connect 1 1 3 0;
 #X connect 2 0 0 0;
-#X restore 2 29 pd dumpOSC;
-#X obj 2 116 mrpeach/packOSC;
-#X obj 2 230 mrpeach/udpsend;
-#X msg 8 209 connect \$1 1234;
-#X obj 41 184 symbol \$1;
-#X obj 42 161 t b b;
-#X obj 90 161 delay 100;
-#X text 438 26 Musical Tabletop Coding Framework PD Client;
-#X text 437 41 (C) Carles F. Julia carles.fernandez@upf.edu;
-#X text 438 56 This software is released under the MIT license;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 6 0 5 0;
+#X restore 241 19 pd dumpOSC;
+#X obj 8 47 mrpeach/packOSC;
+#X obj 72 363 mrpeach/udpsend;
+#X msg 206 238 connect \$1 1234;
+#X obj 170 178 symbol \$1;
+#X obj 107 122 t b b;
+#X obj 107 177 delay 100;
+#X text 959 32 Musical Tabletop Coding Framework PD Client;
+#X text 958 47 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 959 62 This software is released under the MIT license;
+#X obj 203 124 t b b;
+#X msg 140 313 disconnect;
+#X obj 113 281 t a b;
+#X obj 265 179 symbol;
+#X obj 357 153 print arg;
+#X obj 189 353 print messages_to_udp:;
+#X text 328 172 TODO: at /init messages set sender port as the value
+of the argument. Dani.;
 #X connect 1 0 19 0;
 #X connect 2 0 23 0;
 #X connect 4 0 5 0;
-#X connect 5 0 23 0;
+#X connect 4 0 32 0;
+#X connect 5 0 28 0;
 #X connect 7 0 6 0;
 #X connect 7 1 3 0;
 #X connect 12 0 15 0;
@@ -86,9 +103,18 @@
 #X connect 17 0 7 0;
 #X connect 18 0 0 0;
 #X connect 18 0 4 0;
+#X connect 18 1 31 1;
 #X connect 19 0 20 0;
-#X connect 21 0 20 0;
+#X connect 21 0 30 0;
 #X connect 22 0 21 0;
 #X connect 23 0 24 0;
 #X connect 23 1 22 0;
 #X connect 24 0 16 0;
+#X connect 28 0 24 0;
+#X connect 28 1 31 0;
+#X connect 29 0 20 0;
+#X connect 29 0 33 0;
+#X connect 30 0 20 0;
+#X connect 30 0 33 0;
+#X connect 30 1 29 0;
+#X connect 31 0 21 0;
