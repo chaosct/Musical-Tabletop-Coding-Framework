@@ -1,8 +1,8 @@
-#N canvas 358 529 929 534 10;
-#X obj 234 37 loadbang;
-#X msg 234 58 \; pd dsp 1;
+#N canvas 2174 284 929 534 10;
+#X obj 285 32 loadbang;
+#X msg 285 53 \; pd dsp 1;
 #X obj 34 59 s initparameters;
-#X obj 568 389 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 568 389 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 479 102 noise~;
 #X obj 567 325 == 0;
@@ -174,31 +174,31 @@
 #X connect 38 2 25 0;
 #X connect 38 3 26 0;
 #X restore 281 387 pd extras;
-#N canvas 67 89 342 241 painting 0;
-#N canvas 90 178 598 265 text 0;
+#N canvas 67 89 342 241 painting 1;
+#N canvas 456 474 598 265 text 0;
 #X msg 28 67 test;
 #X msg 28 93 yahuu!;
 #X obj 120 50 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 6200 1;
 #X floatatom 123 135 5 0 0 0 - - -;
 #X obj 120 69 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 6700 1;
 #X floatatom 157 135 5 0 0 0 - - -;
 #X obj 120 88 hsl 128 15 0 360 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 5700 1;
 #X floatatom 191 135 5 0 0 0 - - -;
 #X msg 29 120 tes tes test;
 #X obj 160 213 Text 0 0 0 0;
 #X obj 261 50 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 7000 1;
 #X obj 226 113 int;
 #X floatatom 226 135 5 0 0 0 - - -;
 #X obj 261 69 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 4600 1;
 #X obj 261 113 int;
 #X floatatom 261 135 5 0 0 0 - - -;
 #X obj 261 88 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 7400 1;
 #X obj 296 113 int;
 #X floatatom 296 135 5 0 0 0 - - -;
 #X text 158 31 position;
@@ -415,7 +415,9 @@
 #X connect 24 1 20 0;
 #X restore 127 131 pd circles;
 #X restore 19 433 pd painting and virtual objects;
-#X obj 28 33 basicTangibleTabletop localhost;
+#X obj 22 5 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 28 33 basicTangibleTabletop 192.168.2.167;
 #X connect 0 0 1 0;
 #X connect 3 0 27 1;
 #X connect 4 0 7 0;
@@ -469,4 +471,5 @@
 #X connect 72 4 54 0;
 #X connect 72 5 56 0;
 #X connect 73 0 72 1;
-#X connect 76 0 2 0;
+#X connect 76 0 77 0;
+#X connect 77 0 2 0;
