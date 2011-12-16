@@ -1,0 +1,6 @@
+#N canvas 67 111 274 121 10;
+#X obj 13 75 s basicTangibleTabletop1234messageBus;
+#X msg 13 46 /mtcf reset;
+#X obj 13 18 inlet;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
