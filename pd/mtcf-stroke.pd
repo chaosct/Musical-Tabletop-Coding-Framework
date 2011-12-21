@@ -1,0 +1,21 @@
+#N canvas 644 554 450 300 10;
+#X obj 30 68 inlet;
+#X obj 120 51 inlet;
+#X obj 293 60 inlet;
+#X obj 30 95 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 120 91 route color;
+#X obj 120 129 prepend strokecolor;
+#X obj 293 120 float \$1;
+#X msg 293 165 strokewidth \$1;
+#X msg 30 129 drawstroke \$1;
+#X obj 135 259 outlet;
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 6 0;
+#X connect 3 0 8 0;
+#X connect 4 0 5 0;
+#X connect 5 0 9 0;
+#X connect 6 0 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 9 0;
