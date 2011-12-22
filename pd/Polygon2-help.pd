@@ -1,9 +1,9 @@
-#N canvas 247 86 1277 849 10;
-#X msg 623 27 rm;
-#X msg 635 48 color 33 34 35;
-#X msg 647 70 color 33 34 35 23;
-#X msg 657 91 position 2 3 4;
-#X msg 613 7 transform r 3 t 3 4 s 2 3 r 4;
+#N canvas 0 0 944 975 10;
+#X msg 597 -49 rm;
+#X msg 609 -28 color 33 34 35;
+#X msg 621 -6 color 33 34 35 23;
+#X msg 631 15 position 2 3 4;
+#X msg 587 -69 transform r 3 t 3 4 s 2 3 r 4;
 #X msg 676 126 addvertex 3.4 2.4;
 #X msg 716 187 texture /foo/bar.test;
 #X msg 691 146 clearvertex;
@@ -12,7 +12,7 @@
 #X msg 766 264 strokecolor 34 45 255 50;
 #X msg 779 288 strokewidth 5;
 #X msg 741 219 drawstroke 1;
-#X text 600 -17 Messagesn Examples:;
+#X text 574 -93 Messagesn Examples:;
 #X obj -69 -129 mtcf-color 22 21 24 53;
 #X obj -95 -165 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -27,7 +27,7 @@
 #X floatatom 114 -108 5 0 0 0 - - -;
 #X obj -21 -70 mtcf-color-rgb 22 21 24;
 #X obj 29 -17 mtcf-enable_layer_bringtop;
-#X obj 29 -44 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 29 -44 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 182 -45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -88,6 +88,13 @@
 #X floatatom 378 585 5 0 0 0 - - -;
 #X obj 293 586 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X msg 640 35 hide;
+#X msg 649 54 unhide;
+#X msg 659 74 bring_top;
+#X msg 670 95 layer 3;
+#X obj 190 155 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 190 182 mtcf-draw_position -0.5 -0.05 0;
 #X connect 0 0 38 0;
 #X connect 1 0 38 0;
 #X connect 2 0 38 0;
@@ -154,3 +161,9 @@
 #X connect 66 2 67 0;
 #X connect 66 3 68 0;
 #X connect 66 4 69 0;
+#X connect 71 0 38 0;
+#X connect 72 0 38 0;
+#X connect 73 0 38 0;
+#X connect 74 0 38 0;
+#X connect 75 0 76 0;
+#X connect 76 0 38 0;
