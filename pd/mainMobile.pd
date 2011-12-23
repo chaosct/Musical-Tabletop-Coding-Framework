@@ -1,4 +1,4 @@
-#N canvas 791 207 1128 872 10;
+#N canvas 2030 0 1128 872 10;
 #X obj 244 38 loadbang;
 #X msg 244 59 \; pd dsp 1;
 #N canvas 660 118 862 584 text 0;
@@ -331,7 +331,7 @@
 #X msg 115 334 disable;
 #X msg 192 346 color 255 5 0;
 #X obj 457 46 Text2-help;
-#N canvas 349 89 1051 850 slider 0;
+#N canvas 349 89 1051 850 slider 1;
 #X msg -118 215 clearvertex;
 #X obj -217 99 t b b b b b;
 #X obj -221 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -354,7 +354,7 @@
 #X floatatom 323 658 5 0 0 0 - - -;
 #X floatatom 357 658 5 0 0 0 - - -;
 #X floatatom 391 658 5 0 0 0 - - -;
-#X obj 306 659 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 306 659 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 534 547 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -681,6 +681,8 @@
 #X obj 20 38 Test 192.168.0.13;
 #X obj 20 158 s initparameters;
 #X msg 127 8 ip 192.168.2.167;
+#X msg 240 6 ip 192.168.2.149;
+#X msg 358 9 ip 192.168.2.135;
 #X connect 0 0 1 0;
 #X connect 5 0 6 0;
 #X connect 6 0 15 0;
@@ -739,3 +741,5 @@
 #X connect 61 0 62 0;
 #X connect 62 0 63 0;
 #X connect 64 0 62 0;
+#X connect 65 0 62 0;
+#X connect 66 0 62 0;
