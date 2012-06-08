@@ -58,7 +58,11 @@ void OSCDispatcher::update()
 
         //we update the IP addr of the PD client
         if (message.getRemoteIp() != remoteIp)
+        {
+            remoteIp = message.getRemoteIp();
             sender.setup(remoteIp,remotePort);
+        }
+            
     }
 }
 
