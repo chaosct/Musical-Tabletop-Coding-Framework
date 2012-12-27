@@ -285,6 +285,27 @@
 		<Unit filename="src/oscReporter.hpp">
 			<Option virtualFolder="src" />
 		</Unit>
+		<Unit filename="src/osc_common_draw.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_distances.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_fingers.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_general.cpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_general.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_polygon.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="src/osc_text.hpp">
+			<Option virtualFolder="src/" />
+		</Unit>
 		<Unit filename="src/simpleAllObjects.hpp">
 			<Option virtualFolder="src" />
 		</Unit>

@@ -34,6 +34,11 @@
 #include "TapFeedback.hpp"
 
 #include "oscReporter.hpp"
+#include "osc_general.hpp"
+#include "osc_fingers.hpp"
+#include "osc_distances.hpp"
+#include "osc_polygon.hpp"
+#include "osc_text.hpp"
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -43,12 +48,18 @@ void testApp::setup(){
     new TapFeedback();
     //new CalibratorObject(1);
 
+    //Global
+    new OscBGChanger();
+    new OscFingerColor();
+    new OscGlobalReset();
+
+
     new OscObjectReporter();
     new OscDistanceReporter();
     new OscWaveDraw();
-    new OscBGChanger();
+
     new OscFingerReporter();
-    new OscFingerColor();
+
     new OscTextDraw();
     new OSCFigureDraw();
 }
