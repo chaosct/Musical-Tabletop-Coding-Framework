@@ -79,10 +79,6 @@ class OscFingerColor: public OSCCMD
 class OscGlobalReset: public OSCCMD
 {
 public:
-    OscGlobalReset():OSCCMD("/mtcf/reset"){}
-
-    void run(ofxOscMessage & m)
-    {
-        std::cout << "TODO: Reset everything" << std::endl;
-    }
+    OscGlobalReset():OSCCMD("/mtcf"){}
+    void run(ofxOscMessage & m);
 };

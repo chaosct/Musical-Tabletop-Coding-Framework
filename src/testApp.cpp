@@ -60,8 +60,8 @@ void testApp::setup(){
 
     new OscFingerReporter();
 
-    new OscTextDraw();
-    new OSCFigureDraw();
+    OscTextDraw::Instance();
+    OSCFigureDraw::Instance();
 }
 
 //--------------------------------------------------------------

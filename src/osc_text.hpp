@@ -2,25 +2,22 @@
 #define OSC_TEXT_HPP_INCLUDED
 
 #include "osc_common_draw.hpp"
+#include "FigureGraphic.hpp"
 
 
-class GraphicObjectData
+
+class OSCTextObject : public Graphic, public OSCCommonDrawObject
 {
     protected:
-        float x,y,angle;
+        //float x,y,angle;
         int r,g,b;
     public:
 
-        GraphicObjectData():x(0),y(0),angle(0),r(255),g(255),b(255)
+        OSCTextObject():r(255),g(255),b(255)
         {
         }
         void SetColor(int _r,int _g, int _b){ r = _r; g = _g; b = _b;}
-        void SetPosition(float _x, float _y){ x = _x; y = _y;}
-        void SetAngle(float _angle){angle = _angle;}
-};
 
-class text : public GraphicObjectData, public Graphic
-{
     protected:
         string data;
         static ofTrueTypeFont & font()
@@ -35,7 +32,6 @@ class text : public GraphicObjectData, public Graphic
         }
     public:
 
-        text(){}
         void SetText(std::string text)
         {
             int find = text.find("%20");
@@ -51,30 +47,18 @@ class text : public GraphicObjectData, public Graphic
         {
             ofPushMatrix();
             ofSetColor(r,g,b);
-
-            ofTranslate(x,y);
-            ofRotate(angle);
+            ofMultMatrix(total_matrix);
             ofScale(0.0005f,0.0005f,1);
             font().drawString(data,0,0);
 
             ofPopMatrix();
-            //std::cout << x << " " << y << " " << data <<std::endl;
         }
-};
 
-
-class OSCTextObject: public OSCCommonDrawObject, public text
-{
 public:
 int id;
     void cmd_color(int r,int g,int b)
     {
         SetColor(r,g,b);
-    }
-    void cmd_position(float x,float y,float angle)
-    {
-            SetPosition(x,y);
-            SetAngle(angle);
     }
     void cmd_hidden(bool ishidden)
     {
@@ -93,10 +77,14 @@ int id;
         {
             SetText("");
         }
+        else
+        {
+            std::cout << "Text: command " << cmd << " not found" << std::endl;
+        }
     }
 };
 
-class OscTextDraw
+class OscTextDraw : public Singleton<OscTextDraw>
 {
 public:
     OSCCommonDraw<OSCTextObject> o;

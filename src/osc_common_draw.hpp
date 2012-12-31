@@ -31,15 +31,26 @@
 #pragma once
 #include "dispatcher.hpp"
 #include "OscTools.hpp"
-
+#include "ofVectorMath.h"
 
 class OSCCommonDrawObject
 {
 public:
     virtual void cmd_color(int r,int g,int b){}
-    virtual void cmd_position(float x,float y,float angle){}
     virtual void cmd_hidden(bool ishidden){}
     virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
+    virtual void cmd_report_matrix(){}
+
+    ofMatrix4x4 transform_matrix;
+    ofMatrix4x4 translate_matrix;
+    ofMatrix4x4 total_matrix;
+
+    void recalculate_total_matrix()
+    {
+        total_matrix = translate_matrix * transform_matrix;
+        cmd_report_matrix();
+    }
+
     void run(const std::string & cmd, OscOptionalUnpacker & msg)
     {
         if(cmd == "color")
@@ -50,7 +61,41 @@ public:
         }
         else if(cmd == "transform")
         {
-            std::cout << "TODO: transform not implemented" << std::endl;
+            transform_matrix.makeIdentityMatrix();
+            while(!msg.Eos())
+            {
+                std::string command;
+                msg >> command;
+                if (command == "t")
+                {
+                    float dx,dy;
+                    msg >> dx >> dy;
+                    transform_matrix.glTranslate(dx,dy,0.0f);
+                }
+                else if (command == "r")
+                {
+                    float alpha;
+                    msg >> alpha;
+                    transform_matrix.glRotate(alpha,.0f,.0f,1.0f);
+                }
+                else if (command == "s")
+                {
+                    float sx,sy;
+                    msg >> sx >> sy;
+                    transform_matrix.glScale(sx,sy,1.0f);
+                }
+                else if (command == "S")
+                {
+                    float sxy;
+                    msg >> sxy;
+                    transform_matrix.glScale(sxy,sxy,1.0f);
+                }
+                else
+                {
+                    std::cout << "transform: command " << command << " not found" << std::endl;
+                }
+            }
+            recalculate_total_matrix();
         }
         else if(cmd == "hidden")
         {
@@ -70,11 +115,25 @@ public:
         {
             float x,y,angle;
             msg >> x >> y >> angle;
-            cmd_position(x,y,angle);
+            translate_matrix.setTranslation(x,y,0);
+            translate_matrix.setRotate(ofQuaternion(angle,ofVec3f(0,0,1)));
         }
         else if(cmd == "matrix")
         {
-            std::cout << "TODO: matrix not implemented" << std::endl;
+            float m00,m01,m02,m03,
+            m10,m11,m12,m13,
+            m20,m21,m22,m23,
+            m30,m31,m32,m33;
+            msg >> m00>>m01>>m02>>m03>>
+            m10>>m11>>m12>>m13>>
+            m20>>m21>>m22>>m23>>
+            m30>>m31>>m32>>m33;
+            transform_matrix.set(m00,m01,m02,m03,
+            m10,m11,m12,m13,
+            m20,m21,m22,m23,
+            m30,m31,m32,m33);
+            translate_matrix.makeIdentityMatrix();
+            recalculate_total_matrix();
         }
         else
         {
@@ -92,14 +151,22 @@ public:
     OSCCommonDraw(const std::string & addr):OSCCMD(addr){}
 
     std::map<int, T*> objects;
-
+    void reset()
+    {
+        for (typename std::map<int, T*>::iterator it = objects.begin();
+              it != objects.end(); ++it)
+              {
+                  delete (it->second);
+              }
+        objects.clear();
+    }
     void run(ofxOscMessage & m)
     {
         OscOptionalUnpacker msg(m);
         std::string cmd;
         int id;
         msg >> id >> cmd;
-        std::cout << cmd << std::endl;
+        //std::cout << cmd << std::endl;
         if(objects.find(id) == objects.end())
         {
             objects[id] = new T();
