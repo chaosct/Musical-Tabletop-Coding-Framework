@@ -11,9 +11,10 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
     protected:
         //float x,y,angle;
         int r,g,b;
+        bool hidden;
     public:
 
-        OSCTextObject():r(255),g(255),b(255)
+        OSCTextObject():r(255),g(255),b(255),hidden(false)
         {
         }
         void SetColor(int _r,int _g, int _b){ r = _r; g = _g; b = _b;}
@@ -45,6 +46,7 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
 
         void draw()
         {
+            if(hidden)return;
             ofPushMatrix();
             ofSetColor(r,g,b);
             ofMultMatrix(total_matrix);
@@ -62,7 +64,7 @@ int id;
     }
     void cmd_hidden(bool ishidden)
     {
-         std::cout << "TODO: hidden not implemented" << std::endl;
+         hidden = ishidden;
     }
     void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
     {

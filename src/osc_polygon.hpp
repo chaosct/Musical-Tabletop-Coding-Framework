@@ -181,7 +181,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void cmd_hidden(bool ishidden)
     {
-         std::cout << "TODO: hidden not implemented" << std::endl;
+         isHidden(ishidden);
     }
     void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
     {
