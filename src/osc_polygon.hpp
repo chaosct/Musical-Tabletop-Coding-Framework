@@ -271,7 +271,9 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         }
         else if(cmd == "touchable")
         {
-            std::cout << "TODO: touchable not implemented" << std::endl;
+            int c;
+            msg >> c;
+            canCollide(c != 0);
         }
         else
         {
