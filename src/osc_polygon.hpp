@@ -199,18 +199,42 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
         if(cmd == "addrectangle")
         {
-            float x,y,h,w;
-            x=y=h=w=0;
-            int round_edge = 0;
-            msg >> x >> y >> h >> w >> round_edge;
-            if (round_edge)
+            float x,y,h,w,r;
+            x=y=h=w=r=0;
+            msg >> x >> y >> h >> w >> r;
+
+            if (!(r > w || r > h || r <= 0))
             {
-                std::cout << "TODO: addrectangle: round_edge not implemented" << std::endl;
+                ofPath shape;
+                float x2 = x + w;
+                float y2 = y + h;
+                shape.lineTo(x+r, y);
+                shape.bezierTo(x,y, x,y+r, x,y+r);
+                shape.lineTo(x, y2-r);
+                shape.bezierTo(x,y2, x+r,y2, x+r,y2);
+                shape.lineTo(x2-r, y2);
+                shape.bezierTo(x2,y2, x2,y2-r, x2,y2-r);
+                shape.lineTo(x2, y+r);
+                shape.bezierTo(x2,y, x2-r,y, x2-r,y);
+                shape.lineTo(x+r, y);
+                vector<ofPolyline> & polys = shape.getOutline();
+                for(vector<ofPolyline>::iterator pit = polys.begin(); pit != polys.end(); ++pit)
+                {
+                    vector<ofPoint> & vert = pit->getVertices();
+                    for (std::vector<ofPoint>::iterator it = vert.begin(); it != vert.end(); ++it)
+                    {
+                        AddPoint(*it);
+                    }
+                }
+
             }
-            AddPoint(ofPoint(x,y));
-            AddPoint(ofPoint(x+w,y));
-            AddPoint(ofPoint(x+w,y+h));
-            AddPoint(ofPoint(x,y+h));
+            else
+            {
+                AddPoint(ofPoint(x,y));
+                AddPoint(ofPoint(x+w,y));
+                AddPoint(ofPoint(x+w,y+h));
+                AddPoint(ofPoint(x,y+h));
+            }
         }
         else if(cmd == "addcircle")
         {
