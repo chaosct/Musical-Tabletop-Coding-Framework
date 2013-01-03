@@ -210,7 +210,16 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         }
         else if(cmd == "addcircle")
         {
-            std::cout << "TODO: addcircle not implemented" << std::endl;
+            float x,y,r;
+            int nvertex;
+            msg >> x >> y >> r >> nvertex;
+            for (int i =0; i < nvertex; ++i)
+            {
+                float cx = x + r * cos(M_PI*2.0/nvertex*i);
+                float cy = y + r * sin(M_PI*2.0/nvertex*i);
+                AddPoint(ofPoint(cx,cy));
+            }
+            
         }
         else if(cmd == "addvertex")
         {
