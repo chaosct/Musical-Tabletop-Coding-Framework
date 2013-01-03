@@ -183,6 +183,10 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
          isHidden(ishidden);
     }
+    void cmd_bring_top()
+    {
+        BringTop();
+    }
     void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
     {
         if(cmd == "addrectangle")

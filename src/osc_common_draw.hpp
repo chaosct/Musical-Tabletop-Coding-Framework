@@ -40,6 +40,7 @@ public:
     virtual void cmd_hidden(bool ishidden){}
     virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
     virtual void cmd_report_matrix(){}
+    virtual void cmd_bring_top(){}
 
     ofMatrix4x4 transform_matrix;
     ofMatrix4x4 translate_matrix;
@@ -109,7 +110,7 @@ public:
         }
         else if(cmd == "bring_top")
         {
-            std::cout << "TODO: bring_top not implemented" << std::endl;
+            cmd_bring_top();
         }
         else if(cmd == "position")
         {
