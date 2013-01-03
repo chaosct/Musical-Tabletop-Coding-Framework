@@ -19,6 +19,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     bool drawpolygon;
     ofColor poly_color;
     ofColor stroke_color;
+    int linewidth;
     void AddPoint(ofPoint point)
     {
         polygon.AddVertex(point);
@@ -42,7 +43,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         else
             polygon.SetTexture(texture);
     }
-    OSCPolygonObject():FigureGraphic(&polygon),drawpolygon(true),drawstroke(false)
+    OSCPolygonObject():FigureGraphic(&polygon),drawpolygon(true),drawstroke(false),linewidth(1)
     {
         this->registerMyEvent(InputGestureDirectObjects::I().newObject,&OSCPolygonObject::newObject);
         this->registerMyEvent(InputGestureDirectObjects::I().enterObject,&OSCPolygonObject::newObject);
@@ -158,9 +159,12 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         }
         if(drawstroke)
         {
+            ofPushStyle();
+            ofSetLineWidth(linewidth);
             color = stroke_color;
             setFill(false);
             FigureGraphic::draw();
+            ofPopStyle();
         }
         ofPopMatrix();
     }
@@ -261,7 +265,9 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         }
         else if(cmd == "strokewidth")
         {
-            std::cout << "TODO: strokewidth not implemented" << std::endl;
+            float w;
+            msg >> w;
+            linewidth = static_cast<int>(floor(w + 0.5f));
         }
         else if(cmd == "touchable")
         {
