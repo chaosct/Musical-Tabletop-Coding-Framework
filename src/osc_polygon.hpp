@@ -187,6 +187,10 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
         BringTop();
     }
+    void cmd_set_layer(int _layer)
+    {
+        SetLayer(_layer);
+    }
     void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
     {
         if(cmd == "addrectangle")

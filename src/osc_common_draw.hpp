@@ -41,6 +41,7 @@ public:
     virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
     virtual void cmd_report_matrix(){}
     virtual void cmd_bring_top(){}
+    virtual void cmd_set_layer(int _layer){}
 
     ofMatrix4x4 transform_matrix;
     ofMatrix4x4 translate_matrix;
@@ -106,7 +107,9 @@ public:
         }
         else if(cmd == "layer")
         {
-            std::cout << "TODO: layer not implemented" << std::endl;
+            int _layer;
+            msg >> _layer;
+            cmd_set_layer(_layer);
         }
         else if(cmd == "bring_top")
         {
