@@ -195,7 +195,18 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
         if(cmd == "addrectangle")
         {
-            std::cout << "TODO: addrectangle not implemented" << std::endl;
+            float x,y,h,w;
+            x=y=h=w=0;
+            int round_edge = 0;
+            msg >> x >> y >> h >> w >> round_edge;
+            if (round_edge)
+            {
+                std::cout << "TODO: addrectangle: round_edge not implemented" << std::endl;
+            }
+            AddPoint(ofPoint(x,y));
+            AddPoint(ofPoint(x+w,y));
+            AddPoint(ofPoint(x+w,y+h));
+            AddPoint(ofPoint(x,y+h));
         }
         else if(cmd == "addcircle")
         {
