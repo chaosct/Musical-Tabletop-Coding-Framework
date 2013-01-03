@@ -117,6 +117,7 @@ public:
             msg >> x >> y >> angle;
             translate_matrix.setTranslation(x,y,0);
             translate_matrix.setRotate(ofQuaternion(angle,ofVec3f(0,0,1)));
+            recalculate_total_matrix();
         }
         else if(cmd == "matrix")
         {
