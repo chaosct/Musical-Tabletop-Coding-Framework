@@ -168,7 +168,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
 
             if (!(r > w || r > h || r <= 0))
             {
-                ofPath shape;
+                ofPolyline shape;
                 float x2 = x + w;
                 float y2 = y + h;
                 shape.lineTo(x+r, y);
@@ -180,14 +180,10 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
                 shape.lineTo(x2, y+r);
                 shape.bezierTo(x2,y, x2-r,y, x2-r,y);
                 shape.lineTo(x+r, y);
-                vector<ofPolyline> & polys = shape.getOutline();
-                for(vector<ofPolyline>::iterator pit = polys.begin(); pit != polys.end(); ++pit)
+                vector<ofPoint> & vert = shape.getVertices();
+                for (std::vector<ofPoint>::iterator it = vert.begin(); it != vert.end(); ++it)
                 {
-                    vector<ofPoint> & vert = pit->getVertices();
-                    for (std::vector<ofPoint>::iterator it = vert.begin(); it != vert.end(); ++it)
-                    {
-                        AddPoint(*it);
-                    }
+                    AddPoint(*it);
                 }
 
             }
