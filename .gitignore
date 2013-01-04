@@ -4,3 +4,4 @@ obj
 *.depend
 .svn
 *.layout
+*.sublime-workspace

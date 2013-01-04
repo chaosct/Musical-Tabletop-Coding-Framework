@@ -1,0 +1,29 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"*~"
+			],
+			"folder_exclude_patterns":
+			[
+				"obj"
+			],
+			"name": "MTCF",
+			"path": "/home/carles/Projectes/OpenFrameworks/0071/apps/myApps/Musical-Tabletop-Coding-Framework"
+		},
+		{
+			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofxTableGestures"
+		},
+		{
+			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofx2DFigures"
+		},
+		{
+			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofxGlobalConfig"
+		},
+		{
+			"path": "/home/carles/Projectes/OpenFrameworks/0071/libs/openFrameworks"
+		}
+	]
+}
