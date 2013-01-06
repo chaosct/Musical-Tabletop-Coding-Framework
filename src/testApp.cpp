@@ -49,10 +49,7 @@ void testApp::setup(){
     //new CalibratorObject(1);
 
     //Global
-    new OscBGChanger();
-    new OscFingerColor();
-    new OscGlobalReset();
-
+    new OscGeneral();
 
     new OscObjectReporter();
     new OscDistanceReporter();
