@@ -13,8 +13,8 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
         int r,g,b;
         bool hidden;
     public:
-
-        OSCTextObject():r(255),g(255),b(255),hidden(false)
+        int id;
+        OSCTextObject():r(255),g(255),b(255),hidden(false),id(0)
         {
         }
         void SetColor(int _r,int _g, int _b){ r = _r; g = _g; b = _b;}
@@ -57,7 +57,6 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
         }
 
 public:
-int id;
     void cmd_color(int r,int g,int b)
     {
         SetColor(r,g,b);

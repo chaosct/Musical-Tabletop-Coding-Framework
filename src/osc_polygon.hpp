@@ -39,7 +39,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         else
             polygon.SetTexture(texture);
     }
-    OSCPolygonObject():FigureGraphic(&polygon),drawpolygon(true),drawstroke(false),linewidth(1)
+    OSCPolygonObject():FigureGraphic(&polygon),drawpolygon(true),drawstroke(false),linewidth(1),id(0)
     {
         this->registerMyEvent(InputGestureDirectObjects::I().newObject,&OSCPolygonObject::newObject);
         this->registerMyEvent(InputGestureDirectObjects::I().enterObject,&OSCPolygonObject::newObject);

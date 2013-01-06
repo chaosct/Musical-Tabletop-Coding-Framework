@@ -58,7 +58,7 @@ class OscWaveDraw: public OSCCMD, public Graphic
         }
         void update(OscOptionalUnpacker & msg)
         {
-            int costats = 10;
+            // int costats = 10;
             for (int i = 0; i < 100 ; i++)
             {
                 int v;
@@ -171,9 +171,6 @@ class OscObjectReporter: public OSCCMD, public Graphic
     void run(ofxOscMessage & m)
     {
         int fid;
-        int canangle = 0;
-        int cancursor = 0;
-        int deleteme = 0;
         std::string cmd;
         OscOptionalUnpacker msg(m);
 
@@ -189,6 +186,9 @@ class OscObjectReporter: public OSCCMD, public Graphic
         }
         else if(cmd == "config")
         {
+            int deleteme = 0;
+            int canangle = 0;
+            int cancursor = 0;
             msg >> canangle >> cancursor >> deleteme;
             if(deleteme)
             {
