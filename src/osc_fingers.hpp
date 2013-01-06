@@ -44,16 +44,16 @@ class OscFingerReporter : public Graphic
     {
         DirectFinger *df = a.finger;
         ofxOscMessage msg;
-        msg.setAddress("/finger/in");
-        OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+        msg.setAddress("/finger");
+        OscPacker(msg) << std::string("in") << (int)df->s_id << (float) df->getX() << (float) df->getY();
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
     void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
     {
         DirectFinger *df = a.finger;
         ofxOscMessage msg;
-        msg.setAddress("/finger/out");
-        OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+        msg.setAddress("/finger");
+        OscPacker(msg) << std::string("out") << (int)df->s_id << (float) df->getX() << (float) df->getY();
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
     void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
@@ -68,8 +68,8 @@ class OscFingerReporter : public Graphic
         {
             DirectFinger *df = *it;
             ofxOscMessage msg;
-            msg.setAddress("/finger/move");
-            OscPacker(msg) << (int)df->s_id << (float) df->getX() << (float) df->getY();
+            msg.setAddress("/finger");
+            OscPacker(msg) << std::string("move") << (int)df->s_id << (float) df->getX() << (float) df->getY();
             OSCDispatcher::Instance().sender.sendMessage(msg);
         }
         updatelist.clear();
