@@ -162,6 +162,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
         if(cmd == "addrectangle")
         {
+            Clear();
             float x,y,h,w,r;
             x=y=h=w=r=0;
             msg >> x >> y >> h >> w >> r;
@@ -197,6 +198,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         }
         else if(cmd == "addcircle")
         {
+            Clear();
             float x,y,r;
             int nvertex;
             msg >> x >> y >> r >> nvertex;
