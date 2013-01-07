@@ -11,19 +11,19 @@
 				"obj"
 			],
 			"name": "MTCF",
-			"path": "/home/carles/Projectes/OpenFrameworks/0071/apps/myApps/Musical-Tabletop-Coding-Framework"
+			"path": "."
 		},
 		{
-			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofxTableGestures"
+			"path": "../../../addons/ofxTableGestures"
 		},
 		{
-			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofx2DFigures"
+			"path": "../../../addons/ofx2DFigures"
 		},
 		{
-			"path": "/home/carles/Projectes/OpenFrameworks/0071/addons/ofxGlobalConfig"
+			"path": "../../../addons/ofxGlobalConfig"
 		},
 		{
-			"path": "/home/carles/Projectes/OpenFrameworks/0071/libs/openFrameworks"
+			"path": "../../../libs/openFrameworks"
 		}
 	]
 }
