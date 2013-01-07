@@ -23,6 +23,9 @@
 			"path": "../../../addons/ofxGlobalConfig"
 		},
 		{
+			"path": "../../../addons/ofxOsc"
+		},
+		{
 			"path": "../../../libs/openFrameworks"
 		}
 	]
