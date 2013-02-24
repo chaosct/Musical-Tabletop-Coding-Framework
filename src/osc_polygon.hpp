@@ -162,9 +162,10 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     {
         if(cmd == "addrectangle")
         {
+            Clear();
             float x,y,h,w,r;
             x=y=h=w=r=0;
-            msg >> x >> y >> h >> w >> r;
+            msg >> x >> y >> w >> h >> r;
 
             if (!(r > w || r > h || r <= 0))
             {
@@ -189,14 +190,15 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
             }
             else
             {
-                AddPoint(ofPoint(x,y));
-                AddPoint(ofPoint(x+w,y));
-                AddPoint(ofPoint(x+w,y+h));
-                AddPoint(ofPoint(x,y+h));
+                AddPoint(ofPoint(x-w/2,y-h/2));
+                AddPoint(ofPoint(x+w/2,y-h/2));
+                AddPoint(ofPoint(x+w/2,y+h/2));
+                AddPoint(ofPoint(x-w/2,y+h/2));
             }
         }
         else if(cmd == "addcircle")
         {
+            Clear();
             float x,y,r;
             int nvertex;
             msg >> x >> y >> r >> nvertex;
