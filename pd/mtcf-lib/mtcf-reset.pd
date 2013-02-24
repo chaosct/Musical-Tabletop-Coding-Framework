@@ -1,0 +1,24 @@
+#N canvas 334 189 375 346 10;
+#X obj 67 50 inlet;
+#X obj 67 84 t b b;
+#X obj 13 154 s reset_mtcf;
+#X msg 94 113 /mtcf reset;
+#X obj 12 196 r reset_mtcf;
+#X obj 12 237 outlet;
+#X text 13 274 MTCF mobile PD Client;
+#X text 11 289 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 12 306 This software (client) is released under the MIT licence
+;
+#X text 5 9 Sends a Reset Signal To the MTCF and outlets a reset bang
+;
+#X obj 94 154 mtcf-send;
+#X obj 136 233 delay 500;
+#X obj 136 258 s initparameters;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 3 0 10 0;
+#X connect 4 0 5 0;
+#X connect 4 0 11 0;
+#X connect 11 0 12 0;

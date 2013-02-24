@@ -1,0 +1,108 @@
+#N canvas 0 0 495 536 10;
+#X obj 22 127 unpack f f f;
+#X floatatom 22 153 5 0 0 0 - - -;
+#X floatatom 57 153 5 0 0 0 - - -;
+#X floatatom 93 153 5 0 0 0 - - -;
+#X obj 22 67 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 188 126 unpack f f f;
+#X floatatom 188 152 5 0 0 0 - - -;
+#X floatatom 222 152 5 0 0 0 - - -;
+#X floatatom 256 152 5 0 0 0 - - -;
+#X obj 188 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 195 373 unpack f f f;
+#X floatatom 195 399 5 0 0 0 - - -;
+#X floatatom 229 399 5 0 0 0 - - -;
+#X floatatom 264 399 5 0 0 0 - - -;
+#X obj 195 313 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 60 374 unpack f f f;
+#X floatatom 60 400 5 0 0 0 - - -;
+#X floatatom 94 400 5 0 0 0 - - -;
+#X floatatom 129 400 5 0 0 0 - - -;
+#X obj 60 314 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 191 242 5 0 0 0 - - -;
+#X obj 191 181 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 366 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 366 126 5 0 0 0 - - -;
+#X obj 27 241 unpack f f f;
+#X floatatom 27 267 5 0 0 0 - - -;
+#X floatatom 61 267 5 0 0 0 - - -;
+#X floatatom 95 267 5 0 0 0 - - -;
+#X obj 27 181 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 341 242 unpack f f f;
+#X floatatom 341 268 5 0 0 0 - - -;
+#X floatatom 376 268 5 0 0 0 - - -;
+#X floatatom 411 268 5 0 0 0 - - -;
+#X obj 341 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 30 296 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 391 311 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 391 444 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 30 429 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 52 293 Android fused sensors;
+#X text 27 -12 Sensor Example:;
+#X text 70 9 Main object:;
+#X text 69 25 Intlets: 1(enable) 0 (disable);
+#X text 69 38 Outlets: Sensor data;
+#X text 36 466 MTCF mobile PD Client;
+#X text 34 481 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 35 498 This software (client) is released under the MIT licence
+;
+#X obj 27 208 mtcf-sensors magneticfield;
+#X obj 195 340 mtcf-sensors linearacceleration;
+#X obj 22 94 mtcf-sensors accelerometer;
+#X obj 188 93 mtcf-sensors rotationvector;
+#X obj 366 93 mtcf-sensors light;
+#X obj 191 209 mtcf-sensors proximity;
+#X obj 341 209 mtcf-sensors gyroscope;
+#X obj 60 341 mtcf-sensors gravity;
+#X obj 146 8 mtcf-sensors;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 0 2 3 0;
+#X connect 4 0 48 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;
+#X connect 5 2 8 0;
+#X connect 9 0 49 0;
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 10 2 13 0;
+#X connect 14 0 47 0;
+#X connect 15 0 16 0;
+#X connect 15 1 17 0;
+#X connect 15 2 18 0;
+#X connect 19 0 53 0;
+#X connect 21 0 51 0;
+#X connect 22 0 50 0;
+#X connect 24 0 25 0;
+#X connect 24 1 26 0;
+#X connect 24 2 27 0;
+#X connect 28 0 46 0;
+#X connect 29 0 30 0;
+#X connect 29 1 31 0;
+#X connect 29 2 32 0;
+#X connect 33 0 52 0;
+#X connect 34 0 37 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 37 0 36 0;
+#X connect 46 0 24 0;
+#X connect 47 0 10 0;
+#X connect 48 0 0 0;
+#X connect 49 0 5 0;
+#X connect 50 0 23 0;
+#X connect 51 0 20 0;
+#X connect 52 0 29 0;
+#X connect 53 0 15 0;

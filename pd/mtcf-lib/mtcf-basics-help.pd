@@ -1,0 +1,37 @@
+#N canvas 0 0 472 322 10;
+#X obj -68 48 mtcf-send;
+#X obj -68 82 mtcf-receive;
+#X obj 134 12 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 147 29 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 163 46 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj -70 149 mtcf-background;
+#X obj 145 113 mtcf-background;
+#X obj 136 140 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 149 157 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 165 174 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj -71 179 mtcf-fingercolor;
+#X obj 147 240 mtcf-fingercolor;
+#X text -73 263 MTCF mobile PD Client;
+#X text -75 278 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -74 295 This software (client) is released under the MIT licence
+;
+#X obj -69 118 mtcf-color;
+#X obj 145 78 mtcf-color;
+#X obj 147 206 mtcf-color;
+#X obj -70 212 mtcf-init;
+#X obj -67 13 mtcf-reset;
+#X connect 2 0 16 0;
+#X connect 3 0 16 1;
+#X connect 4 0 16 2;
+#X connect 7 0 17 0;
+#X connect 8 0 17 1;
+#X connect 9 0 17 2;
+#X connect 16 0 6 0;
+#X connect 17 0 11 0;

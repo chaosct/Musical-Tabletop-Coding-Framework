@@ -1,0 +1,10 @@
+#N canvas 506 257 383 136 10;
+#X obj 11 27 r basicTangibleTabletop1235messageBus;
+#X obj 11 53 outlet;
+#X text 8 70 MTCF mobile PD Client;
+#X text 6 85 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu;
+#X text 7 102 This software (client) is released under the MIT licence
+;
+#X text 8 5 Receives data from MTCF as a list of direction and arguments
+;
+#X connect 0 0 1 0;

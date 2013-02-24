@@ -1,0 +1,226 @@
+#N canvas 176 14 1293 860 10;
+#X msg 519 -27 rm;
+#X msg 531 -6 color 33 34 35;
+#X msg 543 16 color 33 34 35 23;
+#X msg 553 37 position 2 3 4;
+#X msg 509 -47 transform r 3 t 3 4 s 2 3 r 4;
+#X msg 602 154 addvertex 3.4 2.4;
+#X msg 642 215 texture /foo/bar.test;
+#X msg 617 174 clearvertex;
+#X msg 630 194 drawpolygon 0;
+#X msg 733 -23 strokecolor 34 45 255;
+#X msg 746 -1 strokecolor 34 45 255 50;
+#X msg 759 23 strokewidth 5;
+#X msg 721 -46 drawstroke 1;
+#X obj -28 -2 mtcf-color 22 21 24 53;
+#X obj -54 -38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom -28 -39 5 0 0 0 - - -;
+#X floatatom 15 -39 5 0 0 0 - - -;
+#X floatatom 58 -40 5 0 0 0 - - -;
+#X floatatom 101 -40 5 0 0 0 - - -;
+#X obj -6 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 20 20 5 0 0 0 - - -;
+#X floatatom 87 20 5 0 0 0 - - -;
+#X floatatom 155 19 5 0 0 0 - - -;
+#X obj 70 83 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 157 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 113 83 5 0 0 0 - - -;
+#X obj 116 134 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 233 28 mtcf-stroke;
+#X obj 233 -35 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 264 -34 5 0 0 0 - - -;
+#X floatatom 331 -34 5 0 0 0 - - -;
+#X floatatom 399 -35 5 0 0 0 - - -;
+#X floatatom 296 9 5 0 0 0 - - -;
+#X obj -311 -52 mtcf-transformations-help;
+#X obj 279 -57 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -281 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -226 12 vsl 15 128 0 1.5 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -201 12 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -131 100 vsl 15 128 0 1.5 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -106 100 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -166 215 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -155 39 vsl 15 128 0 360 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -187 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -330 76 transform;
+#X text -311 -85 Transformations:;
+#X text -60 -83 Basic Helpers:;
+#X obj 261 597 finger 0 0 0 0;
+#X floatatom 298 626 5 0 0 0 - - -;
+#X floatatom 332 626 5 0 0 0 - - -;
+#X floatatom 366 626 5 0 0 0 - - -;
+#X obj 281 627 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 261 656 finger 0 0 0 0;
+#X floatatom 298 685 5 0 0 0 - - -;
+#X floatatom 332 685 5 0 0 0 - - -;
+#X floatatom 366 685 5 0 0 0 - - -;
+#X obj 281 686 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 261 719 finger 0 0 0 0;
+#X floatatom 298 748 5 0 0 0 - - -;
+#X floatatom 332 748 5 0 0 0 - - -;
+#X floatatom 366 748 5 0 0 0 - - -;
+#X obj 281 749 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 562 57 hide;
+#X msg 571 76 unhide;
+#X msg 581 96 bring_top;
+#X msg 592 117 layer 3;
+#X obj -61 239 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -61 266 mtcf-draw_position -0.5 -0.05 0;
+#X msg 761 48 touchenable 1;
+#X msg 770 69 touchenable 0;
+#X obj 20 57 mtcf-rgbcolor 22 21 24;
+#X obj 264 -10 mtcf-rgbcolor 22 21 24;
+#X obj -339 -82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -339 283 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -78 -67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -78 298 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 70 110 mtcf-visibility;
+#X obj 116 158 mtcf-square 0.2;
+#X floatatom 138 134 5 0 0 0 - - -;
+#X obj 275 119 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 294 119 5 0 0 0 - - -;
+#X floatatom 380 114 5 0 0 0 - - -;
+#X obj 275 142 mtcf-rectangle 0.2 0.4;
+#X obj 252 87 mtcf-circle 0.3 30;
+#X obj 252 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 273 62 5 0 0 0 - - -;
+#X floatatom 331 60 5 0 0 0 - - -;
+#X obj 447 283 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 447 -82 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 465 -85 Example messages:;
+#X obj 918 -67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 918 298 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text -310 476 MTCF mobile PD Client;
+#X text -312 491 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -311 508 This software (client) is released under the MIT licence
+;
+#X obj 478 596 mtcf-matrix;
+#X obj 261 562 route /finger matrix;
+#X obj -330 162 mtcf-translate 0.6 0.8;
+#X obj -268 193 mtcf-rotate 45;
+#X obj -181 246 mtcf-scale 1 1;
+#X obj 261 513 mtcf-polygon;
+#X connect 0 0 99 0;
+#X connect 1 0 99 0;
+#X connect 2 0 99 0;
+#X connect 3 0 99 0;
+#X connect 4 0 99 0;
+#X connect 5 0 99 0;
+#X connect 6 0 99 0;
+#X connect 7 0 99 0;
+#X connect 8 0 99 0;
+#X connect 9 0 99 0;
+#X connect 10 0 99 0;
+#X connect 11 0 99 0;
+#X connect 12 0 99 0;
+#X connect 13 0 99 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 0;
+#X connect 16 0 13 1;
+#X connect 17 0 13 2;
+#X connect 18 0 13 3;
+#X connect 19 0 69 0;
+#X connect 20 0 69 0;
+#X connect 21 0 69 1;
+#X connect 22 0 69 2;
+#X connect 23 0 75 0;
+#X connect 24 0 75 2;
+#X connect 25 0 75 1;
+#X connect 26 0 76 0;
+#X connect 27 0 99 0;
+#X connect 28 0 27 0;
+#X connect 29 0 70 0;
+#X connect 30 0 70 1;
+#X connect 31 0 70 2;
+#X connect 32 0 27 2;
+#X connect 34 0 70 0;
+#X connect 35 0 96 1;
+#X connect 36 0 96 1;
+#X connect 37 0 96 2;
+#X connect 38 0 98 1;
+#X connect 39 0 98 2;
+#X connect 40 0 98 1;
+#X connect 41 0 97 1;
+#X connect 42 0 97 1;
+#X connect 43 0 96 0;
+#X connect 46 0 51 0;
+#X connect 46 1 50 0;
+#X connect 46 2 47 0;
+#X connect 46 3 48 0;
+#X connect 46 4 49 0;
+#X connect 51 0 56 0;
+#X connect 51 1 55 0;
+#X connect 51 2 52 0;
+#X connect 51 3 53 0;
+#X connect 51 4 54 0;
+#X connect 56 1 60 0;
+#X connect 56 2 57 0;
+#X connect 56 3 58 0;
+#X connect 56 4 59 0;
+#X connect 61 0 99 0;
+#X connect 62 0 99 0;
+#X connect 63 0 99 0;
+#X connect 64 0 99 0;
+#X connect 65 0 66 0;
+#X connect 66 0 99 0;
+#X connect 67 0 99 0;
+#X connect 68 0 99 0;
+#X connect 69 0 99 0;
+#X connect 70 0 27 1;
+#X connect 71 0 73 0;
+#X connect 71 0 72 0;
+#X connect 72 0 74 0;
+#X connect 73 0 74 0;
+#X connect 75 0 99 0;
+#X connect 76 0 99 0;
+#X connect 77 0 76 0;
+#X connect 78 0 81 0;
+#X connect 79 0 81 0;
+#X connect 80 0 81 1;
+#X connect 81 0 99 0;
+#X connect 82 0 99 0;
+#X connect 83 0 82 0;
+#X connect 84 0 82 0;
+#X connect 85 0 82 1;
+#X connect 86 0 74 0;
+#X connect 86 0 90 0;
+#X connect 87 0 73 0;
+#X connect 87 0 86 0;
+#X connect 87 0 89 0;
+#X connect 89 0 90 0;
+#X connect 95 0 46 0;
+#X connect 95 1 94 0;
+#X connect 96 0 97 0;
+#X connect 97 0 98 0;
+#X connect 98 0 99 0;
+#X connect 99 0 95 0;

@@ -1,0 +1,18 @@
+#N canvas 0 0 450 300 10;
+#X obj 78 45 inlet;
+#X obj 78 80 route color;
+#X obj 78 143 list prepend /mtcf;
+#X obj 78 174 route list;
+#X obj 78 207 mtcf-send;
+#X text 9 231 MTCF mobile PD Client;
+#X text 7 246 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu;
+#X text 8 263 This software (client) is released under the MIT licence
+;
+#X text 16 6 Changes the finger feedback color. It receives a MTCF
+Color message (see mtcf-color);
+#X obj 78 109 list prepend fingercolor;
+#X connect 0 0 1 0;
+#X connect 1 0 9 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 9 0 2 0;

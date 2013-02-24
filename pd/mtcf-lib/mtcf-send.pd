@@ -1,0 +1,10 @@
+#N canvas 521 275 375 151 10;
+#X obj 15 28 inlet;
+#X obj 15 56 s basicTangibleTabletop1234messageBus;
+#X text 15 90 MTCF mobile PD Client;
+#X text 13 105 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 14 122 This software (client) is released under the MIT licence
+;
+#X text 13 4 Sends data to the MTF by using OSC or libPD messages;
+#X connect 0 0 1 0;

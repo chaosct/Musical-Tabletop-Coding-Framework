@@ -1,0 +1,135 @@
+#N canvas 578 5 970 636 10;
+#X msg 510 34 rm;
+#X msg 522 55 color 33 34 35;
+#X msg 534 77 color 33 34 35 23;
+#X msg 544 98 position 2 3 4;
+#X msg 500 14 transform r 3 t 3 4 s 2 3 r 4;
+#X msg 592 200 write hola que tal;
+#X msg 601 220 clear;
+#X msg 554 118 hide;
+#X msg 563 137 unhide;
+#X msg 573 157 bring_top;
+#X obj 131 36 mtcf-color 22 21 24 53;
+#X obj 105 0 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 131 -1 5 0 0 0 - - -;
+#X floatatom 174 -1 5 0 0 0 - - -;
+#X floatatom 217 -2 5 0 0 0 - - -;
+#X floatatom 260 -2 5 0 0 0 - - -;
+#X obj 153 59 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 179 58 5 0 0 0 - - -;
+#X floatatom 246 58 5 0 0 0 - - -;
+#X floatatom 314 57 5 0 0 0 - - -;
+#X obj -192 -64 mtcf-transformations-help;
+#X obj -140 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -115 7 vsl 15 128 0 1.5 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -60 7 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 10 95 vsl 15 128 0 1.5 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 35 95 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -25 210 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -14 34 vsl 15 128 0 360 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj -46 157 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -189 71 transform;
+#X text -186 -94 Transformations:;
+#X text 102 -95 Basic Helpers:;
+#X obj 212 115 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 212 142 mtcf-draw_position -0.5 -0.05 0;
+#X msg 584 178 layer 2;
+#X text 451 -97 Example Messages:;
+#X obj 179 95 mtcf-rgbcolor 220 100 240;
+#X obj 236 206 mtcf-hide;
+#X obj 236 169 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj -209 -92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 84 -77 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj -209 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 84 307 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 426 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 426 -92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 726 -77 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 726 307 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text -190 468 MTCF mobile PD Client;
+#X text -192 483 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -191 500 This software (client) is released under the MIT licence
+;
+#X msg 297 225 1;
+#X obj 254 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 341 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 254 258 mtcf-visibility;
+#X obj -189 157 mtcf-translate 0.6 0.8;
+#X obj -127 188 mtcf-rotate 45;
+#X obj -42 241 mtcf-scale 1.5 1.3;
+#X obj 240 460 mtcf-text;
+#X connect 0 0 57 0;
+#X connect 1 0 57 0;
+#X connect 2 0 57 0;
+#X connect 3 0 57 0;
+#X connect 4 0 57 0;
+#X connect 5 0 57 0;
+#X connect 6 0 57 0;
+#X connect 7 0 57 0;
+#X connect 8 0 57 0;
+#X connect 9 0 57 0;
+#X connect 10 0 57 0;
+#X connect 11 0 10 0;
+#X connect 12 0 10 0;
+#X connect 13 0 10 1;
+#X connect 14 0 10 2;
+#X connect 15 0 10 3;
+#X connect 16 0 36 0;
+#X connect 17 0 36 0;
+#X connect 18 0 36 1;
+#X connect 19 0 36 2;
+#X connect 21 0 54 1;
+#X connect 22 0 54 1;
+#X connect 23 0 54 2;
+#X connect 24 0 56 1;
+#X connect 25 0 56 2;
+#X connect 26 0 56 1;
+#X connect 27 0 55 1;
+#X connect 28 0 55 1;
+#X connect 29 0 54 0;
+#X connect 32 0 33 0;
+#X connect 33 0 57 0;
+#X connect 34 0 57 0;
+#X connect 36 0 57 0;
+#X connect 37 0 57 0;
+#X connect 38 0 37 0;
+#X connect 39 0 40 0;
+#X connect 39 0 41 0;
+#X connect 40 0 42 0;
+#X connect 41 0 42 0;
+#X connect 43 0 42 0;
+#X connect 43 0 46 0;
+#X connect 44 0 40 0;
+#X connect 44 0 43 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 50 0 53 1;
+#X connect 51 0 53 0;
+#X connect 52 0 53 2;
+#X connect 53 0 57 0;
+#X connect 54 0 55 0;
+#X connect 55 0 56 0;
+#X connect 56 0 57 0;

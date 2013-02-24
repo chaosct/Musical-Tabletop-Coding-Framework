@@ -1,0 +1,97 @@
+#N canvas 1 86 816 470 10;
+#X obj 145 135 mtcf-color;
+#X obj 54 136 mtcf-rgbcolor;
+#X obj 501 315 mtcf-draw_position;
+#X obj 218 134 mtcf-hide;
+#X obj 53 163 mtcf-scale;
+#X obj 221 162 mtcf-rotate;
+#X obj 125 163 mtcf-translate;
+#X obj 297 162 mtcf-scalexy;
+#X obj 284 134 mtcf-visibility;
+#X obj 624 315 mtcf-enable_layer_bringtop;
+#X obj 255 -1 mtcf-stroke;
+#X obj 385 26 mtcf-xyrectangle;
+#X obj 493 26 mtcf-square;
+#X obj 570 27 mtcf-circle;
+#X text 31 323 MTCF mobile PD Client;
+#X text 29 338 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 30 355 This software (client) is released under the MIT licence
+;
+#X obj 31 -70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 31 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 648 -55 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 648 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 31 -30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 648 -15 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 31 38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 648 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 54 -73 MTCF Graphic objects and it's modifiers;
+#X obj 31 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 649 122 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 31 181 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 649 196 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 54 102 MTCF Graphic object modifiers;
+#X obj 437 293 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 437 328 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 792 308 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 792 343 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 456 290 Deprecated objects \, to be removerd in further versions
+;
+#X obj 51 250 mtcf-matrix;
+#X obj 131 250 mtcf-itransformpoint;
+#X obj 269 250 mtcf-transformpoint;
+#X obj 31 227 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 651 242 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 31 264 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 651 279 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 51 223 Matrix transformation;
+#X obj 379 162 mtcf-transformations-help;
+#X obj 61 -44 mtcf-text;
+#X obj 125 -45 mtcf-text-help;
+#X obj 62 -1 mtcf-polygon;
+#X obj 143 -1 mtcf-polygon-help;
+#X obj 290 26 mtcf-rectangle;
+#X obj 61 65 mtcf-circle2;
+#X connect 17 0 19 0;
+#X connect 17 0 21 0;
+#X connect 18 0 20 0;
+#X connect 19 0 22 0;
+#X connect 21 0 22 0;
+#X connect 21 0 23 0;
+#X connect 22 0 24 0;
+#X connect 23 0 24 0;
+#X connect 23 0 18 0;
+#X connect 24 0 20 0;
+#X connect 26 0 27 0;
+#X connect 26 0 28 0;
+#X connect 27 0 29 0;
+#X connect 28 0 29 0;
+#X connect 31 0 33 0;
+#X connect 31 0 32 0;
+#X connect 32 0 34 0;
+#X connect 33 0 34 0;
+#X connect 39 0 40 0;
+#X connect 39 0 41 0;
+#X connect 40 0 42 0;
+#X connect 41 0 42 0;

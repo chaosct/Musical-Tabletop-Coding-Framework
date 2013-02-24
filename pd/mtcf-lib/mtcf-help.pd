@@ -1,0 +1,11 @@
+#N canvas 0 0 366 185 10;
+#X text 14 129 MTCF mobile PD Client;
+#X text 12 144 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 13 161 This software (client) is released under the MIT licence
+;
+#X obj 20 31 mtcf-sensors-help;
+#X obj 20 10 mtcf-basics-help;
+#X obj 20 53 mtcf-graphics-help;
+#X obj 20 75 mtcf-fingers-help;
+#X obj 20 97 mtcf-composedwidgets-help;

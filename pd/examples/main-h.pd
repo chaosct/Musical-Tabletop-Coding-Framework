@@ -1,0 +1,187 @@
+#N canvas 313 192 838 621 10;
+#X obj 273 36 loadbang;
+#X msg 273 57 \; pd dsp 1;
+#X text 546 14 Musical Tabletop Coding Framework PD Client;
+#X text 545 29 (C) Carles F. Julia carles.fernandez@upf.edu;
+#X text 546 44 This software is released under the MIT license;
+#X obj 9 155 cnv 15 200 300 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X msg 36 234 1;
+#X obj 34 398 tgl 15 0 empty empty visibility 17 7 0 10 -262144 -1
+-1 0 1;
+#X msg 34 376 0;
+#X obj 34 352 r initparameters;
+#X obj 51 319 Object 2;
+#X obj 34 419 objDistance 0 1;
+#X obj 216 156 cnv 15 200 300 empty empty empty 20 12 0 14 -261234
+-66577 0;
+#X obj 258 365 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 257 384 5 0 0 0 - - -;
+#X floatatom 257 404 5 0 0 0 - - -;
+#X obj 258 317 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 255 252 5 0 0 0 - - -;
+#X floatatom 255 271 5 0 0 0 - - -;
+#X floatatom 255 290 5 0 0 0 - - -;
+#X text 241 251 x;
+#X text 241 269 y;
+#X text 221 290 angle;
+#X text 352 254 presence;
+#X text 351 274 parameter;
+#X floatatom 315 272 5 0 0 0 - - -;
+#X text 352 294 slider;
+#X floatatom 315 291 5 0 0 0 - - -;
+#X obj 315 254 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 50 266 param \$1;
+#X msg 51 286 slider \$1;
+#X obj 32 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 32 287 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X text 120 271 parameter;
+#X text 121 291 slider;
+#X text 280 317 draw;
+#X text 304 367 presence;
+#X text 302 387 distance;
+#X text 302 405 angle;
+#X obj 258 344 objDistance 1 3;
+#X text 37 169 Defining Objects;
+#X text 37 180 properties;
+#X obj 254 221 Object 2;
+#X floatatom 354 193 5 0 1 0 set_slider_position - -;
+#X obj 424 156 cnv 15 200 300 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#X text 431 161 Drawing waves;
+#X obj 466 264 drawWave;
+#X floatatom 503 193 5 0 0 0 x - -;
+#X floatatom 562 192 5 0 0 0 x - -;
+#X floatatom 503 215 5 0 0 0 y - -;
+#X floatatom 562 215 5 0 0 0 y - -;
+#X obj 432 196 osc~ 440;
+#X obj 433 239 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 431 301 Drawing waves between objects;
+#X obj 448 350 osc~ 440;
+#X obj 447 378 connectWave 1 2;
+#X obj 534 351 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 447 406 output~;
+#X obj 632 156 cnv 15 200 300 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X text 641 161 colors;
+#X obj 660 216 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 1900 1;
+#X obj 660 234 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 4200 1;
+#X obj 660 252 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 2500 1;
+#X text 657 187 Change Background color;
+#X obj 661 339 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 2200 1;
+#X obj 661 357 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 4800 1;
+#X obj 661 375 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 12700 1;
+#X text 654 319 Change Finger color;
+#X obj 9 462 cnv 15 300 150 empty empty empty 20 12 0 14 -204800 -66577
+0;
+#X obj 79 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X floatatom 79 551 5 0 0 0 x - -;
+#X floatatom 79 570 5 0 0 0 y - -;
+#X obj 79 502 finger;
+#X text 48 469 receive fingers;
+#X obj 129 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X floatatom 129 551 5 0 0 0 x - -;
+#X floatatom 129 570 5 0 0 0 y - -;
+#X obj 129 502 finger;
+#X obj 179 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X floatatom 179 551 5 0 0 0 x - -;
+#X floatatom 179 570 5 0 0 0 y - -;
+#X obj 179 502 finger;
+#X obj 229 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 229 551 5 0 0 0 x - -;
+#X floatatom 229 570 5 0 0 0 y - -;
+#X obj 229 502 finger;
+#X obj 319 462 cnv 15 300 150 empty empty empty 20 12 0 14 -232576
+-66577 0;
+#X text 221 161 Sending / Receiving Object data;
+#X text 329 466 Other graphics and elements:;
+#X text 330 481 painting \, sensing finger collisions \, etc.;
+#X obj 13 7 mtcf-comm;
+#X obj 273 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 273 129 mtcf-reset;
+#X msg 270 7 ip localhost;
+#X obj 36 210 mtcf-init;
+#X obj 656 294 mtcf-background;
+#X obj 656 273 mtcf-color;
+#X obj 657 419 mtcf-fingercolor;
+#X obj 657 396 mtcf-color;
+#X obj 27 501 fingers;
+#X obj 392 528 mtcf-graphics-help;
+#X obj 392 550 mtcf-fingers-help;
+#X obj 392 572 mtcf-composedwidgets-help;
+#X connect 0 0 1 0;
+#X connect 6 0 31 0;
+#X connect 6 0 32 0;
+#X connect 7 0 11 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 16 0 39 0;
+#X connect 29 0 10 0;
+#X connect 30 0 10 0;
+#X connect 31 0 29 0;
+#X connect 32 0 30 0;
+#X connect 39 0 13 0;
+#X connect 39 1 14 0;
+#X connect 39 2 15 0;
+#X connect 42 0 28 0;
+#X connect 42 1 17 0;
+#X connect 42 2 18 0;
+#X connect 42 3 19 0;
+#X connect 42 4 25 0;
+#X connect 42 5 27 0;
+#X connect 43 0 42 1;
+#X connect 47 0 46 2;
+#X connect 48 0 46 4;
+#X connect 49 0 46 3;
+#X connect 50 0 46 5;
+#X connect 51 0 46 1;
+#X connect 52 0 46 0;
+#X connect 54 0 55 0;
+#X connect 55 0 57 0;
+#X connect 55 0 57 1;
+#X connect 56 0 55 1;
+#X connect 60 0 96 0;
+#X connect 61 0 96 1;
+#X connect 62 0 96 2;
+#X connect 64 0 98 0;
+#X connect 65 0 98 1;
+#X connect 66 0 98 2;
+#X connect 72 0 77 0;
+#X connect 72 1 69 0;
+#X connect 72 2 70 0;
+#X connect 72 3 71 0;
+#X connect 77 0 81 0;
+#X connect 77 1 74 0;
+#X connect 77 2 75 0;
+#X connect 77 3 76 0;
+#X connect 81 0 85 0;
+#X connect 81 1 78 0;
+#X connect 81 2 79 0;
+#X connect 81 3 80 0;
+#X connect 85 1 82 0;
+#X connect 85 2 83 0;
+#X connect 85 3 84 0;
+#X connect 91 0 92 0;
+#X connect 93 0 90 0;
+#X connect 94 0 6 0;
+#X connect 96 0 95 0;
+#X connect 98 0 97 0;
+#X connect 99 0 72 0;

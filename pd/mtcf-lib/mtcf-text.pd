@@ -1,0 +1,30 @@
+#N canvas 74 434 498 341 10;
+#X obj -357 83 loadbang;
+#X obj -388 112 + 1;
+#X obj -357 112 v textIdGenerator;
+#X obj -198 48 inlet;
+#X obj -357 146 s idtext-\$0;
+#X obj -129 47 r idtext-\$0;
+#X obj -381 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -198 97 list prepend;
+#X msg -129 71 /text \$1;
+#X obj -198 125 list trim;
+#X obj -198 152 mtcf-send;
+#X text -378 182 MTCF mobile PD Client;
+#X text -380 197 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -379 214 This software (client) is released under the MIT licence
+;
+#X text -385 10 Draws a text into MTCF. See [text2-help] to know all
+options;
+#X connect 0 0 2 0;
+#X connect 1 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 0 4 0;
+#X connect 3 0 7 0;
+#X connect 5 0 8 0;
+#X connect 6 0 2 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 1;
+#X connect 9 0 10 0;

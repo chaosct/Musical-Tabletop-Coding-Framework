@@ -1,0 +1,25 @@
+#N canvas 383 277 410 280 10;
+#X msg -67 32 transform;
+#X text 3 30 Clears all previous transformations;
+#X text 72 72 Translates the object;
+#X text 50 123 Scales the object;
+#X text 22 103 Y-factor;
+#X text -39 103 X-factor;
+#X text 48 55 Y-coord;
+#X text -25 54 X-coord;
+#X text 29 164 Rotates the object;
+#X text -34 146 Angle in degrees;
+#X obj -153 121 mtcf-scalexy;
+#X obj -67 72 mtcf-translate 0.5 0.5;
+#X obj -67 121 mtcf-scale 0.5 0.5;
+#X obj -67 164 mtcf-rotate 45;
+#X text -130 3 Graphic object transformation can be concatenated;
+#X text -127 190 Output message to MTCF graphic objects;
+#X text -151 221 MTCF mobile PD Client;
+#X text -153 236 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -152 253 This software (client) is released under the MIT licence
+;
+#X connect 0 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;

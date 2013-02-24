@@ -1,0 +1,14 @@
+#N canvas 638 361 370 237 10;
+#X obj 119 52 inlet;
+#X obj 119 85 list prepend hidden;
+#X obj 119 117 route list;
+#X obj 119 152 outlet;
+#X text 8 175 MTCF mobile PD Client;
+#X text 6 190 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu;
+#X text 7 207 This software (client) is released under the MIT licence
+;
+#X text 10 5 Hides a MTCF object;
+#X text 10 20 Inlets: hide (0 false \; 1 true);
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;

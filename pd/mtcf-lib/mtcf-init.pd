@@ -1,0 +1,10 @@
+#N canvas 303 395 372 199 10;
+#X obj 113 47 r initparameters;
+#X obj 113 80 outlet;
+#X text 12 140 MTCF mobile PD Client;
+#X text 10 155 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 11 172 This software (client) is released under the MIT licence
+;
+#X text 8 4 Throws a bang when the MTCF is initialized;
+#X connect 0 0 1 0;

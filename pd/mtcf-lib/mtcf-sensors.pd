@@ -1,0 +1,35 @@
+#N canvas 35 0 400 492 10;
+#X obj 201 126 symbol \$1;
+#X msg 201 154 /sensors \$1;
+#X obj 78 189 list prepend /sensors;
+#X obj 140 14 loadbang;
+#X obj 201 13 mtcf-init;
+#X obj 236 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 25 103 1;
+#X msg 75 102 0;
+#X obj 78 223 route list;
+#X obj 47 14 inlet;
+#X obj 39 366 route \$1;
+#X obj 39 341 route /sensors;
+#X obj 39 395 outlet;
+#X text 34 436 MTCF mobile PD Client;
+#X text 32 451 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 33 468 This software (client) is released under the MIT licence
+;
+#X obj 78 254 mtcf-send;
+#X obj 39 317 mtcf-receive;
+#X connect 0 0 1 0;
+#X connect 1 0 2 1;
+#X connect 2 0 8 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 2 0;
+#X connect 7 0 2 0;
+#X connect 8 0 16 0;
+#X connect 9 0 2 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 0;
+#X connect 17 0 11 0;

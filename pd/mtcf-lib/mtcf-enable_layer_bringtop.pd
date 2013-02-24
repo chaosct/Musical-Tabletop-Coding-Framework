@@ -1,0 +1,32 @@
+#N canvas 857 482 345 271 10;
+#X obj 60 28 inlet;
+#X obj 122 28 inlet;
+#X obj 122 55 bang;
+#X obj 2 27 inlet;
+#X obj 2 56 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg -39 119 hide;
+#X msg 2 119 unhide;
+#X msg 122 119 bring_top;
+#X msg 60 120 layer \$1;
+#X obj 82 202 outlet;
+#X obj -39 94 sel 0;
+#X obj 2 94 sel 1;
+#X text -67 219 MTCF mobile PD Client;
+#X text -69 234 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -68 251 This software (client) is released under the MIT licence
+;
+#X text -61 -2 DEPRECATED!!!!! use [mtcf-visibility] instead.;
+#X connect 0 0 8 0;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 3 0 4 0;
+#X connect 4 0 10 0;
+#X connect 4 0 11 0;
+#X connect 5 0 9 0;
+#X connect 6 0 9 0;
+#X connect 7 0 9 0;
+#X connect 8 0 9 0;
+#X connect 10 0 5 0;
+#X connect 11 0 6 0;

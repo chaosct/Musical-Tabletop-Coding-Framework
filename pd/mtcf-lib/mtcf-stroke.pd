@@ -1,0 +1,31 @@
+#N canvas 642 560 386 261 10;
+#X obj -29 51 inlet;
+#X obj 61 51 inlet;
+#X obj 215 55 inlet;
+#X obj -29 92 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 61 88 route color;
+#X obj 215 125 float \$1;
+#X msg 215 149 strokewidth \$1;
+#X msg -29 126 drawstroke \$1;
+#X obj 61 178 outlet;
+#X obj 61 126 list prepend strokecolor;
+#X obj 61 150 route list;
+#X text -45 203 MTCF mobile PD Client;
+#X text -47 218 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -46 235 This software (client) is released under the MIT licence
+;
+#X text -32 2 MTCF polygon stroke options.;
+#X text -33 19 Inlets: Enable(1 true \; 0 false) \, Color[mtcf-rgbcolor]
+\, width;
+#X connect 0 0 3 0;
+#X connect 1 0 4 0;
+#X connect 2 0 5 0;
+#X connect 3 0 7 0;
+#X connect 4 0 9 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 0;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;

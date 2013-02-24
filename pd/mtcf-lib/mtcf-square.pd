@@ -1,0 +1,25 @@
+#N canvas 228 378 386 289 10;
+#X obj -108 -46 inlet;
+#X obj -94 121 outlet;
+#X obj -94 95 mtcf-rectangle;
+#X obj -94 61 t b f f;
+#X text -111 145 MTCF mobile PD Client;
+#X text -113 160 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text -112 177 This software (client) is released under the MIT licence
+;
+#X obj -94 33 float \$1;
+#X obj -108 -22 route bang;
+#X obj -51 2 t b f;
+#X text -125 -80 Sends a square path to a [polygon2] object.;
+#X text -125 -66 Inlets: Width_side;
+#X connect 0 0 8 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 3 1 2 0;
+#X connect 3 2 2 1;
+#X connect 7 0 3 0;
+#X connect 8 0 7 0;
+#X connect 8 1 9 0;
+#X connect 9 0 7 0;
+#X connect 9 1 7 1;

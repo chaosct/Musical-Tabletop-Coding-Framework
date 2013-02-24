@@ -1,0 +1,9 @@
+#N canvas 101 133 373 181 10;
+#X obj 15 9 mtcf-slider;
+#X obj 14 38 mtcf-button;
+#X obj 15 70 mtcf-toggle;
+#X text 15 111 MTCF mobile PD Client;
+#X text 13 126 (C) Daniel Gallardo Grassot daniel.gallardo@upf.edu
+;
+#X text 14 143 This software (client) is released under the MIT licence
+;
