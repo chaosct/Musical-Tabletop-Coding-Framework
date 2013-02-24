@@ -4,7 +4,7 @@ Compiling:
  you will need:
   openframeworks (http://www.openframeworks.cc)
   ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
- Compile it as any other openframeworks app.
+ Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
  
 Usage:
  Execute the program
