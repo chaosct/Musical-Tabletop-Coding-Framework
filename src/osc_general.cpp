@@ -1,6 +1,7 @@
 #include "osc_general.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
+#include "oscReporter.hpp"
 
 void OscGeneral::run(ofxOscMessage & m)
 {
@@ -15,6 +16,7 @@ void OscGeneral::run(ofxOscMessage & m)
     {
         OscTextDraw::Instance().o.reset();
         OSCFigureDraw::Instance().o.reset();
+        OscWaveDraw::Instance().reset();
     }
     else if (cmd == "background")
     {

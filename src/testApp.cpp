@@ -53,7 +53,7 @@ void testApp::setup(){
 
     new OscObjectReporter();
     new OscDistanceReporter();
-    new OscWaveDraw();
+    OscWaveDraw::Instance();
 
     new OscFingerReporter();
 

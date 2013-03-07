@@ -36,7 +36,7 @@
 #include <map>
 #include "simpleAllObjects.hpp"
 
-class OscWaveDraw: public OSCCMD, public Graphic
+class OscWaveDraw: public OSCCMD, public Graphic, public Singleton<OscWaveDraw>
 {
     class Wave
     {
@@ -136,6 +136,10 @@ class OscWaveDraw: public OSCCMD, public Graphic
        {
            it->second.draw();
        }
+    }
+    void reset()
+    {
+        waves.clear();
     }
 };
 
