@@ -52,6 +52,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         this->registerMyEvent(InputGestureDirectFingers::I().exitCursor, &OSCPolygonObject::removeCursor);
         this->registerMyEvent(InputGestureDirectFingers::I().updateCursor, &OSCPolygonObject::updateCursor);
         hasAlpha(true);
+        color.set(255,255,255,255);
     }
     void newCursor(InputGestureDirectFingers::newCursorArgs & a)
     {

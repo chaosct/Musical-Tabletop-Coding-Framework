@@ -58,6 +58,7 @@ public:
         if(cmd == "color")
         {
             int r,g,b,a;
+            a = 255;
             msg >> r >> g >> b >> a;
             cmd_color(r,g,b,a);
         }
