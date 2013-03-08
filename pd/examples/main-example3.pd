@@ -11,7 +11,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -47,7 +47,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -82,7 +82,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -117,7 +117,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -152,7 +152,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -187,7 +187,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -222,7 +222,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -257,7 +257,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -287,7 +287,7 @@
 #X restore 19 337 pd myoscfinger;
 #X obj 222 319 *~ 0.1;
 #X obj 223 361 dac~;
-#X obj 244 261 Object 1;
+#X obj 244 261 mtcf-object 1;
 #X obj 280 287 / 10;
 #X msg 244 239 param 1;
 #N canvas 1120 609 783 399 myoscfinger 0;
@@ -297,7 +297,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -332,7 +332,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -367,7 +367,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -402,7 +402,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -437,7 +437,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -472,7 +472,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -507,7 +507,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -542,7 +542,7 @@
 ;
 #X floatatom 106 55 5 0 0 0 - - -;
 #X floatatom 143 56 5 0 0 0 - - -;
-#X obj 43 54 finger;
+#X obj 43 54 mtcf-finger;
 #X obj 218 170 osc~;
 #X obj 218 101 * 1000;
 #X obj 278 121 osc~;
@@ -575,7 +575,7 @@
 #X obj 277 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 277 140 mtcf-reset;
-#X obj 19 173 fingers;
+#X obj 19 173 mtcf-fingers;
 #X connect 0 0 1 0;
 #X connect 5 0 7 0;
 #X connect 6 0 14 0;

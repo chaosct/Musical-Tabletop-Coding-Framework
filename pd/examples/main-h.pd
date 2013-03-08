@@ -11,8 +11,8 @@
 -1 0 1;
 #X msg 34 376 0;
 #X obj 34 352 r initparameters;
-#X obj 51 319 Object 2;
-#X obj 34 419 objDistance 0 1;
+#X obj 51 319 mtcf-object 2;
+#X obj 34 419 mtcf-object-distance 0 1;
 #X obj 216 156 cnv 15 200 300 empty empty empty 20 12 0 14 -261234
 -66577 0;
 #X obj 258 365 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -46,15 +46,15 @@
 #X text 304 367 presence;
 #X text 302 387 distance;
 #X text 302 405 angle;
-#X obj 258 344 objDistance 1 3;
+#X obj 258 344 mtcf-object-distance 1 3;
 #X text 37 169 Defining Objects;
 #X text 37 180 properties;
-#X obj 254 221 Object 2;
+#X obj 254 221 mtcf-object 2;
 #X floatatom 354 193 5 0 1 0 set_slider_position - -;
 #X obj 424 156 cnv 15 200 300 empty empty empty 20 12 0 14 -204786
 -66577 0;
 #X text 431 161 Drawing waves;
-#X obj 466 264 drawWave;
+#X obj 466 264 mtcf-draw-wave;
 #X floatatom 503 193 5 0 0 0 x - -;
 #X floatatom 562 192 5 0 0 0 x - -;
 #X floatatom 503 215 5 0 0 0 y - -;
@@ -64,7 +64,7 @@
 1;
 #X text 431 301 Drawing waves between objects;
 #X obj 448 350 osc~ 440;
-#X obj 447 378 connectWave 1 2;
+#X obj 447 378 mtcf-connect-wave 1 2;
 #X obj 534 351 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 447 406 output~;
@@ -91,28 +91,28 @@
 1;
 #X floatatom 79 551 5 0 0 0 x - -;
 #X floatatom 79 570 5 0 0 0 y - -;
-#X obj 79 502 finger;
-#X text 48 469 receive fingers;
+#X obj 79 502 mtcf-finger;
+#X text 48 469 receive mtcf-fingers;
 #X obj 129 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X floatatom 129 551 5 0 0 0 x - -;
 #X floatatom 129 570 5 0 0 0 y - -;
-#X obj 129 502 finger;
+#X obj 129 502 mtcf-finger;
 #X obj 179 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X floatatom 179 551 5 0 0 0 x - -;
 #X floatatom 179 570 5 0 0 0 y - -;
-#X obj 179 502 finger;
+#X obj 179 502 mtcf-finger;
 #X obj 229 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 229 551 5 0 0 0 x - -;
 #X floatatom 229 570 5 0 0 0 y - -;
-#X obj 229 502 finger;
+#X obj 229 502 mtcf-finger;
 #X obj 319 462 cnv 15 300 150 empty empty empty 20 12 0 14 -232576
 -66577 0;
-#X text 221 161 Sending / Receiving Object data;
+#X text 221 161 Sending / Receiving mtcf-object data;
 #X text 329 466 Other graphics and elements:;
-#X text 330 481 painting \, sensing finger collisions \, etc.;
+#X text 330 481 painting \, sensing mtcf-finger collisions \, etc.;
 #X obj 13 7 mtcf-comm;
 #X obj 273 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -123,7 +123,7 @@
 #X obj 656 273 mtcf-color;
 #X obj 657 419 mtcf-fingercolor;
 #X obj 657 396 mtcf-color;
-#X obj 27 501 fingers;
+#X obj 27 501 mtcf-fingers;
 #X obj 392 528 mtcf-graphics-help;
 #X obj 392 550 mtcf-fingers-help;
 #X obj 392 572 mtcf-composedwidgets-help;
