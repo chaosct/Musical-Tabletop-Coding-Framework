@@ -1,4 +1,4 @@
-#N canvas 691 136 450 451 10;
+#N canvas 1086 206 450 451 10;
 #X obj 320 32 loadbang;
 #X msg 320 53 \; pd dsp 1;
 #X text 60 359 Musical Tabletop Coding Framework PD Client;
@@ -9,6 +9,10 @@
 #X obj 334 145 mtcf-reset;
 #X obj 334 115 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X msg 336 220 1;
+#X obj 336 247 metro 50;
+#X obj 336 193 mtcf-init;
+#X obj 336 270 s metrobutton;
 #X obj 64 209 runningbutton;
 #X obj 64 229 runningbutton;
 #X obj 64 249 runningbutton;
@@ -24,5 +28,12 @@
 #X obj 154 289 runningbutton;
 #X obj 154 309 runningbutton;
 #X obj 154 329 runningbutton;
+#X msg 375 221 50;
+#X msg 404 221 25;
 #X connect 0 0 1 0;
 #X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 10 0 12 0;
+#X connect 11 0 9 0;
+#X connect 28 0 10 1;
+#X connect 29 0 10 1;

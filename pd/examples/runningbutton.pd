@@ -1,5 +1,5 @@
-#N canvas 1199 346 347 431 10;
-#N canvas 1007 110 701 612 button 1;
+#N canvas 1197 349 347 431 10;
+#N canvas 1007 110 701 612 button 0;
 #X msg 112 221 clearvertex;
 #X obj 151 418 change;
 #X obj 156 474 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -71,10 +71,9 @@
 #X msg 147 261 \$1 1000;
 #X obj 82 355 list;
 #X obj 60 64 t b b b;
-#X msg 211 285 1;
 #X obj 58 36 mtcf-init;
-#X obj 211 310 metro 50;
 #X obj 197 146 change;
+#X obj 211 310 r metrobutton;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 8 0;
@@ -93,7 +92,5 @@
 #X connect 14 0 9 0;
 #X connect 15 0 2 0;
 #X connect 15 1 1 0;
-#X connect 15 2 16 0;
-#X connect 16 0 18 0;
-#X connect 17 0 15 0;
+#X connect 16 0 15 0;
 #X connect 18 0 14 0;
