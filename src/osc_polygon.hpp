@@ -51,6 +51,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         this->registerMyEvent(InputGestureDirectFingers::I().removeCursor, &OSCPolygonObject::removeCursor);
         this->registerMyEvent(InputGestureDirectFingers::I().exitCursor, &OSCPolygonObject::removeCursor);
         this->registerMyEvent(InputGestureDirectFingers::I().updateCursor, &OSCPolygonObject::updateCursor);
+        hasAlpha(true);
     }
     void newCursor(InputGestureDirectFingers::newCursorArgs & a)
     {
@@ -142,9 +143,9 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
             (float)total_matrix(3,0)<<(float)total_matrix(3,1)<<(float)total_matrix(3,2)<<(float)total_matrix(3,3);
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
-    void cmd_color(int r,int g,int b)
+    void cmd_color(int r,int g,int b,int a)
     {
-        poly_color.set(r,g,b);
+        poly_color.set(r,g,b,a);
     }
     void cmd_hidden(bool ishidden)
     {

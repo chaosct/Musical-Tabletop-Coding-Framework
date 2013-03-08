@@ -36,7 +36,7 @@
 class OSCCommonDrawObject
 {
 public:
-    virtual void cmd_color(int r,int g,int b){}
+    virtual void cmd_color(int r,int g,int b,int a){}
     virtual void cmd_hidden(bool ishidden){}
     virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
     virtual void cmd_report_matrix(){}
@@ -57,9 +57,9 @@ public:
     {
         if(cmd == "color")
         {
-            int r,g,b;
-            msg >> r >> g >> b;
-            cmd_color(r,g,b);
+            int r,g,b,a;
+            msg >> r >> g >> b >> a;
+            cmd_color(r,g,b,a);
         }
         else if(cmd == "transform")
         {

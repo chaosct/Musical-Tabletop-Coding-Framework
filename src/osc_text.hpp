@@ -10,14 +10,14 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
 {
     protected:
         //float x,y,angle;
-        int r,g,b;
+        int r,g,b,a;
         bool hidden;
     public:
         int id;
-        OSCTextObject():r(255),g(255),b(255),hidden(false),id(0)
+        OSCTextObject():r(255),g(255),b(255),a(255),hidden(false),id(0)
         {
         }
-        void SetColor(int _r,int _g, int _b){ r = _r; g = _g; b = _b;}
+        void SetColor(int _r,int _g, int _b, int _a){ r = _r; g = _g; b = _b; a = _a;}
 
     protected:
         string data;
@@ -47,19 +47,21 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
         void draw()
         {
             if(hidden)return;
+            ofEnableAlphaBlending();
             ofPushMatrix();
-            ofSetColor(r,g,b);
+            ofSetColor(r,g,b,a);
             ofMultMatrix(total_matrix);
             ofScale(0.0005f,0.0005f,1);
             font().drawString(data,0,0);
 
             ofPopMatrix();
+            ofDisableAlphaBlending();
         }
 
 public:
-    void cmd_color(int r,int g,int b)
+    void cmd_color(int r,int g,int b,int a)
     {
-        SetColor(r,g,b);
+        SetColor(r,g,b,a);
     }
     void cmd_hidden(bool ishidden)
     {
