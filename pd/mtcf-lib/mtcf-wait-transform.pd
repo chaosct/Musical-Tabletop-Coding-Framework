@@ -1,0 +1,18 @@
+#N canvas 508 622 450 300 10;
+#X obj 40 76 inlet;
+#X obj 40 183 outlet;
+#X obj 40 131 list;
+#X obj 40 154 route list;
+#X obj 40 101 route bang;
+#X text 35 26 Waits for a bang to send current transformation.Useful
+when having long transformation chains to avoid lots of messages.;
+#X text 103 73 Send a bang to the inlet to send the transformation
+;
+#X text 37 210 MTCF PD Client;
+#X text 35 225 (C) Carles F. Julià carles.fernandez@upf.edu;
+#X text 36 242 This software is released under the MIT licence;
+#X connect 0 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 4 1 2 1;
