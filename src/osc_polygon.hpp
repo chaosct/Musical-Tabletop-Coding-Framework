@@ -72,7 +72,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         DirectFinger *df = a.finger;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/rmfinger");
-        OscPacker(msg1) << (int)id << (int)df->s_id;
+        OscPacker(msg1) << (int)id << (int)df->s_id << (float) df->getX() << (float) df->getY();
         OSCDispatcher::Instance().sender.sendMessage(msg1);
     }
     void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
