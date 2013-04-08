@@ -32,6 +32,10 @@ void OscGeneral::run(ofxOscMessage & m)
     {
         msg >> R >> G >> B;
     }
+    else if (cmd == "textsize")
+    {
+        msg >> textsize;
+    }
     else
     {
         std::cout << "/mtcf: command " << cmd << " not found" << std::endl;

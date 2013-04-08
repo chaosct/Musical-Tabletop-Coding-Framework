@@ -12,9 +12,12 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
         //float x,y,angle;
         int r,g,b,a;
         bool hidden;
+        float & textsize;
     public:
         int id;
-        OSCTextObject():r(255),g(255),b(255),a(255),hidden(false),id(0)
+        OSCTextObject():r(255),g(255),b(255),a(255),
+                        hidden(false),id(0),
+                        textsize(ofxGlobalConfig::getRef("MTCF:TEXTSIZE",1.0f))
         {
         }
         void SetColor(int _r,int _g, int _b, int _a){ r = _r; g = _g; b = _b; a = _a;}
@@ -51,7 +54,7 @@ class OSCTextObject : public Graphic, public OSCCommonDrawObject
             ofPushMatrix();
             ofSetColor(r,g,b,a);
             ofMultMatrix(total_matrix);
-            ofScale(0.0005f,0.0005f,1);
+            ofScale(textsize * 0.0005f, textsize * 0.0005f,1);
             font().drawString(data,0,0);
 
             ofPopMatrix();

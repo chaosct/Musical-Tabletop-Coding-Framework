@@ -34,9 +34,11 @@
 class OscGeneral: public OSCCMD, public BackgroundGraphic
 {
     int color1,color2,color3;
+    float & textsize;
 public:
     OscGeneral():OSCCMD("/mtcf"),
-        color1(51), color2(102), color3(153){}
+        color1(51), color2(102), color3(153),
+        textsize(ofxGlobalConfig::getRef("MTCF:TEXTSIZE",1.0f)){}
     void run(ofxOscMessage & m);
     void draw();
 };
