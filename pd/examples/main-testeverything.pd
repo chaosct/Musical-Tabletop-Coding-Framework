@@ -1,4 +1,4 @@
-#N canvas 639 482 682 313 10;
+#N canvas 1137 398 682 313 10;
 #X obj -3 282 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj -3 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -18,7 +18,7 @@
 ;
 #X obj 140 242 mtcf-reset;
 #X obj 323 58 mtcf-sensors-help;
-#N canvas 305 94 1196 642 Example_Interface 0;
+#N canvas 301 100 1196 642 Example_Interface 0;
 #X obj 125 13 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 125 44 t b b b b b;
@@ -106,6 +106,19 @@
 #X obj 82 475 mtcf-button;
 #X obj 228 475 mtcf-button;
 #X obj 376 475 mtcf-button;
+#X obj 403 -15 inlet;
+#X obj 403 8 s trans-\$0;
+#X obj 186 112 r trans-\$0;
+#X obj 908 128 r trans-\$0;
+#X obj 674 120 r trans-\$0;
+#X obj 444 116 r trans-\$0;
+#X obj 1139 130 r trans-\$0;
+#X obj 100 383 r trans-\$0;
+#X obj 390 382 r trans-\$0;
+#X obj 241 384 r trans-\$0;
+#X obj 583 380 r trans-\$0;
+#X obj 728 381 r trans-\$0;
+#X obj 881 381 r trans-\$0;
 #X connect 0 0 1 0;
 #X connect 1 0 5 0;
 #X connect 1 1 7 0;
@@ -196,17 +209,37 @@
 #X connect 75 0 33 0;
 #X connect 76 0 37 0;
 #X connect 77 0 40 0;
-#X restore 516 61 pd Example_Interface;
-#X obj 516 37 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X connect 78 0 79 0;
+#X connect 80 0 2 0;
+#X connect 81 0 26 0;
+#X connect 82 0 15 0;
+#X connect 83 0 14 0;
+#X connect 84 0 27 0;
+#X connect 85 0 36 0;
+#X connect 86 0 44 0;
+#X connect 87 0 43 0;
+#X connect 88 0 60 0;
+#X connect 89 0 61 0;
+#X connect 90 0 62 0;
+#X restore 505 122 pd Example_Interface;
+#X obj 505 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 323 37 mtcf-basics-help;
 #X obj 323 80 mtcf-graphics-help;
 #X obj 323 102 mtcf-fingers-help;
 #X obj 323 124 mtcf-composedwidgets-help;
 #X obj 325 213 mtcf-help;
+#X msg 494 18 transform;
+#X obj 494 70 mtcf-scale 0.5 0.5;
+#X obj 531 96 mtcf-rotate 30;
+#X obj 494 45 mtcf-translate 0.3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 0 0;
 #X connect 6 0 10 0;
 #X connect 13 0 12 0;
+#X connect 19 0 22 0;
+#X connect 20 0 21 0;
+#X connect 21 0 12 1;
+#X connect 22 0 20 0;
