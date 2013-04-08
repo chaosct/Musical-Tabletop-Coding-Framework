@@ -1,4 +1,4 @@
-#N canvas 74 434 498 341 10;
+#N canvas 72 437 498 341 10;
 #X obj -357 83 loadbang;
 #X obj -388 112 + 1;
 #X obj -357 112 v textIdGenerator;
@@ -16,8 +16,8 @@
 ;
 #X text -379 214 This software (client) is released under the MIT licence
 ;
-#X text -385 10 Draws a text into MTCF. See [text2-help] to know all
-options;
+#X text -385 10 Draws a text into MTCF. See [mtcf-text-help] to know
+all options;
 #X connect 0 0 2 0;
 #X connect 1 0 2 0;
 #X connect 2 0 1 0;
