@@ -1,4 +1,4 @@
-#N canvas 313 192 838 621 10;
+#N canvas 185 209 838 621 10;
 #X obj 273 36 loadbang;
 #X msg 273 57 \; pd dsp 1;
 #X text 546 14 Musical Tabletop Coding Framework PD Client;
@@ -60,59 +60,44 @@
 #X floatatom 503 215 5 0 0 0 y - -;
 #X floatatom 562 215 5 0 0 0 y - -;
 #X obj 432 196 osc~ 440;
-#X obj 433 239 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 433 239 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X text 431 301 Drawing waves between objects;
 #X obj 448 350 osc~ 440;
 #X obj 447 378 mtcf-connect-wave 1 2;
-#X obj 534 351 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 534 351 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 447 406 output~;
 #X obj 632 156 cnv 15 200 300 empty empty empty 20 12 0 14 -261682
 -66577 0;
 #X text 641 161 colors;
 #X obj 660 216 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1900 1;
+-1 -1 5600 1;
 #X obj 660 234 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 4200 1;
+-1 -1 3000 1;
 #X obj 660 252 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2500 1;
+-1 -1 5200 1;
 #X text 657 187 Change Background color;
 #X obj 661 339 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2200 1;
+-1 -1 3800 1;
 #X obj 661 357 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 4800 1;
+-1 -1 2700 1;
 #X obj 661 375 hsl 128 15 0 255 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 1;
+-1 -1 700 1;
 #X text 654 319 Change Finger color;
 #X obj 9 462 cnv 15 300 150 empty empty empty 20 12 0 14 -204800 -66577
 0;
-#X obj 79 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 42 542 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 79 551 5 0 0 0 x - -;
-#X floatatom 79 570 5 0 0 0 y - -;
-#X obj 79 502 mtcf-finger;
+#X floatatom 70 541 5 0 0 0 x - -;
+#X floatatom 115 541 5 0 0 0 y - -;
+#X obj 27 518 mtcf-finger;
 #X text 48 469 receive mtcf-fingers;
-#X obj 129 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X floatatom 129 551 5 0 0 0 x - -;
-#X floatatom 129 570 5 0 0 0 y - -;
-#X obj 129 502 mtcf-finger;
-#X obj 179 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X floatatom 179 551 5 0 0 0 x - -;
-#X floatatom 179 570 5 0 0 0 y - -;
-#X obj 179 502 mtcf-finger;
-#X obj 229 532 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X floatatom 229 551 5 0 0 0 x - -;
-#X floatatom 229 570 5 0 0 0 y - -;
-#X obj 229 502 mtcf-finger;
-#X obj 319 462 cnv 15 300 150 empty empty empty 20 12 0 14 -232576
+#X obj 477 462 cnv 15 300 150 empty empty empty 20 12 0 14 -232576
 -66577 0;
-#X text 221 161 Sending / Receiving mtcf-object data;
-#X text 329 466 Other graphics and elements:;
-#X text 330 481 painting \, sensing mtcf-finger collisions \, etc.;
+#X text 487 466 Other graphics and elements:;
+#X text 488 481 painting \, sensing mtcf-finger collisions \, etc.
+;
 #X obj 13 7 mtcf-comm;
 #X obj 273 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -123,10 +108,26 @@
 #X obj 656 273 mtcf-color;
 #X obj 657 419 mtcf-fingercolor;
 #X obj 657 396 mtcf-color;
-#X obj 27 501 mtcf-fingers;
-#X obj 392 528 mtcf-graphics-help;
-#X obj 392 550 mtcf-fingers-help;
-#X obj 392 572 mtcf-composedwidgets-help;
+#X obj 27 495 mtcf-fingers;
+#X obj 550 528 mtcf-graphics-help;
+#X obj 550 550 mtcf-fingers-help;
+#X obj 550 572 mtcf-composedwidgets-help;
+#X text 221 161 Sending / Receiving object data;
+#X obj 42 592 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 70 591 5 0 0 0 x - -;
+#X floatatom 115 591 5 0 0 0 y - -;
+#X obj 27 568 mtcf-finger;
+#X obj 182 542 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 210 541 5 0 0 0 x - -;
+#X floatatom 255 541 5 0 0 0 y - -;
+#X obj 167 518 mtcf-finger;
+#X obj 182 592 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 210 591 5 0 0 0 x - -;
+#X floatatom 255 591 5 0 0 0 y - -;
+#X obj 167 568 mtcf-finger;
 #X connect 0 0 1 0;
 #X connect 6 0 31 0;
 #X connect 6 0 32 0;
@@ -158,30 +159,30 @@
 #X connect 55 0 57 0;
 #X connect 55 0 57 1;
 #X connect 56 0 55 1;
-#X connect 60 0 96 0;
-#X connect 61 0 96 1;
-#X connect 62 0 96 2;
-#X connect 64 0 98 0;
-#X connect 65 0 98 1;
-#X connect 66 0 98 2;
-#X connect 72 0 77 0;
+#X connect 60 0 83 0;
+#X connect 61 0 83 1;
+#X connect 62 0 83 2;
+#X connect 64 0 85 0;
+#X connect 65 0 85 1;
+#X connect 66 0 85 2;
+#X connect 72 0 94 0;
 #X connect 72 1 69 0;
 #X connect 72 2 70 0;
 #X connect 72 3 71 0;
-#X connect 77 0 81 0;
-#X connect 77 1 74 0;
-#X connect 77 2 75 0;
-#X connect 77 3 76 0;
-#X connect 81 0 85 0;
-#X connect 81 1 78 0;
-#X connect 81 2 79 0;
-#X connect 81 3 80 0;
-#X connect 85 1 82 0;
-#X connect 85 2 83 0;
-#X connect 85 3 84 0;
-#X connect 91 0 92 0;
-#X connect 93 0 90 0;
-#X connect 94 0 6 0;
-#X connect 96 0 95 0;
-#X connect 98 0 97 0;
-#X connect 99 0 72 0;
+#X connect 78 0 79 0;
+#X connect 80 0 77 0;
+#X connect 81 0 6 0;
+#X connect 83 0 82 0;
+#X connect 85 0 84 0;
+#X connect 86 0 72 0;
+#X connect 94 0 98 0;
+#X connect 94 1 91 0;
+#X connect 94 2 92 0;
+#X connect 94 3 93 0;
+#X connect 98 0 102 0;
+#X connect 98 1 95 0;
+#X connect 98 2 96 0;
+#X connect 98 3 97 0;
+#X connect 102 1 99 0;
+#X connect 102 2 100 0;
+#X connect 102 3 101 0;
