@@ -1,0 +1,7 @@
+#N canvas 714 364 383 153 10;
+#X obj 31 106 mtcf-send;
+#X msg 31 78 /mtcf textsize \$1;
+#X obj 31 49 inlet;
+#X text 30 16 Changes the size of all text;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
