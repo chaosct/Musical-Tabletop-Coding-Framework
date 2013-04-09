@@ -1,4 +1,5 @@
 Musical Tabletop Coding Framework is a rapid development framework to create musical tabletop PD apps.
+http://chaosct.github.io/Musical-Tabletop-Coding-Framework/
 
 Compiling:
  you will need:
@@ -8,8 +9,12 @@ Compiling:
  
 Usage:
  Execute the program
- Open main.pd with PureData
+ Add pd/mtcf-lib to your puredata lib paths
+ Open main-*.pd patches inside pd/examples
  Hack!
+
+Source:
+ https://github.com/chaosct/Musical-Tabletop-Coding-Framework
 
 Authors:
  Carles F. Julià <carles.fernandez@upf.edu>
