@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="MTCF-WIN.cbp" active="1">
+			<Depends filename="..\OF\0.7.4\libs\openFrameworksCompiled\project\win_cb\openFrameworksLib.cbp" />
+		</Project>
+		<Project filename="..\OF\0.7.4\libs\openFrameworksCompiled\project\win_cb\openFrameworksLib.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
