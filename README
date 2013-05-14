@@ -1,14 +1,16 @@
 Musical Tabletop Coding Framework is a rapid development framework to create musical tabletop PD apps.
 http://chaosct.github.io/Musical-Tabletop-Coding-Framework/
 
-Compiling:
- you will need:
-  openframeworks (http://www.openframeworks.cc)
-  ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
- Clone the source:
-  git clone --recursive git://github.com/chaosct/Musical-Tabletop-Coding-Framework.git
- Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
- 
+Download:
+ v.3a
+    Windows: http://download.fjulia.name/get.php?id=mtcf0.3awin
+    OS X: http://download.fjulia.name/get.php?id=mtcf0.3aosx
+    Linux: http://download.fjulia.name/get.php?id=mtcf0.3alin32
+ v.2b2
+    Windows: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-win.zip 
+    OS X: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b1-osx.zip
+    Linux x32: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-linux32.tar.bz2
+
 Usage:
  Execute the program
  Add pd/mtcf-lib to your puredata lib paths
@@ -17,6 +19,14 @@ Usage:
 
 Source:
  https://github.com/chaosct/Musical-Tabletop-Coding-Framework
+
+Compiling:
+ you will need:
+  openframeworks (http://www.openframeworks.cc)
+  ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
+ Clone the source:
+  git clone --recursive git://github.com/chaosct/Musical-Tabletop-Coding-Framework.git
+ Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
 
 Authors:
  Carles F. Julià <carles.fernandez@upf.edu>
