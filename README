@@ -5,6 +5,8 @@ Compiling:
  you will need:
   openframeworks (http://www.openframeworks.cc)
   ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
+ Clone the source:
+  git clone --recursive git://github.com/chaosct/Musical-Tabletop-Coding-Framework.git
  Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
  
 Usage:
