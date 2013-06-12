@@ -56,7 +56,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void newCursor(InputGestureDirectFingers::newCursorArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectFinger *df = a.finger;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/addfinger");
@@ -70,7 +70,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectFinger *df = a.finger;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/rmfinger");
@@ -79,7 +79,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectFinger *df = a.finger;
         ofxOscMessage msg;
         msg.setAddress("/figure/finger");
@@ -88,7 +88,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void newObject(InputGestureDirectObjects::newObjectArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectObject *df = a.object;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/addobject");
@@ -102,7 +102,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectObject *df = a.object;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/rmobject");
@@ -111,7 +111,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     void updateObject(InputGestureDirectObjects::updateObjectArgs & a)
     {
-        if (isHidden()) return
+        if (isHidden()) return;
         DirectObject *df = a.object;
         ofxOscMessage msg;
         msg.setAddress("/figure/object");
