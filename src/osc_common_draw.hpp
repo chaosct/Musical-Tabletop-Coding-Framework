@@ -45,11 +45,12 @@ public:
 
     ofMatrix4x4 transform_matrix;
     ofMatrix4x4 translate_matrix;
+    ofMatrix4x4 base_matrix;
     ofMatrix4x4 total_matrix;
 
     void recalculate_total_matrix()
     {
-        total_matrix = translate_matrix * transform_matrix;
+        total_matrix = translate_matrix * transform_matrix * base_matrix;
         cmd_report_matrix();
     }
 
@@ -134,7 +135,7 @@ public:
             m10>>m11>>m12>>m13>>
             m20>>m21>>m22>>m23>>
             m30>>m31>>m32>>m33;
-            transform_matrix.set(m00,m01,m02,m03,
+            base_matrix.set(m00,m01,m02,m03,
             m10,m11,m12,m13,
             m20,m21,m22,m23,
             m30,m31,m32,m33);
