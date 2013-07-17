@@ -2,10 +2,16 @@ Musical Tabletop Coding Framework is a rapid development framework to create mus
 http://chaosct.github.io/Musical-Tabletop-Coding-Framework/
 
 Download:
+ v.3c
+ 	Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_win32.zip
+ 	OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_osx.zip
+ 	Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin32.zip
+ 	Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin64.zip
  v.3a
-    Windows: http://download.fjulia.name/get.php?id=mtcf0.3awin
-    OS X: http://download.fjulia.name/get.php?id=mtcf0.3aosx
-    Linux: http://download.fjulia.name/get.php?id=mtcf0.3alin32
+    Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_win32.zip
+    OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_osx.zip
+    Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux32.zip
+    Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux64.zip
  v.2b2
     Windows: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-win.zip 
     OS X: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b1-osx.zip
@@ -14,11 +20,14 @@ Download:
 Usage:
  Execute the program
  Add pd/mtcf-lib to your puredata lib paths
- Open main-*.pd patches inside pd/examples
+ Open main.pd patches inside pd/examples/ folders
  Hack!
 
 Source:
  https://github.com/chaosct/Musical-Tabletop-Coding-Framework
+
+PD client Source (most up-to-date):
+ https://github.com/chaosct/MTCF-client
 
 Compiling:
  you will need:
