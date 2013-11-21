@@ -2,40 +2,48 @@ Musical Tabletop Coding Framework is a rapid development framework to create mus
 http://chaosct.github.io/Musical-Tabletop-Coding-Framework/
 
 Download:
- v.3c
- 	Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_win32.zip
- 	OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_osx.zip
- 	Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin32.zip
- 	Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin64.zip
- v.3a
+  v.3d
+    Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_win32.zip
+    OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_osx.zip
+    Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_lin32.zip
+    Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_lin64.zip
+  v.3c
+ 	  Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_win32.zip
+   	OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_osx.zip
+   	Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin32.zip
+   	Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin64.zip
+  v.3a
     Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_win32.zip
     OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_osx.zip
     Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux32.zip
     Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux64.zip
- v.2b2
+  v.2b2
     Windows: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-win.zip 
     OS X: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b1-osx.zip
     Linux x32: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-linux32.tar.bz2
 
 Usage:
- Execute the program
- Add pd/mtcf-lib to your puredata lib paths
- Open main.pd patches inside pd/examples/ folders
- Hack!
+  Execute the program
+  Add pd/mtcf-lib to your puredata lib paths
+  Open main.pd patches inside pd/examples/ folders
+  Hack!
 
 Source:
- https://github.com/chaosct/Musical-Tabletop-Coding-Framework
+  https://github.com/chaosct/Musical-Tabletop-Coding-Framework
 
 PD client Source (most up-to-date):
- https://github.com/chaosct/MTCF-client
+  https://github.com/chaosct/MTCF-client
 
 Compiling:
- you will need:
-  openframeworks (http://www.openframeworks.cc)
-  ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
- Clone the source:
-  git clone --recursive git://github.com/chaosct/Musical-Tabletop-Coding-Framework.git
- Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
+  you will need:
+    openframeworks (http://www.openframeworks.cc)
+    ofxTableGestures addon (http://github.com/chaosct/ofxTableGestures)
+  Clone the source:
+    git clone --recursive git://github.com/chaosct/Musical-Tabletop-Coding-Framework.git
+  Copy the contents of default/ to the root directory, and compile it as any other openframeworks app.
+
+Note on the OF version
+  For some reason compiling agains OF v0.8.0 results in a very poor performance. Stick with OF v0.7.4 if possible.
 
 Authors:
  Carles F. Julià <carles.fernandez@upf.edu>
