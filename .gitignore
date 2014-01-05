@@ -8,3 +8,5 @@ obj
 *.sublime-project
 config.make
 dist
+*.DS_Store
+*xcuserdata*
