@@ -43,6 +43,7 @@ class testApp : public ofBaseApp{
 	public:
 
         TableApp tableapp;
+        testApp();
 		void setup();
 		void update();
 		void draw();

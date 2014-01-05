@@ -40,6 +40,11 @@
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
 
+testApp::testApp(): tableapp(TableApp("MTCF"))
+{
+    
+}
+
 //--------------------------------------------------------------
 void testApp::setup(){
     tableapp.setup();
