@@ -4,8 +4,12 @@
 #include "ofxGlobalConfig.hpp"
 
 
-int main( ){
-
+int main( )
+{
+    //OSX ONLY
+    //uncomment this for the final bundled version, it will contain de data folder into the osx bundle
+    //ofSetDataPathRoot("../Resources/data/");
+    //END OSX ONLY
     ofAppGlutWindow window;
     int width = ofxGlobalConfig::getRef("PROGRAM:WIDTH",1024);
     int height = ofxGlobalConfig::getRef("PROGRAM:HEIGHT",768);
