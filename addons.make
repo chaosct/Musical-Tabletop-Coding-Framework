@@ -1,5 +1,5 @@
-ofxTableGestures
 ofxOsc
-ofxGlobalConfig
-ofx2DFigures
 ofxXmlSettings
+ofx2DFigures
+ofxGlobalConfig
+ofxTableGestures
