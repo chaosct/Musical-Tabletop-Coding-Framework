@@ -1,0 +1,9 @@
+ChangeLog for Musical Tabletop Coding Framework
+
+v0.3e (Jan 6 2014)
+------------------
+added: ChangeLog File
+fixed: mtcf-slider not changing pill color.
+fixed: window title not displaying MTCF.
+fixed: updated ofxTableGestures, adding better support for OSX.
+removed: old PD decorations.
