@@ -2,31 +2,14 @@ Musical Tabletop Coding Framework is a rapid development framework to create mus
 http://chaosct.github.io/Musical-Tabletop-Coding-Framework/
 
 Download:
-  v.3d
-    Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_win32.zip
-    OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_osx.zip
-    Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_lin32.zip
-    Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3d/mtcf_0.3d_lin64.zip
-  v.3c
- 	  Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_win32.zip
-   	OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_osx.zip
-   	Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin32.zip
-   	Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3c/mtcf_0.3c_lin64.zip
-  v.3a
-    Windows: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_win32.zip
-    OS X: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_osx.zip
-    Linux x32: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux32.zip
-    Linux x64: https://github.com/chaosct/Musical-Tabletop-Coding-Framework/releases/download/v0.3a/mtcf_0.3a_linux64.zip
-  v.2b2
-    Windows: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-win.zip 
-    OS X: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b1-osx.zip
-    Linux x32: https://github.com/downloads/chaosct/Musical-Tabletop-Coding-Framework/MTCF-0.2b2-linux32.tar.bz2
+  http://chaosct.github.io/Musical-Tabletop-Coding-Framework/#mtcf-downloads
 
 Usage:
   Execute the program
   Add pd/mtcf-lib to your puredata lib paths
   Open main.pd patches inside pd/examples/ folders
   Hack!
+  Read the wiki (https://github.com/chaosct/Musical-Tabletop-Coding-Framework/wiki)?
 
 Source:
   https://github.com/chaosct/Musical-Tabletop-Coding-Framework
