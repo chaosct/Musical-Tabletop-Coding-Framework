@@ -47,6 +47,7 @@ testApp::testApp(): tableapp(TableApp("MTCF"))
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    ofSetLogLevel(OF_LOG_ERROR);
     tableapp.setup();
     new CursorFeedback();
     new FigureFeedback();
