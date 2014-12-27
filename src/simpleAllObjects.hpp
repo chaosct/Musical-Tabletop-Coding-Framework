@@ -56,8 +56,8 @@ class SimpleAllObjects: public Graphic,  public std::map<unsigned int,DirectObje
     SimpleAllObjects()
     {
         //registerEvent( Event , &MyClass::method );
-        this->registerEvent(InputGestureDirectObjects::I().newObject,&SimpleAllObjects::newObject);
-        this->registerEvent(InputGestureDirectObjects::I().removeObject,&SimpleAllObjects::removeObject);
+        this->registerEvent(InputGestureDirectObjects::newObject,&SimpleAllObjects::newObject);
+        this->registerEvent(InputGestureDirectObjects::removeObject,&SimpleAllObjects::removeObject);
     }
 };
 

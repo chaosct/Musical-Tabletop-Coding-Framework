@@ -41,19 +41,35 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
     }
     OSCPolygonObject():FigureGraphic(&polygon),drawpolygon(true),drawstroke(false),linewidth(1),id(0)
     {
-        this->registerMyEvent(InputGestureDirectObjects::I().newObject,&OSCPolygonObject::newObject);
-        this->registerMyEvent(InputGestureDirectObjects::I().enterObject,&OSCPolygonObject::newObject);
-        this->registerMyEvent(InputGestureDirectObjects::I().removeObject,&OSCPolygonObject::removeObject);
-        this->registerMyEvent(InputGestureDirectObjects::I().exitObject,&OSCPolygonObject::removeObject);
-        this->registerMyEvent(InputGestureDirectObjects::I().updateObject,&OSCPolygonObject::updateObject);
-        this->registerMyEvent(InputGestureDirectFingers::I().newCursor, &OSCPolygonObject::newCursor);
-        this->registerMyEvent(InputGestureDirectFingers::I().enterCursor, &OSCPolygonObject::newCursor);
-        this->registerMyEvent(InputGestureDirectFingers::I().removeCursor, &OSCPolygonObject::removeCursor);
-        this->registerMyEvent(InputGestureDirectFingers::I().exitCursor, &OSCPolygonObject::removeCursor);
-        this->registerMyEvent(InputGestureDirectFingers::I().updateCursor, &OSCPolygonObject::updateCursor);
-        hasAlpha(true);
-        color.set(255,255,255,255);
+        registerEvents();
     }
+
+    void registerEvents(){
+        registerEvent(InputGestureDirectObjects::newObject,&OSCPolygonObject::newObject, this, polygon);
+        registerEvent(InputGestureDirectObjects::enterObject,&OSCPolygonObject::newObject, this, polygon);
+        registerEvent(InputGestureDirectObjects::removeObject,&OSCPolygonObject::removeObject, this, polygon);
+        registerEvent(InputGestureDirectObjects::exitObject,&OSCPolygonObject::removeObject, this, polygon);
+        registerEvent(InputGestureDirectObjects::updateObject,&OSCPolygonObject::updateObject, this, polygon);
+        registerEvent(InputGestureDirectFingers::newCursor, &OSCPolygonObject::newCursor, this, polygon);
+        registerEvent(InputGestureDirectFingers::enterCursor, &OSCPolygonObject::newCursor, this, polygon);
+        registerEvent(InputGestureDirectFingers::removeCursor, &OSCPolygonObject::removeCursor, this, polygon);
+        registerEvent(InputGestureDirectFingers::exitCursor, &OSCPolygonObject::removeCursor, this, polygon);
+        registerEvent(InputGestureDirectFingers::updateCursor, &OSCPolygonObject::updateCursor, this, polygon);
+    }
+
+    void unregisterEvents(){
+        unregisterEvent(InputGestureDirectObjects::newObject);
+        unregisterEvent(InputGestureDirectObjects::enterObject);
+        unregisterEvent(InputGestureDirectObjects::removeObject);
+        unregisterEvent(InputGestureDirectObjects::exitObject);
+        unregisterEvent(InputGestureDirectObjects::updateObject);
+        unregisterEvent(InputGestureDirectFingers::newCursor);
+        unregisterEvent(InputGestureDirectFingers::enterCursor);
+        unregisterEvent(InputGestureDirectFingers::removeCursor);
+        unregisterEvent(InputGestureDirectFingers::exitCursor);
+        unregisterEvent(InputGestureDirectFingers::updateCursor);
+    }
+
     void newCursor(InputGestureDirectFingers::newCursorArgs & a)
     {
         if (isHidden()) return;

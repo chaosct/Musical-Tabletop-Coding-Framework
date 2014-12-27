@@ -77,10 +77,9 @@ class OscFingerReporter : public Graphic
     
     OscFingerReporter()
     {
-        this->registerEvent(InputGestureDirectFingers::I().newCursor, &OscFingerReporter::newCursor);
-        this->registerEvent(InputGestureDirectFingers::I().removeCursor, &OscFingerReporter::removeCursor);
-        this->registerEvent(InputGestureDirectFingers::I().updateCursor, &OscFingerReporter::updateCursor);
-        
+        this->registerEvent(InputGestureDirectFingers::newCursor, &OscFingerReporter::newCursor);
+        this->registerEvent(InputGestureDirectFingers::removeCursor, &OscFingerReporter::removeCursor);
+        this->registerEvent(InputGestureDirectFingers::updateCursor, &OscFingerReporter::updateCursor);
     }
 
 };
