@@ -35,7 +35,6 @@
 #include <map>
 #include "InputGestureDirectObjects.hpp"
 
-//class SimpleAllObjects: public OnTable < tuio::CanDirectObjects < Graphic > >, public std::map<unsigned int,tuio::DirectObject *>
 class SimpleAllObjects: public EventClient, public std::map<unsigned int,DirectObject *>{
     public:
     void newObject(InputGestureDirectObjects::newObjectArgs & a)

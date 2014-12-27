@@ -2,7 +2,6 @@
 #include "testApp.h"
 #include "ofxGlobalConfig.hpp"
 
-
 int main( )
 {
     //OSX ONLY

@@ -30,27 +30,17 @@
 
 #include "testApp.h"
 
-#include "oscReporter.hpp"
-#include "osc_general.hpp"
-#include "osc_fingers.hpp"
+#include "dispatcher.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
 #include "osc_line.hpp"
 
-testApp::testApp(): tableapp(TableApp("MTCF"))
-{
-    
+testApp::testApp(): tableapp(TableApp("MTCF")){
 }
 
 //--------------------------------------------------------------
 void testApp::setup(){
     tableapp.setup();
-    //new CalibratorObject(1);
-
-    //Global
-    new OscGeneral();
-
-
 
     OscPolygonDraw::Instance();
     OscTextDraw::Instance();
@@ -59,7 +49,7 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+    OSCDispatcher::Instance().update();
     objects.update();
     fingers.update();
 }

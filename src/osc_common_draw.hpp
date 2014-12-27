@@ -35,56 +35,64 @@
 
 class OSCCommonDrawObject
 {
-public:
-    virtual void cmd_color(int r,int g,int b,int a){}
-    virtual void cmd_hidden(bool ishidden){}
-    virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
-    virtual void cmd_report_matrix(){}
-    virtual void cmd_bring_top(){}
-    virtual void cmd_set_layer(int _layer){}
+    public:
+        int id;
 
-    ofMatrix4x4 transform_matrix;
-    ofMatrix4x4 translate_matrix;
-    ofMatrix4x4 base_matrix;
-    ofMatrix4x4 total_matrix;
+        OSCCommonDrawObject() : id(0){}
+        virtual ~OSCCommonDrawObject(){}
 
-    void recalculate_total_matrix()
-    {
-        total_matrix = translate_matrix * transform_matrix * base_matrix;
-        cmd_report_matrix();
-    }
+        virtual void cmd_color(int r,int g,int b,int a){}
+        virtual void cmd_hidden(bool ishidden){}
+        virtual void run_extra(const std::string & cmd, OscOptionalUnpacker & msg){}
+        virtual void cmd_report_matrix(){}
+        virtual void cmd_bring_top(){}
+        virtual void cmd_set_layer(int _layer){}
+        virtual void cmd_load_shader(std::string path){}
 
-    void run(const std::string & cmd, OscOptionalUnpacker & msg)
-    {
-        if(cmd == "color")
+
+        void recalculate_total_matrix()
         {
-            int r,g,b,a;
-            a = 255;
-            msg >> r >> g >> b >> a;
-            cmd_color(r,g,b,a);
+            total_matrix = translate_matrix * transform_matrix * base_matrix;
+            cmd_report_matrix();
         }
-        else if(cmd == "transform")
+
+        void run(const std::string & cmd, ofxOscMessage & msg)
         {
-            transform_matrix.makeIdentityMatrix();
-            while(!msg.Eos())
+            OscOptionalUnpacker unpacker(msg);
+            run(cmd, unpacker);
+        }
+
+        void run(const std::string & cmd, OscOptionalUnpacker & msg)
+        {
+            if(cmd == "color")
             {
-                std::string command;
-                msg >> command;
-                if (command == "t")
+                int r,g,b,a;
+                a = 255;
+                msg >> r >> g >> b >> a;
+                cmd_color(r,g,b,a);
+            }
+            else if(cmd == "transform")
+            {
+                transform_matrix.makeIdentityMatrix();
+                while(!msg.Eos())
                 {
-                    float dx,dy;
-                    msg >> dx >> dy;
-                    transform_matrix.glTranslate(dx,dy,0.0f);
-                }
-                else if (command == "r")
-                {
-                    float alpha;
-                    msg >> alpha;
-                    transform_matrix.glRotate(alpha,.0f,.0f,1.0f);
-                }
-                else if (command == "s")
-                {
-                    float sx,sy;
+                    std::string command;
+                    msg >> command;
+                    if (command == "t")
+                    {
+                        float dx,dy;
+                        msg >> dx >> dy;
+                        transform_matrix.glTranslate(dx,dy,0.0f);
+                    }
+                    else if (command == "r")
+                    {
+                        float alpha;
+                        msg >> alpha;
+                        transform_matrix.glRotate(alpha,.0f,.0f,1.0f);
+                    }
+                    else if (command == "s")
+                    {
+                        float sx,sy;
                     msg >> sx >> sy;
                     transform_matrix.glScale(sx,sy,1.0f);
                 }
@@ -96,58 +104,69 @@ public:
                 }
                 else
                 {
-                    std::cout << "transform: command " << command << " not found" << std::endl;
+                    ofLogWarning("Transform") << "Command " << command << " not found";
                 }
             }
             recalculate_total_matrix();
-        }
-        else if(cmd == "hidden")
-        {
-            int  ishidden;
-            msg >> ishidden;
-            cmd_hidden(ishidden != 0);
-        }
-        else if(cmd == "layer")
-        {
-            int _layer;
-            msg >> _layer;
-            cmd_set_layer(_layer);
-        }
-        else if(cmd == "bring_top")
-        {
-            cmd_bring_top();
-        }
-        else if(cmd == "position")
-        {
-            float x,y,angle;
-            msg >> x >> y >> angle;
-            translate_matrix.setTranslation(x,y,0);
-            translate_matrix.setRotate(ofQuaternion(angle,ofVec3f(0,0,1)));
-            recalculate_total_matrix();
-        }
-        else if(cmd == "matrix")
-        {
-            float m00,m01,m02,m03,
-            m10,m11,m12,m13,
-            m20,m21,m22,m23,
-            m30,m31,m32,m33;
-            msg >> m00>>m01>>m02>>m03>>
-            m10>>m11>>m12>>m13>>
-            m20>>m21>>m22>>m23>>
-            m30>>m31>>m32>>m33;
-            base_matrix.set(m00,m01,m02,m03,
-            m10,m11,m12,m13,
-            m20,m21,m22,m23,
-            m30,m31,m32,m33);
-            translate_matrix.makeIdentityMatrix();
-            recalculate_total_matrix();
-        }
-        else
-        {
-            run_extra(cmd,msg);
+            }
+            else if(cmd == "hidden")
+            {
+                int  ishidden;
+                msg >> ishidden;
+                cmd_hidden(ishidden != 0);
+            }
+            else if(cmd == "layer")
+            {
+                int _layer;
+                msg >> _layer;
+                cmd_set_layer(_layer);
+            }
+            else if(cmd == "bring_top")
+            {
+                cmd_bring_top();
+            }
+            else if(cmd == "position")
+            {
+                float x,y,angle;
+                msg >> x >> y >> angle;
+                translate_matrix.setTranslation(x,y,0);
+                translate_matrix.setRotate(ofQuaternion(angle,ofVec3f(0,0,1)));
+                recalculate_total_matrix();
+            }
+            else if(cmd == "matrix")
+            {
+                float m00,m01,m02,m03,
+                m10,m11,m12,m13,
+                m20,m21,m22,m23,
+                m30,m31,m32,m33;
+                msg >> m00>>m01>>m02>>m03>>
+                m10>>m11>>m12>>m13>>
+                m20>>m21>>m22>>m23>>
+                m30>>m31>>m32>>m33;
+                base_matrix.set(m00,m01,m02,m03,
+                m10,m11,m12,m13,
+                m20,m21,m22,m23,
+                m30,m31,m32,m33);
+                translate_matrix.makeIdentityMatrix();
+                recalculate_total_matrix();
+            }
+            else if(cmd == "shader")
+            {
+                std::string path;
+                msg >> path;
+                cmd_load_shader(path);
+            }
+            else
+            {
+                run_extra(cmd,msg);
+            }
+
         }
 
-    }
+        ofMatrix4x4 transform_matrix;
+        ofMatrix4x4 translate_matrix;
+        ofMatrix4x4 base_matrix;
+        ofMatrix4x4 total_matrix;
 };
 
 
@@ -173,7 +192,6 @@ public:
         std::string cmd;
         int id;
         msg >> id >> cmd;
-        //std::cout << cmd << std::endl;
         if(objects.find(id) == objects.end())
         {
             objects[id] = new T();

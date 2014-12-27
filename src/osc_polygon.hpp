@@ -87,6 +87,7 @@ class OSCPolygonObject : public EventClient, public OSCCommonDrawObject
         OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
+
     void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
     {
         DirectFinger *df = a.finger;

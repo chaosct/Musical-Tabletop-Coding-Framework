@@ -34,9 +34,7 @@
 
 #include "Singleton.hpp"
 #include "ofxOsc.h"
-#include "ofxGlobalConfig.hpp"
 #include <map>
-
 
 class OSCCMD
 {

@@ -2,6 +2,7 @@
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
 #include "osc_line.hpp"
+#include "ofxGlobalConfig.hpp"
 
 OscGeneral::OscGeneral() : OSCCMD("/mtcf"),
                             textsize(ofxGlobalConfig::getRef("PROGRAM:TEXTSIZE", 1.0f)){

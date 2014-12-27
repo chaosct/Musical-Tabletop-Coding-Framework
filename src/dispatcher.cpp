@@ -29,6 +29,7 @@
 */
 
 #include "dispatcher.hpp"
+#include "ofxGlobalConfig.hpp"
 
 OSCCMD::OSCCMD(const std::string & Addr):addr(Addr)
 {
@@ -36,9 +37,10 @@ OSCCMD::OSCCMD(const std::string & Addr):addr(Addr)
 }
 
 
-OSCDispatcher::OSCDispatcher():remoteIp(ofxGlobalConfig::getRef<std::string>("OSCDISPATCHER:SENDER:ADDR","localhost")),remotePort(ofxGlobalConfig::getRef("OSCDISPATCHER:SENDER:PORT",1235))
+OSCDispatcher::OSCDispatcher():remoteIp(ofxGlobalConfig::getRef<std::string>("OSCDISPATCHER:SENDER:ADDR","localhost")),
+                                remotePort(ofxGlobalConfig::getRef("OSCDISPATCHER:SENDER:PORT", 1235))
 {
-    receiver.setup(ofxGlobalConfig::getRef("OSCDISPATCHER:RECEIVER:PORT",1234));
+    receiver.setup(ofxGlobalConfig::getRef("OSCDISPATCHER:RECEIVER:PORT", 1234));
     sender.setup(remoteIp,remotePort);
     ofxOscMessage msg;
     msg.setAddress("/init");
