@@ -33,7 +33,6 @@
 #include "oscReporter.hpp"
 #include "osc_general.hpp"
 #include "osc_fingers.hpp"
-#include "osc_distances.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
 #include "osc_line.hpp"
@@ -51,7 +50,6 @@ void testApp::setup(){
     //Global
     new OscGeneral();
 
-    new OscDistanceReporter();
 
 
     OscPolygonDraw::Instance();
