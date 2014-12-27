@@ -65,7 +65,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
 
         ofxOscMessage msg;
         msg.setAddress("/figure/finger");
-        OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->getX() << (float) df->getY();
+        OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
     void removeCursor(InputGestureDirectFingers::removeCursorArgs & a)
@@ -74,7 +74,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         DirectFinger *df = a.finger;
         ofxOscMessage msg1;
         msg1.setAddress("/figure/rmfinger");
-        OscPacker(msg1) << (int)id << (int)df->s_id << (float) df->getX() << (float) df->getY();
+        OscPacker(msg1) << (int)id << (int)df->s_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg1);
     }
     void updateCursor(InputGestureDirectFingers::updateCursorArgs & a)
@@ -83,7 +83,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         DirectFinger *df = a.finger;
         ofxOscMessage msg;
         msg.setAddress("/figure/finger");
-        OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->getX() << (float) df->getY();
+        OscPacker(msg) << (int)id <<(int)df->s_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
     void newObject(InputGestureDirectObjects::newObjectArgs & a)
@@ -97,7 +97,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
 
         ofxOscMessage msg;
         msg.setAddress("/figure/object");
-        OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->getX() << (float) df->getY();
+        OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
     void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
@@ -115,7 +115,7 @@ class OSCPolygonObject :public FigureGraphic, public OSCCommonDrawObject
         DirectObject *df = a.object;
         ofxOscMessage msg;
         msg.setAddress("/figure/object");
-        OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->getX() << (float) df->getY();
+        OscPacker(msg) << (int)id <<(int)df->f_id << (float) df->x << (float) df->y;
         OSCDispatcher::Instance().sender.sendMessage(msg);
     }
 
