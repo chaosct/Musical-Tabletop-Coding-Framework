@@ -29,9 +29,6 @@
 */
 
 #include "testApp.h"
-#include "CursorFeedback.hpp"
-#include "FigureFeedback.hpp"
-#include "TapFeedback.hpp"
 
 #include "oscReporter.hpp"
 #include "osc_general.hpp"
@@ -48,9 +45,6 @@ testApp::testApp(): tableapp(TableApp("MTCF"))
 //--------------------------------------------------------------
 void testApp::setup(){
     tableapp.setup();
-    new CursorFeedback();
-    new FigureFeedback();
-    new TapFeedback();
     //new CalibratorObject(1);
 
     //Global
