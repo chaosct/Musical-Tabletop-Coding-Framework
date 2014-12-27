@@ -31,10 +31,11 @@
 #pragma once
 #include "dispatcher.hpp"
 #include "OscTools.hpp"
+#include "EventClient.hpp"
 #include <set>
 #include "InputGestureDirectFingers.hpp"
 
-class OscFingerReporter : public Graphic
+class OscFingerReporter : public EventClient
 {
 
     std::set< DirectFinger * > updatelist;

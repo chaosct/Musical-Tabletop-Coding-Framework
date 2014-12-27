@@ -34,9 +34,9 @@
 
 #include "ofMain.h"
 #include "TableApp.hpp"
-#include "Figure.h"
-#include "CollisionHelper.h"
-#include "Polygon.h"
+#include "osc_objects.hpp"
+#include "osc_fingers.hpp"
+#include "osc_general.hpp"
 
 class testApp : public ofBaseApp{
 
@@ -55,6 +55,11 @@ class testApp : public ofBaseApp{
 		//void mousePressed(int x, int y, int button);
 		//void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
+
+        private:
+            OscObjectReporter objects;
+            OscFingerReporter fingers;
+            OscGeneral oscGeneral;
 };
 
 #endif

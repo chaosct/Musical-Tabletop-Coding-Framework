@@ -1,101 +1,83 @@
 #ifndef OSC_TEXT_HPP_INCLUDED
 #define OSC_TEXT_HPP_INCLUDED
 
+#include <algorithm>
 #include "osc_common_draw.hpp"
-#include "FigureGraphic.hpp"
+#include "GenericManager.hpp"
+#include "GraphicDispatcher.hpp"
+#include "Text.hpp"
 
-
-
-class OSCTextObject : public Graphic, public OSCCommonDrawObject
+class OSCTextObject : public OSCCommonDrawObject
 {
-    protected:
-        //float x,y,angle;
-        int r,g,b,a;
-        bool hidden;
+    private:
+        tableGraphics::Text* text;
         float & textsize;
+
     public:
-        int id;
-        OSCTextObject():r(255),g(255),b(255),a(255),
-                        hidden(false),id(0),
-                        textsize(ofxGlobalConfig::getRef("MTCF:TEXTSIZE",1.0f))
-        {
+        OSCTextObject() : textsize(ofxGlobalConfig::getRef("MTCF:TEXTSIZE",1.0f)){
+            GenericManager::get<GraphicDispatcher>()->createGraphic(text);
+            text->loadFont(17);
         }
-        void SetColor(int _r,int _g, int _b, int _a){ r = _r; g = _g; b = _b; a = _a;}
 
-    protected:
-        string data;
-        static ofTrueTypeFont & font()
+        virtual ~OSCTextObject() {
+            GenericManager::get<GraphicDispatcher>()->removeGraphic(text);
+        }
+
+        void cmd_report_matrix()
         {
-            static bool init = true;
-            static ofTrueTypeFont	verdana;
-            if (init)
-            {
-                verdana.loadFont(ofxGlobalConfig::getRef<std::string>("PROGRAM:HELPFONT","verdana.ttf"),32);
+            text->setMatrix(total_matrix);
+        }
+        void cmd_color(int r,int g,int b,int a)
+        {
+            text->setColor(ofColor(r, g, b, a));
+        }
+        void cmd_hidden(bool hide)
+        {
+            text->setVisible(!hide);
+        }
+        void cmd_bring_top()
+        {
+            GenericManager::get<GraphicDispatcher>()->bringTop(text);
+        }
+        void cmd_set_layer(int _layer)
+        {
+            GenericManager::get<GraphicDispatcher>()->setLayer(_layer, text);
+        }
+        void cmd_load_shader(std::string path)
+        {
+            bool success = text->loadShader(path);
+            if(!success){
+                ofLogWarning("OSCTextObject::cmd_load_shader()") << "Failed, check shader name: " << path;
             }
-            return verdana;
         }
-    public:
-
-        void SetText(std::string text)
+        void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
         {
-            int find = text.find("%20");
-            while(find != string::npos)
+            if(cmd == "write")
             {
-                text.replace(find,3," ");
-                find = text.find("%20");
+                text->clear();
+                std::string data;
+                while (!msg.Eos()) {
+                    msg >> data;
+
+                    // Replace old-format HTML-formatted spaces
+                    for (size_t spacePos = data.find("%20");
+			    spacePos != std::string::npos;
+			    spacePos = data.find("%20")){
+                        data.replace(spacePos, 3, " ");
+                    }
+
+                    *text << data << " ";
+                }
             }
-            data = text;
+            else if(cmd == "clear")
+            {
+                text->clear();
+            }
+            else
+            {
+                std::cout << "Text: command " << cmd << " not found" << std::endl;
+            }
         }
-
-        void draw()
-        {
-            if(hidden)return;
-            ofEnableAlphaBlending();
-            ofPushMatrix();
-            ofSetColor(r,g,b,a);
-            ofMultMatrix(total_matrix);
-            ofScale(textsize * 0.0005f, textsize * 0.0005f,1);
-            font().drawString(data,0,0);
-
-            ofPopMatrix();
-            ofDisableAlphaBlending();
-        }
-
-public:
-    void cmd_color(int r,int g,int b,int a)
-    {
-        SetColor(r,g,b,a);
-    }
-    void cmd_hidden(bool ishidden)
-    {
-         hidden = ishidden;
-    }
-    void cmd_bring_top()
-    {
-        BringTop();
-    }
-    void cmd_set_layer(int _layer)
-    {
-        SetLayer(_layer);
-    }
-    void run_extra(const std::string & cmd, OscOptionalUnpacker & msg)
-    {
-        std::cout << cmd << std::endl;
-        if(cmd == "write")
-        {
-            std::string data;
-            msg >> data;
-            SetText(data);
-        }
-        else if(cmd == "clear")
-        {
-            SetText("");
-        }
-        else
-        {
-            std::cout << "Text: command " << cmd << " not found" << std::endl;
-        }
-    }
 };
 
 class OscTextDraw : public Singleton<OscTextDraw>

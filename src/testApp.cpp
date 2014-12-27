@@ -36,6 +36,7 @@
 #include "osc_distances.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
+#include "osc_line.hpp"
 
 testApp::testApp(): tableapp(TableApp("MTCF"))
 {
@@ -50,19 +51,19 @@ void testApp::setup(){
     //Global
     new OscGeneral();
 
-    new OscObjectReporter();
     new OscDistanceReporter();
-    OscWaveDraw::Instance();
 
-    new OscFingerReporter();
 
+    OscPolygonDraw::Instance();
     OscTextDraw::Instance();
-    OSCFigureDraw::Instance();
+    OscLineDraw::Instance();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 
+    objects.update();
+    fingers.update();
 }
 
 //--------------------------------------------------------------
