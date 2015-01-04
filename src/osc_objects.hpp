@@ -32,9 +32,8 @@
 #define OSCREPORTER_HPP_INCLUDED
 
 #include "dispatcher.hpp"
-#include <set>
 #include <map>
-#include "simpleAllObjects.hpp"
+#include "InputGestureDirectObjects.hpp"
 #include "InputGestureDirectFingers.hpp"
 #include "EventClient.hpp"
 #include "objectGraphics.hpp"
@@ -61,12 +60,16 @@ class OscObjectReporter: public OSCCMD, public EventClient{
             ObjectGraphs graphics;
             bool can_cursors, can_angle;
             float angle;
-            object_data() : can_cursors(false), can_angle(false), angle(0){}
+	    bool onTable;
+	    DirectObject* object;
+            object_data() : can_cursors(false), can_angle(false),
+			    angle(0),
+			    onTable(false),
+			    object(NULL) {}
         };
 
         std::map<int, object_data> fiducials;
-        std::set<int> fiducialstoupdate;
-        SimpleAllObjects objects;
+        std::vector<int> fiducialstoupdate;
 
         float computeAngle(DirectFinger * finger, ofVec2f &figure);
 };

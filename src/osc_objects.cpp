@@ -42,27 +42,37 @@ void OscObjectReporter::run(ofxOscMessage & m){
         msg >> r >> g >> b >> a;
         fiducials[fid].graphics.setColor(selector, ofColor(r, g, b, a));
     }
-    if (objects.isOnTable(fid)){
-        reporton(fid);
-        fiducials[fid].graphics.setVisible(ObjectGraphs::ANGLE, fiducials[fid].can_angle);
-        fiducials[fid].graphics.setVisible(ObjectGraphs::SLIDER, fiducials[fid].can_cursors);
-    }else{
-        reportoff(fid);
-        fiducials[fid].graphics.setVisible(ObjectGraphs::ANGLE, false);
-        fiducials[fid].graphics.setVisible(ObjectGraphs::SLIDER, false);
+    std::map<int, object_data>::iterator it = fiducials.find(fid);
+    if (it != fiducials.end()){
+	if (it->second.onTable){
+	    reporton(fid);
+	    fiducials[fid].graphics.setVisible(ObjectGraphs::ANGLE, fiducials[fid].can_angle);
+	    fiducials[fid].graphics.setVisible(ObjectGraphs::SLIDER, fiducials[fid].can_cursors);
+	}else{
+	    reportoff(fid);
+	    fiducials[fid].graphics.setVisible(ObjectGraphs::ANGLE, false);
+	    fiducials[fid].graphics.setVisible(ObjectGraphs::SLIDER, false);
+	}
     }
 }
 
 void OscObjectReporter::update(){
-    std::set< int >::iterator it;
-    for(it = fiducialstoupdate.begin();it != fiducialstoupdate.end(); ++it){
+    for(std::vector<int>::iterator it = fiducialstoupdate.begin();
+	    it != fiducialstoupdate.end();
+	    ++it){
         const int & f = *it;
-        if(objects.isOnTable(f))report(objects[f]);
+	std::map<int, object_data>::iterator fid = fiducials.find(f);
+	if (fid != fiducials.end()){
+	    report(fid->second.object);
+	}
     }
     fiducialstoupdate.clear();
 }
 
 void OscObjectReporter::report(DirectObject * obj){
+    if (obj == NULL){
+	return;
+    }
     ofxOscMessage msg;
     msg.setAddress("/object");
     OscPacker(msg) << (int)obj->f_id
@@ -96,20 +106,23 @@ void OscObjectReporter::reportoff(int fid){
 void OscObjectReporter::newObject(InputGestureDirectObjects::newObjectArgs & a){
     DirectObject * obj = a.object;
     if(fiducials.find(obj->f_id) != fiducials.end()){
-        reporton(obj->f_id);
         object_data& object = fiducials[obj->f_id];
         object.angle = obj->orientation;
         object.graphics.setPosition(ofVec3f(obj->x, obj->y, 0));
         object.graphics.setVisible(ObjectGraphs::SLIDER, object.can_cursors);
         object.graphics.setVisible(ObjectGraphs::ANGLE, object.can_angle);
+	object.onTable = true;
+	object.object = obj;
+
+        reporton(obj->f_id);
     }
 }
 
 void OscObjectReporter::updateObject(InputGestureDirectObjects::updateObjectArgs & a){
     DirectObject * obj = a.object;
-    if(fiducials.find(obj->f_id)!= fiducials.end()){
+    if(fiducials.find(obj->f_id) != fiducials.end()){
 
-        fiducialstoupdate.insert(obj->f_id);
+        fiducialstoupdate.push_back(obj->f_id);
 
         // Update angle parameter
         float increment = obj->orientation - fiducials[obj->f_id].angle;
@@ -140,10 +153,13 @@ void OscObjectReporter::updateObject(InputGestureDirectObjects::updateObjectArgs
 
 void OscObjectReporter::removeObject(InputGestureDirectObjects::removeObjectArgs & a){
     DirectObject * obj = a.object;
-    if(fiducials.find(obj->f_id)!= fiducials.end()){
+    if(fiducials.find(obj->f_id) != fiducials.end()){
+        object_data& object = fiducials[obj->f_id];
+        object.graphics.setVisible(ObjectGraphs::SLIDER, false);
+        object.graphics.setVisible(ObjectGraphs::ANGLE, false);
+	object.onTable = false;
+
         reportoff(obj->f_id);
-        fiducials[obj->f_id].graphics.setVisible(ObjectGraphs::SLIDER, false);
-        fiducials[obj->f_id].graphics.setVisible(ObjectGraphs::ANGLE, false);
     }
 }
 
@@ -154,14 +170,15 @@ void OscObjectReporter::newCursor(InputGestureDirectFingers::newCursorArgs & a){
 void OscObjectReporter::updateCursor(InputGestureDirectFingers::updateCursorArgs & a){
     DirectFinger * finger = a.finger;
     for (std::map<int,object_data>::iterator it = fiducials.begin(); it != fiducials.end(); ++it){
-        if(objects.isOnTable((*it).first) && (*it).second.can_cursors){
-            ofVec2f figure(it->second.graphics.getPosition());
+	object_data& object = it->second;
+        if(object.onTable && object.can_cursors){
+            ofVec2f figure(object.graphics.getPosition());
             float dist = figure.distance(*finger);
             if(dist <= 0.075){
 
                 // Finger is close enough to object, update slider value.
                 float value = computeAngle(finger, figure);
-                it->second.graphics.setValue(ObjectGraphs::SLIDER, value);
+                object.graphics.setValue(ObjectGraphs::SLIDER, value);
 
                 ofxOscMessage msg;
                 msg.setAddress("/object/finger_report");
