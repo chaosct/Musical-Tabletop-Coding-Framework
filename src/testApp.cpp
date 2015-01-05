@@ -29,47 +29,29 @@
 */
 
 #include "testApp.h"
-#include "CursorFeedback.hpp"
-#include "FigureFeedback.hpp"
-#include "TapFeedback.hpp"
 
-#include "oscReporter.hpp"
-#include "osc_general.hpp"
-#include "osc_fingers.hpp"
-#include "osc_distances.hpp"
+#include "dispatcher.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
+#include "osc_line.hpp"
 
-testApp::testApp(): tableapp(TableApp("MTCF"))
-{
-    
+testApp::testApp(): tableapp(TableApp("MTCF")){
 }
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    ofSetLogLevel(OF_LOG_ERROR);
     tableapp.setup();
-    new CursorFeedback();
-    new FigureFeedback();
-    new TapFeedback();
-    //new CalibratorObject(1);
 
-    //Global
-    new OscGeneral();
-
-    new OscObjectReporter();
-    new OscDistanceReporter();
-    OscWaveDraw::Instance();
-
-    new OscFingerReporter();
-
+    OscPolygonDraw::Instance();
     OscTextDraw::Instance();
-    OSCFigureDraw::Instance();
+    OscLineDraw::Instance();
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+    OSCDispatcher::Instance().update();
+    objects.update();
+    fingers.update();
 }
 
 //--------------------------------------------------------------

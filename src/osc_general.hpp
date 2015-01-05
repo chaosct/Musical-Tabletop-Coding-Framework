@@ -29,16 +29,16 @@
 */
 #pragma once
 #include "dispatcher.hpp"
-#include "OscTools.hpp"
+#include "osc_polygon.hpp"
 
-class OscGeneral: public OSCCMD, public BackgroundGraphic
+class OscGeneral: public OSCCMD
 {
-    int color1,color2,color3;
+    OSCPolygonObject background;
     float & textsize;
+
+    void buildBackground();
+
 public:
-    OscGeneral():OSCCMD("/mtcf"),
-        color1(51), color2(102), color3(153),
-        textsize(ofxGlobalConfig::getRef("MTCF:TEXTSIZE",1.0f)){}
+    OscGeneral();
     void run(ofxOscMessage & m);
-    void draw();
 };

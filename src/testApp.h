@@ -34,27 +34,31 @@
 
 #include "ofMain.h"
 #include "TableApp.hpp"
-#include "Figure.h"
-#include "CollisionHelper.h"
-#include "Polygon.h"
+#include "osc_objects.hpp"
+#include "osc_fingers.hpp"
+#include "osc_general.hpp"
 
 class testApp : public ofBaseApp{
 
-	public:
+        public:
+            TableApp tableapp;
+            testApp();
+            void setup();
+            void update();
+            void draw();
 
-        TableApp tableapp;
-        testApp();
-		void setup();
-		void update();
-		void draw();
+            //void keyPressed  (int key);
+            //void keyReleased(int key);
+            //void mouseMoved(int x, int y );
+            //void mouseDragged(int x, int y, int button);
+            //void mousePressed(int x, int y, int button);
+            //void mouseReleased(int x, int y, int button);
+            void windowResized(int w, int h);
 
-		//void keyPressed  (int key);
-		//void keyReleased(int key);
-		//void mouseMoved(int x, int y );
-		//void mouseDragged(int x, int y, int button);
-		//void mousePressed(int x, int y, int button);
-		//void mouseReleased(int x, int y, int button);
-		void windowResized(int w, int h);
+        private:
+            OscObjectReporter objects;
+            OscFingerReporter fingers;
+            OscGeneral oscGeneral;
 };
 
 #endif

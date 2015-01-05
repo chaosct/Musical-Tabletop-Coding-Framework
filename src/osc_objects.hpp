@@ -28,37 +28,50 @@
 
 */
 
-#ifndef SIMPLEALLOBJECTS_HPP_INCLUDED
-#define SIMPLEALLOBJECTS_HPP_INCLUDED
+#ifndef OSCREPORTER_HPP_INCLUDED
+#define OSCREPORTER_HPP_INCLUDED
 
-#include "Graphic.hpp"
+#include "dispatcher.hpp"
 #include <map>
 #include "InputGestureDirectObjects.hpp"
+#include "InputGestureDirectFingers.hpp"
+#include "EventClient.hpp"
+#include "objectGraphics.hpp"
 
-//class SimpleAllObjects: public OnTable < tuio::CanDirectObjects < Graphic > >, public std::map<unsigned int,tuio::DirectObject *>
-class SimpleAllObjects: public Graphic,  public std::map<unsigned int,DirectObject *>
-{
+class OscObjectReporter: public OSCCMD, public EventClient{
     public:
-    void newObject(InputGestureDirectObjects::newObjectArgs & a)
-    {
-        DirectObject * object = a.object;
-        (*this)[object->f_id]=object;
-    }
-    void removeObject(InputGestureDirectObjects::removeObjectArgs & a)
-    {
-        DirectObject * object = a.object;
-        erase(object->f_id);
-    }
-    bool isOnTable(unsigned int f)
-    {
-        return find(f) != end();
-    }
-    SimpleAllObjects()
-    {
-        //registerEvent( Event , &MyClass::method );
-        this->registerEvent(InputGestureDirectObjects::I().newObject,&SimpleAllObjects::newObject);
-        this->registerEvent(InputGestureDirectObjects::I().removeObject,&SimpleAllObjects::removeObject);
-    }
+        OscObjectReporter();
+        void run(ofxOscMessage & m);
+        void update();
+
+        void report (DirectObject * obj);
+        void reporton (int fid);
+        void reportoff (int fid);
+
+        void newObject(InputGestureDirectObjects::newObjectArgs & a);
+        void updateObject(InputGestureDirectObjects::updateObjectArgs & a);
+        void removeObject(InputGestureDirectObjects::removeObjectArgs & a);
+
+        void newCursor(InputGestureDirectFingers::newCursorArgs & a);
+        void updateCursor(InputGestureDirectFingers::updateCursorArgs & a);
+
+    private:
+        struct object_data{
+            ObjectGraphs graphics;
+            bool can_cursors, can_angle;
+            float angle;
+	    bool onTable;
+	    DirectObject* object;
+            object_data() : can_cursors(false), can_angle(false),
+			    angle(0),
+			    onTable(false),
+			    object(NULL) {}
+        };
+
+        std::map<int, object_data> fiducials;
+        std::vector<int> fiducialstoupdate;
+
+        float computeAngle(DirectFinger * finger, ofVec2f &figure);
 };
 
-#endif // SIMPLEALLOBJECTS_HPP_INCLUDED
+#endif // OSCREPORTER_HPP_INCLUDED

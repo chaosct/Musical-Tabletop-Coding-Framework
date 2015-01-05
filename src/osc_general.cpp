@@ -1,7 +1,37 @@
 #include "osc_general.hpp"
 #include "osc_polygon.hpp"
 #include "osc_text.hpp"
-#include "oscReporter.hpp"
+#include "osc_line.hpp"
+#include "ofxGlobalConfig.hpp"
+
+OscGeneral::OscGeneral() : OSCCMD("/mtcf"),
+                            textsize(ofxGlobalConfig::getRef("PROGRAM:TEXTSIZE", 1.0f)){
+    buildBackground();
+}
+
+void OscGeneral::buildBackground(){
+    background.unregisterEvents();
+    ofxOscMessage parms;
+
+    // Layer
+    parms.addIntArg(0);
+    background.run("layer", parms);
+    parms.clear();
+
+    // Color
+    parms.addIntArg(51);
+    parms.addIntArg(102);
+    parms.addIntArg(153);
+    background.run("color", parms);
+    parms.clear();
+
+    // Geometry
+    parms.addFloatArg(0.5f);
+    parms.addFloatArg(0.5f);
+    parms.addFloatArg(1.0f);
+    parms.addFloatArg(1.0f);
+    background.run("addrectangle", parms);
+}
 
 void OscGeneral::run(ofxOscMessage & m)
 {
@@ -14,19 +44,14 @@ void OscGeneral::run(ofxOscMessage & m)
     msg >> cmd;
     if (cmd == "reset")
     {
+        OscPolygonDraw::Instance().o.reset();
         OscTextDraw::Instance().o.reset();
-        OSCFigureDraw::Instance().o.reset();
-        OscWaveDraw::Instance().reset();
+        OscLineDraw::Instance().o.reset();
     }
     else if (cmd == "background")
     {
-        msg >> color1 >> color2 >> color3;
-        if (color1 < 0) color1 = 0;
-        if (color2 < 0) color2 = 0;
-        if (color3 < 0) color3 = 0;
-        if (color1 > 255) color1 = 255;
-        if (color2 > 255) color2 = 255;
-        if (color3 > 255) color3 = 255;
+        msg >> cmd;
+        background.run(cmd, msg);
     }
     else if (cmd == "fingercolor")
     {
@@ -43,8 +68,3 @@ void OscGeneral::run(ofxOscMessage & m)
 
 }
 
-void OscGeneral::draw()
-{
-    ofSetColor(color1,color2,color3);
-    ofRect(0.0f,0.0f,1.0f,1.0f);
-}

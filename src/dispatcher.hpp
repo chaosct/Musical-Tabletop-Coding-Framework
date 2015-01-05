@@ -34,10 +34,7 @@
 
 #include "Singleton.hpp"
 #include "ofxOsc.h"
-#include "Graphic.hpp"
-#include "ofxGlobalConfig.hpp"
 #include <map>
-
 
 class OSCCMD
 {
@@ -47,7 +44,7 @@ class OSCCMD
     virtual void run(ofxOscMessage & m)=0;
 };
 
-class OSCDispatcher: public Singleton<OSCDispatcher>, public Graphic
+class OSCDispatcher: public Singleton<OSCDispatcher>
 {
     ofxOscReceiver receiver;
     std::map<std::string,OSCCMD*> commands;
